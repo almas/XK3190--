@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA5186D6-4AA6-4815-8354-50123D37C653}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XmWeightForm</RootNamespace>
+    <AssemblyName>XmWeightForm</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\lib\CSkin 2.0\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DeviceSDK2">
+      <HintPath>..\lib\DeviceSDK2.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqBridge">
+      <HintPath>..\lib\dapper\LinqBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\lib\lognet\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DapperPagerHelper.cs" />
+    <Compile Include="InputForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="log\log4netHelper.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportForm.Designer.cs">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\AnimalPriceForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\AnimalPriceForm.Designer.cs">
+      <DependentUpon>AnimalPriceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\FactoryForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\FactoryForm.Designer.cs">
+      <DependentUpon>FactoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\FactoryInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\FactoryInfoForm.Designer.cs">
+      <DependentUpon>FactoryInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\PriceInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\PriceInfoForm.Designer.cs">
+      <DependentUpon>PriceInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\ProductForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\ProductInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\ProductInfoForm.Designer.cs">
+      <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SysManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SysManageForm.Designer.cs">
+      <DependentUpon>SysManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SysPersonInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SysPersonInfo.Designer.cs">
+      <DependentUpon>SysPersonInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SysPersonInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SysPersonInfoForm.Designer.cs">
+      <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Weights\ElectronicScale.cs" />
+    <Compile Include="Weights\SerialPortUtil.cs" />
+    <Compile Include="Weights\SerialPortWeightScale.cs" />
+    <EmbeddedResource Include="InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ReportForm.resx">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\AnimalPriceForm.resx">
+      <DependentUpon>AnimalPriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\FactoryForm.resx">
+      <DependentUpon>FactoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\FactoryInfoForm.resx">
+      <DependentUpon>FactoryInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\PriceInfoForm.resx">
+      <DependentUpon>PriceInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\ProductInfoForm.resx">
+      <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\SysManageForm.resx">
+      <DependentUpon>SysManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\SysPersonInfo.resx">
+      <DependentUpon>SysPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\SysPersonInfoForm.resx">
+      <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="log4net.config" />
+    <None Include="Properties\DataSources\AppService.Model.ProductModel.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppService\AppService.csproj">
+      <Project>{65626248-9e59-4dbe-80e9-f7ec7937a912}</Project>
+      <Name>AppService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dapper NET20\Dapper NET20.csproj">
+      <Project>{ac05c2dc-8f4a-4cde-a73c-80f8b6410a1d}</Project>
+      <Name>Dapper NET20</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,6 @@
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\bin\x86\Debug\Dapper_NET20.dll
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\bin\x86\Debug\Dapper_NET20.pdb
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\bin\x86\Debug\LinqBridge.dll
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\obj\x86\Debug\Dapper NET20.csprojResolveAssemblyReference.cache
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\obj\x86\Debug\Dapper_NET20.dll
+D:\搜狗高速下载\dapper-dot-net-net-20\Dapper NET20\obj\x86\Debug\Dapper_NET20.pdb
