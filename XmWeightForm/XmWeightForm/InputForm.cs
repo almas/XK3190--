@@ -39,23 +39,23 @@ namespace XmWeightForm
             animalSel.DataSource = list;
 
 
-            var data = InitData();
-            if (data != null)
-            {
-                txtName.Text = data.hostName;
-                txtIdNumber.Text = data.IdNum;
-                txtTel.Text = data.tel;
+            //var data = InitData();
+            //if (data != null)
+            //{
+            //    txtName.Text = data.hostName;
+            //    txtIdNumber.Text = data.IdNum;
+            //    txtTel.Text = data.tel;
 
-                animalSel.SelectedText = data.animalType;
-                BatchId = data.batchId;
+            //    animalSel.SelectedText = data.animalType;
+            //    BatchId = data.batchId;
 
-                //称重状态 1-结束，0-称重中
-                SwitchButtonStatus(2);
-            }
-            else
-            {
-                btnEnd.Enabled = false;
-            }
+            //    //称重状态 1-结束，0-称重中
+            //    SwitchButtonStatus(2);
+            //}
+            //else
+            //{
+            //    btnEnd.Enabled = false;
+            //}
 
 
         }
@@ -176,18 +176,32 @@ namespace XmWeightForm
             connection.Open();
             return connection;
         }
-        private BatchInput InitData()
+        private void InitData()
         {
-            var list = new List<BatchInput>();
+            var data=new BatchInput();
             using (var db = GetOpenConnection())
             {
                 var query = "select top 1 * from BatchInput where flag=0";
-                var data = db.Query<BatchInput>(query, null).FirstOrDefault();
-
-                return data;
+                data = db.Query<BatchInput>(query, null).FirstOrDefault();
             }
 
-            return null;
+            if (data != null)
+            {
+                txtName.Text = data.hostName;
+                txtIdNumber.Text = data.PIN;
+                txtTel.Text = data.tel;
+
+                animalSel.SelectedText = data.animalTypeId.ToString();
+                BatchId = data.batchId;
+
+                //称重状态 1-结束，0-称重中
+                SwitchButtonStatus(2);
+            }
+            else
+            {
+                btnEnd.Enabled = false;
+            }
+
         }
     }
 }

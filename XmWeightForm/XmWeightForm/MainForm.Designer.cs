@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.weightSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.btnReport = new System.Windows.Forms.Button();
             this.mainGroup = new System.Windows.Forms.GroupBox();
@@ -43,7 +42,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.animalSel = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.hookSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.txtInfo = new System.Windows.Forms.RichTextBox();
             this.txtSheepWeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,20 +54,11 @@
             this.btnWeight = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblCurrentPerson = new System.Windows.Forms.Label();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Location = new System.Drawing.Point(3, 8);
-            this.btnInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(151, 40);
-            this.btnInfo.TabIndex = 0;
-            this.btnInfo.Text = "信息录入";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // weightSerialPort
             // 
@@ -77,7 +66,7 @@
             // 
             // btnReport
             // 
-            this.btnReport.Location = new System.Drawing.Point(161, 9);
+            this.btnReport.Location = new System.Drawing.Point(163, 6);
             this.btnReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(155, 39);
@@ -98,11 +87,11 @@
             this.mainGroup.Controls.Add(this.label6);
             this.mainGroup.Controls.Add(this.animalSel);
             this.mainGroup.Controls.Add(this.label7);
-            this.mainGroup.Location = new System.Drawing.Point(3, 61);
+            this.mainGroup.Location = new System.Drawing.Point(3, 98);
             this.mainGroup.Margin = new System.Windows.Forms.Padding(4);
             this.mainGroup.Name = "mainGroup";
             this.mainGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.mainGroup.Size = new System.Drawing.Size(796, 527);
+            this.mainGroup.Size = new System.Drawing.Size(796, 490);
             this.mainGroup.TabIndex = 3;
             this.mainGroup.TabStop = false;
             this.mainGroup.Text = "信息录入";
@@ -204,10 +193,6 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "送宰类型";
             // 
-            // hookSerialPort
-            // 
-            this.hookSerialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.hookSerialPort_DataReceived);
-            // 
             // txtInfo
             // 
             this.txtInfo.Location = new System.Drawing.Point(16, 596);
@@ -224,7 +209,6 @@
             this.txtSheepWeight.Name = "txtSheepWeight";
             this.txtSheepWeight.Size = new System.Drawing.Size(177, 24);
             this.txtSheepWeight.TabIndex = 11;
-            this.txtSheepWeight.TextChanged += new System.EventHandler(this.txtSheepWeight_TextChanged);
             // 
             // label1
             // 
@@ -331,11 +315,30 @@
             this.label9.TabIndex = 21;
             this.label9.Text = "称重仪";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 15);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "当前称重：";
+            // 
+            // lblCurrentPerson
+            // 
+            this.lblCurrentPerson.AutoSize = true;
+            this.lblCurrentPerson.Location = new System.Drawing.Point(105, 61);
+            this.lblCurrentPerson.Name = "lblCurrentPerson";
+            this.lblCurrentPerson.Size = new System.Drawing.Size(0, 15);
+            this.lblCurrentPerson.TabIndex = 23;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 763);
+            this.Controls.Add(this.lblCurrentPerson);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnWeight);
@@ -345,7 +348,6 @@
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.mainGroup);
             this.Controls.Add(this.btnReport);
-            this.Controls.Add(this.btnInfo);
             this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
@@ -363,11 +365,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnInfo;
         private System.IO.Ports.SerialPort weightSerialPort;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.GroupBox mainGroup;
-        private System.IO.Ports.SerialPort hookSerialPort;
         private System.Windows.Forms.RichTextBox txtInfo;
         private System.Windows.Forms.TextBox txtSheepWeight;
         private System.Windows.Forms.Label label1;
@@ -390,6 +390,8 @@
         private System.Windows.Forms.Button btnWeight;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblCurrentPerson;
     }
 }
 

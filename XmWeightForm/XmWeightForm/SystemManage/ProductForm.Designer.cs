@@ -34,14 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.productGrid = new CCWin.SkinControl.SkinDataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isfixedStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPre = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,6 +47,16 @@
             this.excelFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
+            this.productId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isfixedStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredients = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storageCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.productGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -77,14 +79,16 @@
             this.productGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.productGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
+            this.productId,
             this.productName,
             this.productNo,
             this.spec,
             this.comment,
             this.barcode,
             this.isfixedStr,
-            this.expiration});
+            this.expiration,
+            this.ingredients,
+            this.storageCondition});
             this.productGrid.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -115,57 +119,6 @@
             this.productGrid.TitleBackColorBegin = System.Drawing.Color.White;
             this.productGrid.TitleBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(196)))), ((int)(((byte)(242)))));
             this.productGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productGrid_CellDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // productName
-            // 
-            this.productName.DataPropertyName = "productName";
-            this.productName.HeaderText = "产品名称";
-            this.productName.Name = "productName";
-            this.productName.Width = 200;
-            // 
-            // productNo
-            // 
-            this.productNo.DataPropertyName = "productNo";
-            this.productNo.HeaderText = "常用编号";
-            this.productNo.Name = "productNo";
-            // 
-            // spec
-            // 
-            this.spec.DataPropertyName = "spec";
-            this.spec.HeaderText = "规格";
-            this.spec.Name = "spec";
-            // 
-            // comment
-            // 
-            this.comment.DataPropertyName = "comment";
-            this.comment.HeaderText = "说明";
-            this.comment.Name = "comment";
-            // 
-            // barcode
-            // 
-            this.barcode.DataPropertyName = "barcode";
-            this.barcode.HeaderText = "条码";
-            this.barcode.Name = "barcode";
-            this.barcode.Width = 200;
-            // 
-            // isfixedStr
-            // 
-            this.isfixedStr.DataPropertyName = "isfixedStr";
-            this.isfixedStr.HeaderText = "是否定重";
-            this.isfixedStr.Name = "isfixedStr";
-            // 
-            // expiration
-            // 
-            this.expiration.DataPropertyName = "expiration";
-            this.expiration.HeaderText = "有效期";
-            this.expiration.Name = "expiration";
             // 
             // btnPre
             // 
@@ -279,6 +232,69 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // productId
+            // 
+            this.productId.DataPropertyName = "productId";
+            this.productId.HeaderText = "productId";
+            this.productId.Name = "productId";
+            this.productId.Visible = false;
+            // 
+            // productName
+            // 
+            this.productName.DataPropertyName = "productName";
+            this.productName.HeaderText = "产品名称";
+            this.productName.Name = "productName";
+            this.productName.Width = 200;
+            // 
+            // productNo
+            // 
+            this.productNo.DataPropertyName = "productNo";
+            this.productNo.HeaderText = "常用编号";
+            this.productNo.Name = "productNo";
+            // 
+            // spec
+            // 
+            this.spec.DataPropertyName = "spec";
+            this.spec.HeaderText = "规格";
+            this.spec.Name = "spec";
+            // 
+            // comment
+            // 
+            this.comment.DataPropertyName = "comment";
+            this.comment.HeaderText = "说明";
+            this.comment.Name = "comment";
+            // 
+            // barcode
+            // 
+            this.barcode.DataPropertyName = "barcode";
+            this.barcode.HeaderText = "条码";
+            this.barcode.Name = "barcode";
+            this.barcode.Width = 200;
+            // 
+            // isfixedStr
+            // 
+            this.isfixedStr.DataPropertyName = "isfixedStr";
+            this.isfixedStr.HeaderText = "是否定重";
+            this.isfixedStr.Name = "isfixedStr";
+            // 
+            // expiration
+            // 
+            this.expiration.DataPropertyName = "expiration";
+            this.expiration.HeaderText = "有效期";
+            this.expiration.Name = "expiration";
+            // 
+            // ingredients
+            // 
+            this.ingredients.DataPropertyName = "ingredients";
+            this.ingredients.HeaderText = "配料";
+            this.ingredients.Name = "ingredients";
+            // 
+            // storageCondition
+            // 
+            this.storageCondition.DataPropertyName = "storageCondition";
+            this.storageCondition.HeaderText = "存储条件";
+            this.storageCondition.Name = "storageCondition";
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -316,7 +332,12 @@
         private System.Windows.Forms.BindingSource productModelBindingSource;
         private CCWin.SkinControl.SkinDataGridView productGrid;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.OpenFileDialog excelFileDialog;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productId;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn productNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn spec;
@@ -324,10 +345,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn isfixedStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiration;
-        private System.Windows.Forms.Label lblCount;
-        private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.OpenFileDialog excelFileDialog;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ingredients;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storageCondition;
     }
 }

@@ -15,6 +15,7 @@ namespace XmWeightForm.SystemManage
         private AnimalPriceForm animalPriceForm;
         private SysPersonInfo personInfoForm;
         private FactoryForm factoryForm;
+        private ReportForm reportForm;
         public SysManageForm()
         {
             InitializeComponent();
@@ -29,7 +30,11 @@ namespace XmWeightForm.SystemManage
         }
         private void btnReport_Click(object sender, EventArgs e)
         {
-
+            reportForm=new ReportForm();
+            reportForm.Show();
+            //groupMain.Controls.Clear();
+            //groupMain.Controls.Add(reportUForm);
+            //groupMain.Text = "报表统计";
         }
 
         private void btnProduct_Click(object sender, EventArgs e)

@@ -89,9 +89,9 @@
             // 
             // groupMain
             // 
-            this.groupMain.Location = new System.Drawing.Point(12, 73);
+            this.groupMain.Location = new System.Drawing.Point(12, 45);
             this.groupMain.Name = "groupMain";
-            this.groupMain.Size = new System.Drawing.Size(1203, 650);
+            this.groupMain.Size = new System.Drawing.Size(1203, 678);
             this.groupMain.TabIndex = 3;
             this.groupMain.TabStop = false;
             this.groupMain.Text = "系统信息";
@@ -104,7 +104,7 @@
             this.Controls.Add(this.groupMain);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SysManageForm";
             this.Text = "系统管理";
             this.Load += new System.EventHandler(this.SysManageForm_Load);

@@ -47,6 +47,7 @@
     <Compile Include="Model\OpersModel.cs" />
     <Compile Include="Model\ParamsModel.cs" />
     <Compile Include="Model\ProductModel.cs" />
+    <Compile Include="Model\WeighingsRaw.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Comm\ValidateHelper.cs" />
     <Compile Include="Comm\WebApiClient.cs" />

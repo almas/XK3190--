@@ -132,7 +132,7 @@ namespace XmWeightForm.SystemManage
             var model = new ProductModel();
             using (var db = DapperDao.GetInstance())
             {
-                 model = db.Query<ProductModel>("select * from Products where Id=@id", new {id = id}).FirstOrDefault();
+                model = db.Query<ProductModel>("select * from Products where productId=@id", new { id = id }).FirstOrDefault();
             }
 
             if (model != null)

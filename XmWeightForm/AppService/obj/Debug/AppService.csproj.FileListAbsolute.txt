@@ -5,3 +5,9 @@ E:\Work\XmWeightForm\AppService\bin\Debug\Newtonsoft.Json.xml
 E:\Work\XmWeightForm\AppService\obj\Debug\AppService.csprojResolveAssemblyReference.cache
 E:\Work\XmWeightForm\AppService\obj\Debug\AppService.dll
 E:\Work\XmWeightForm\AppService\obj\Debug\AppService.pdb
+E:\Work\XK3190\XmWeightForm\AppService\bin\Debug\AppService.dll
+E:\Work\XK3190\XmWeightForm\AppService\bin\Debug\AppService.pdb
+E:\Work\XK3190\XmWeightForm\AppService\bin\Debug\Newtonsoft.Json.dll
+E:\Work\XK3190\XmWeightForm\AppService\bin\Debug\Newtonsoft.Json.xml
+E:\Work\XK3190\XmWeightForm\AppService\obj\Debug\AppService.dll
+E:\Work\XK3190\XmWeightForm\AppService\obj\Debug\AppService.pdb

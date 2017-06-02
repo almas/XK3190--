@@ -47,9 +47,10 @@ namespace XmWeightForm.SystemManage
         private void btnQuery_Click(object sender, EventArgs e)
         {
             var pname = queryProductName.Text.Trim();
-
             if (!string.IsNullOrEmpty(pname))
             {
+                Page = 1;
+
                 var data = GetProduct("and productName like'%" + pname + "%'");
 
                 ReloadGrid(data);
@@ -62,22 +63,26 @@ namespace XmWeightForm.SystemManage
 
 
         public int Page = 1;
-        public int Psize = 10;
+        public int Psize = 15;
         public int Total = 0;
         public int PageCount=1;
         private List<ProductModel> GetProduct(string whersql)
         {
-            var list = DapperPagerHelper<ProductModel>.QueryPagerData("Products", Page, Psize, "Id", whersql, ref Total);
+            var list = DapperPagerHelper<ProductModel>.QueryPagerData("Products", Page, Psize, "productId", whersql, ref Total);
 
-           
+
             if (Total > Psize)
             {
-               int tempCount = Total/Psize;
+                int tempCount = Total/Psize;
                 if (Total%Psize > 0)
                 {
                     tempCount += 1;
                 }
                 PageCount = tempCount;
+            }
+            else
+            {
+                PageCount = 1;
             }
 
             return list;
@@ -135,7 +140,19 @@ namespace XmWeightForm.SystemManage
             if (Page > 1)
             {
                 Page--;
-                btnQuery.PerformClick();
+
+                var data=new List<ProductModel>();
+                var pname = queryProductName.Text.Trim();
+                if (!string.IsNullOrEmpty(pname))
+                {
+                    data = GetProduct("and productName like'%" + pname + "%'");
+                }
+                else
+                {
+                    data = GetProduct(String.Empty);
+                }
+
+                ReloadGrid(data);
             }
         }
 
@@ -144,7 +161,18 @@ namespace XmWeightForm.SystemManage
             if (Page < PageCount)
             {
                 Page++;
-                btnQuery.PerformClick();
+                var data = new List<ProductModel>();
+                var pname = queryProductName.Text.Trim();
+                if (!string.IsNullOrEmpty(pname))
+                {
+                    data = GetProduct("and productName like'%" + pname + "%'");
+                }
+                else
+                {
+                    data = GetProduct(String.Empty);
+                }
+
+                ReloadGrid(data);
             }
         }
 

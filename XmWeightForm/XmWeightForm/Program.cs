@@ -15,7 +15,7 @@ namespace XmWeightForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new SysManageForm());
+             //Application.Run(new SysManageForm());
             Application.Run(new MainForm());
             //LoginForm fl = new LoginForm();
             //fl.ShowDialog();

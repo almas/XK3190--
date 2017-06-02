@@ -38,11 +38,17 @@
     <Reference Include="DeviceSDK2">
       <HintPath>..\lib\DeviceSDK2.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\lib\npoi\Net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="LinqBridge">
       <HintPath>..\lib\dapper\LinqBridge.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\lognet\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\lib\npoi\Net20\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -60,6 +66,8 @@
     <Compile Include="InputForm.Designer.cs">
       <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="log\DataReport.cs" />
+    <Compile Include="log\ExcelHelper.cs" />
     <Compile Include="log\log4netHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -76,7 +84,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportForm.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
@@ -117,6 +125,12 @@
     <Compile Include="SystemManage\ProductInfoForm.Designer.cs">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\ReportGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\ReportGridForm.Designer.cs">
+      <DependentUpon>ReportGridForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\SysManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +149,7 @@
     <Compile Include="SystemManage\SysPersonInfoForm.Designer.cs">
       <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Weights\BeepWarnHelper.cs" />
     <Compile Include="Weights\ElectronicScale.cs" />
     <Compile Include="Weights\SerialPortUtil.cs" />
     <Compile Include="Weights\SerialPortWeightScale.cs" />
@@ -176,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\ReportGridForm.resx">
+      <DependentUpon>ReportGridForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\SysManageForm.resx">
       <DependentUpon>SysManageForm.cs</DependentUpon>

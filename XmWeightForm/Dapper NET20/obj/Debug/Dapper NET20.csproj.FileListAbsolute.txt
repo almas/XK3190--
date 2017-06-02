@@ -4,3 +4,8 @@ E:\Work\XmWeightForm\Dapper NET20\bin\Debug\LinqBridge.dll
 E:\Work\XmWeightForm\Dapper NET20\obj\Debug\Dapper_NET20.dll
 E:\Work\XmWeightForm\Dapper NET20\obj\Debug\Dapper_NET20.pdb
 E:\Work\XmWeightForm\Dapper NET20\obj\Debug\Dapper NET20.csprojResolveAssemblyReference.cache
+E:\Work\XK3190\XmWeightForm\Dapper NET20\bin\Debug\Dapper_NET20.dll
+E:\Work\XK3190\XmWeightForm\Dapper NET20\bin\Debug\Dapper_NET20.pdb
+E:\Work\XK3190\XmWeightForm\Dapper NET20\bin\Debug\LinqBridge.dll
+E:\Work\XK3190\XmWeightForm\Dapper NET20\obj\Debug\Dapper_NET20.dll
+E:\Work\XK3190\XmWeightForm\Dapper NET20\obj\Debug\Dapper_NET20.pdb
