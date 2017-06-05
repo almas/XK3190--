@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnInsertWeight = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnHook = new System.Windows.Forms.Button();
             this.btnWeight = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -204,10 +205,11 @@
             // 
             // txtSheepWeight
             // 
+            this.txtSheepWeight.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSheepWeight.Location = new System.Drawing.Point(25, 222);
             this.txtSheepWeight.Margin = new System.Windows.Forms.Padding(4);
             this.txtSheepWeight.Name = "txtSheepWeight";
-            this.txtSheepWeight.Size = new System.Drawing.Size(177, 24);
+            this.txtSheepWeight.Size = new System.Drawing.Size(168, 30);
             this.txtSheepWeight.TabIndex = 11;
             // 
             // label1
@@ -234,10 +236,11 @@
             // 
             // txtSheepNum
             // 
+            this.txtSheepNum.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSheepNum.Location = new System.Drawing.Point(25, 69);
             this.txtSheepNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtSheepNum.Name = "txtSheepNum";
-            this.txtSheepNum.Size = new System.Drawing.Size(151, 24);
+            this.txtSheepNum.Size = new System.Drawing.Size(151, 30);
             this.txtSheepNum.TabIndex = 14;
             this.txtSheepNum.Text = "4";
             // 
@@ -265,6 +268,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnInsertWeight);
             this.groupBox1.Controls.Add(this.txtSheepNum);
@@ -276,6 +280,16 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "称重信息";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label11.Location = new System.Drawing.Point(200, 225);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 20);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "KG";
             // 
             // btnHook
             // 
@@ -348,6 +362,7 @@
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.mainGroup);
             this.Controls.Add(this.btnReport);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
@@ -392,6 +407,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblCurrentPerson;
+        private System.Windows.Forms.Label label11;
     }
 }
 

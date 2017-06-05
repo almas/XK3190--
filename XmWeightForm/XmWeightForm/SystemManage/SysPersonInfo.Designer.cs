@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.personGrid = new CCWin.SkinControl.SkinDataGridView();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
@@ -43,69 +39,16 @@
             this.btnPre = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
+            this.personGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JobNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isAdminStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.personGrid)).BeginInit();
             this.SuspendLayout();
-            // 
-            // personGrid
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.personGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.personGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.personGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.personGrid.ColumnFont = null;
-            this.personGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.personGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.personGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.personGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.userName,
-            this.operName,
-            this.JobNumber,
-            this.password,
-            this.isAdminStr});
-            this.personGrid.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.personGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.personGrid.EnableHeadersVisualStyles = false;
-            this.personGrid.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.personGrid.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.personGrid.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            this.personGrid.Location = new System.Drawing.Point(36, 121);
-            this.personGrid.Name = "personGrid";
-            this.personGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.personGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.personGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.personGrid.RowTemplate.Height = 23;
-            this.personGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.personGrid.Size = new System.Drawing.Size(837, 325);
-            this.personGrid.TabIndex = 0;
-            this.personGrid.TitleBack = null;
-            this.personGrid.TitleBackColorBegin = System.Drawing.Color.White;
-            this.personGrid.TitleBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(196)))), ((int)(((byte)(242)))));
-            this.personGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.personGrid_CellDoubleClick);
             // 
             // skinLabel1
             // 
@@ -203,12 +146,40 @@
             this.lblCount.Size = new System.Drawing.Size(0, 12);
             this.lblCount.TabIndex = 10;
             // 
+            // personGrid
+            // 
+            this.personGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.personGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.personGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.userName,
+            this.operName,
+            this.password,
+            this.isAdminStr,
+            this.JobNumber,
+            this.JobStation});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.personGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            this.personGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.personGrid.Location = new System.Drawing.Point(19, 118);
+            this.personGrid.Name = "personGrid";
+            this.personGrid.RowTemplate.Height = 23;
+            this.personGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.personGrid.Size = new System.Drawing.Size(856, 328);
+            this.personGrid.TabIndex = 11;
+            this.personGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.personGrid_CellDoubleClick);
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
-            this.Id.Visible = false;
             // 
             // userName
             // 
@@ -221,14 +192,6 @@
             this.operName.DataPropertyName = "operName";
             this.operName.HeaderText = "姓名";
             this.operName.Name = "operName";
-            this.operName.Width = 200;
-            // 
-            // JobNumber
-            // 
-            this.JobNumber.DataPropertyName = "JobNumber";
-            this.JobNumber.HeaderText = "员工卡号";
-            this.JobNumber.Name = "JobNumber";
-            this.JobNumber.Width = 200;
             // 
             // password
             // 
@@ -242,10 +205,24 @@
             this.isAdminStr.HeaderText = "是否管理员";
             this.isAdminStr.Name = "isAdminStr";
             // 
+            // JobNumber
+            // 
+            this.JobNumber.DataPropertyName = "JobNumber";
+            this.JobNumber.HeaderText = "工号";
+            this.JobNumber.Name = "JobNumber";
+            // 
+            // JobStation
+            // 
+            this.JobStation.DataPropertyName = "JobStation";
+            this.JobStation.HeaderText = "工位";
+            this.JobStation.Name = "JobStation";
+            // 
             // SysPersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
+            this.Controls.Add(this.personGrid);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPre);
@@ -256,7 +233,6 @@
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.skinLabel1);
-            this.Controls.Add(this.personGrid);
             this.Name = "SysPersonInfo";
             this.Size = new System.Drawing.Size(913, 532);
             this.Load += new System.EventHandler(this.SysPersonInfo_Load);
@@ -268,7 +244,6 @@
 
         #endregion
 
-        private CCWin.SkinControl.SkinDataGridView personGrid;
         private CCWin.SkinControl.SkinLabel skinLabel1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDel;
@@ -279,11 +254,13 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblCount;
+        private DevComponents.DotNetBar.Controls.DataGridViewX personGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;
         private System.Windows.Forms.DataGridViewTextBoxColumn operName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JobNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn password;
         private System.Windows.Forms.DataGridViewTextBoxColumn isAdminStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobStation;
     }
 }

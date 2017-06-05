@@ -15,18 +15,27 @@ namespace XmWeightForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-             //Application.Run(new SysManageForm());
-            Application.Run(new MainForm());
-            //LoginForm fl = new LoginForm();
-            //fl.ShowDialog();
-            //if (fl.DialogResult == DialogResult.OK)
-            //{
-            //    Application.Run(new MainForm());
-            //}
-            //else
-            //{
-            //    return;
-            //}
+            //Application.Run(new SysManageForm());
+            //Application.Run(new MainForm());
+            //Application.Run(new SysManageNewForm());
+            LoginForm fl = new LoginForm();
+            fl.ShowDialog();
+            if (fl.DialogResult == DialogResult.OK)
+            {
+                if (fl.IsAdmin)
+                {
+                    Application.Run(new SysManageNewForm());
+                }
+                else
+                {
+                    Application.Run(new MainForm());
+                }
+                
+            }
+            else
+            {
+                return;
+            }
           
         }
     }

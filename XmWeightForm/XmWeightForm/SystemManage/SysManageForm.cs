@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using AppService.Model;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class SysManageForm : Form
+    public partial class SysManageForm : Office2007Form
     {
         private ProductForm productForm;
         private AnimalPriceForm animalPriceForm;
@@ -19,6 +20,7 @@ namespace XmWeightForm.SystemManage
         public SysManageForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
 

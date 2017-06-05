@@ -21,18 +21,6 @@ namespace XmWeightForm.SystemManage
             InitData();
         }
 
-        private void skinDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string id = this.factoryGrid.SelectedRows[0].Cells[0].Value.ToString();
-
-            var factoryFrm = new FactoryInfoForm(id);
-
-            factoryFrm.Show();
-            if (factoryFrm.DialogResult == DialogResult.OK)
-            {
-                InitData();
-            }
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -79,6 +67,19 @@ namespace XmWeightForm.SystemManage
             }
 
             return list;
+        }
+
+        private void factoryGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = this.factoryGrid.SelectedRows[0].Cells[0].Value.ToString();
+
+            var factoryFrm = new FactoryInfoForm(id);
+
+            factoryFrm.Show();
+            if (factoryFrm.DialogResult == DialogResult.OK)
+            {
+                InitData();
+            }
         }
     }
 }

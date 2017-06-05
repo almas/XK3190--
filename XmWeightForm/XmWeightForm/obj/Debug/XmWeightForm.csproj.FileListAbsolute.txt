@@ -68,3 +68,6 @@ E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\ICSharpCode.SharpZipLib.dll
 E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\NPOI.dll
 E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\NPOI.xml
 E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SystemManage.ReportGridForm.resources
+E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\DLLFullPrint.dll
+E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SystemManage.ReportUForm.resources
+E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SysManageNewForm.resources

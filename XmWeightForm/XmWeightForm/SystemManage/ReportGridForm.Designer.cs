@@ -52,6 +52,7 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.reportGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +144,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(776, 46);
+            this.btnExport.Location = new System.Drawing.Point(20, 116);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 29);
@@ -154,7 +155,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(653, 46);
+            this.btnQuery.Location = new System.Drawing.Point(638, 46);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 29);
@@ -203,7 +204,7 @@
             this.reportGrid.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.reportGrid.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.reportGrid.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            this.reportGrid.Location = new System.Drawing.Point(20, 119);
+            this.reportGrid.Location = new System.Drawing.Point(12, 152);
             this.reportGrid.Name = "reportGrid";
             this.reportGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.reportGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -221,9 +222,9 @@
             // 
             // Sort
             // 
-            this.Sort.HeaderText = "Sort";
+            this.Sort.DataPropertyName = "Sort";
+            this.Sort.HeaderText = "序号";
             this.Sort.Name = "Sort";
-            this.Sort.Visible = false;
             // 
             // Name
             // 
@@ -276,11 +277,22 @@
             this.WeightTime.Name = "WeightTime";
             this.WeightTime.Width = 300;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(143, 116);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(95, 29);
+            this.btnPrint.TabIndex = 35;
+            this.btnPrint.Text = "打印";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // ReportGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 585);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.reportGrid);
             this.Controls.Add(this.endTime);
             this.Controls.Add(this.startTime);
@@ -292,7 +304,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnQuery);
-           // this.Name = "ReportGridForm";
+            //this.Name = "ReportGridForm";
             this.Text = "报表统计";
             ((System.ComponentModel.ISupportInitialize)(this.reportGrid)).EndInit();
             this.ResumeLayout(false);
@@ -322,5 +334,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightTime;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

@@ -5,16 +5,19 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Office2007Form
     {
         public LoginForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
+        public bool IsAdmin = false;
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var uname = txtName.Text.Trim();
@@ -25,7 +28,10 @@ namespace XmWeightForm
 
                 return ;
             }
-
+            if (uname.ToLower() == "admin")
+            {
+                IsAdmin = true;
+            }
             this.DialogResult=DialogResult.OK;
             this.Close();
             

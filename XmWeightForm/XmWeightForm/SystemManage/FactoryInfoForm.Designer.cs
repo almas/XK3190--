@@ -93,35 +93,35 @@
             // 
             this.txtFactoryNum.Location = new System.Drawing.Point(170, 19);
             this.txtFactoryNum.Name = "txtFactoryNum";
-            this.txtFactoryNum.Size = new System.Drawing.Size(199, 21);
+            this.txtFactoryNum.Size = new System.Drawing.Size(245, 21);
             this.txtFactoryNum.TabIndex = 5;
             // 
             // txtFactoryName
             // 
             this.txtFactoryName.Location = new System.Drawing.Point(170, 58);
             this.txtFactoryName.Name = "txtFactoryName";
-            this.txtFactoryName.Size = new System.Drawing.Size(199, 21);
+            this.txtFactoryName.Size = new System.Drawing.Size(245, 21);
             this.txtFactoryName.TabIndex = 6;
             // 
             // txtHook
             // 
             this.txtHook.Location = new System.Drawing.Point(170, 108);
             this.txtHook.Name = "txtHook";
-            this.txtHook.Size = new System.Drawing.Size(199, 21);
+            this.txtHook.Size = new System.Drawing.Size(245, 21);
             this.txtHook.TabIndex = 7;
             // 
             // txtmeatRate
             // 
             this.txtmeatRate.Location = new System.Drawing.Point(170, 150);
             this.txtmeatRate.Name = "txtmeatRate";
-            this.txtmeatRate.Size = new System.Drawing.Size(199, 21);
+            this.txtmeatRate.Size = new System.Drawing.Size(245, 21);
             this.txtmeatRate.TabIndex = 8;
             // 
             // txtextraRate
             // 
             this.txtextraRate.Location = new System.Drawing.Point(170, 196);
             this.txtextraRate.Name = "txtextraRate";
-            this.txtextraRate.Size = new System.Drawing.Size(199, 21);
+            this.txtextraRate.Size = new System.Drawing.Size(245, 21);
             this.txtextraRate.TabIndex = 9;
             // 
             // btnSave
@@ -157,7 +157,7 @@
             // 
             this.txtTraceUrl.Location = new System.Drawing.Point(170, 245);
             this.txtTraceUrl.Name = "txtTraceUrl";
-            this.txtTraceUrl.Size = new System.Drawing.Size(199, 21);
+            this.txtTraceUrl.Size = new System.Drawing.Size(245, 21);
             this.txtTraceUrl.TabIndex = 13;
             // 
             // FactoryInfoForm
@@ -179,6 +179,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Name = "FactoryInfoForm";
             this.Text = "加工厂信息";
             this.ResumeLayout(false);

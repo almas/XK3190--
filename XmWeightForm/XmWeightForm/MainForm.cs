@@ -14,7 +14,9 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Comm;
 using AppService.Model;
+using CCWin;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 using Microsoft.Win32;
 using XmWeightForm.Weights;
 using DeviceSDK;
@@ -22,7 +24,7 @@ using XmWeightForm.SystemManage;
 
 namespace XmWeightForm
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Office2007Form
     {
         //private BackgroundWorker worker = new BackgroundWorker();
         PTDevice _device;
@@ -31,17 +33,18 @@ namespace XmWeightForm
         string currentTagId = string.Empty;
         bool waitForWeighing = false;
         decimal currentWeight = decimal.Zero;
-        public System.IO.Ports.SerialPort port = new System.IO.Ports.SerialPort();
+        public System.IO.Ports.SerialPort BeepPort = new System.IO.Ports.SerialPort();
         public MainForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             // this.AcceptButton = btnStart;
             btnInsertWeight.Visible = false;
-           // InitForm();
+            InitForm();
             InitData();
 
 
@@ -50,20 +53,21 @@ namespace XmWeightForm
         private void InitForm()
         {
 
-            var beepCom = ConfigurationManager.AppSettings["hookCom"];
-            port.PortName = beepCom;
-            port.BaudRate = 9600;
-            port.DataBits = 8;
-            port.StopBits = StopBits.One;
-            port.Parity = Parity.None;
+            var beepCom = ConfigurationManager.AppSettings["beepCom"];
+            BeepPort.PortName = beepCom;
+            BeepPort.BaudRate = 9600;
+            BeepPort.DataBits = 8;
+            BeepPort.StopBits = StopBits.One;
+            BeepPort.Parity = Parity.None;
             //sp1.Open();
             try
             {
-                port.Open();
+                BeepPort.Open();
             }
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
+                AppNetInfo(ex.Message);
             }
 
 
@@ -104,6 +108,9 @@ namespace XmWeightForm
                             TempHookList.Add(hook);
                         }
                         showWeigthButton(true);
+                        BeepWarnHelper.OpenRedLed(BeepPort);
+                        Thread.Sleep(50);
+                        BeepWarnHelper.OpenWarnBeep(BeepPort);
                     }
 
 
@@ -319,8 +326,8 @@ namespace XmWeightForm
         /// <param name="e"></param>
         private void btnReport_Click(object sender, EventArgs e)
         {
-            //var reportForm=new ReportUForm();
             var reportForm = new ReportForm();
+           // var reportForm=new ReportGridForm();
             reportForm.Show();
             ////reportForm.Show();
             //mainGroup.Controls.Clear();
@@ -386,7 +393,10 @@ namespace XmWeightForm
                 MessageBox.Show("价格数据格式不正确");
                 return;
             }
-
+            BeepWarnHelper.CloseWarnBeep(BeepPort);
+            Thread.Sleep(50);
+            BeepWarnHelper.CloseRedLed(BeepPort);
+            
             int hookCount = TempHookList.Count;
             int sheepIntCount = int.Parse(sheepCount);
             if (TempHookList.Any())
@@ -404,6 +414,8 @@ namespace XmWeightForm
                 InsertWeightData(TempHookList, weightDecimal, TempHookList.Count);
                 TempHookList.Clear();
                 btnInsertWeight.Visible = false;
+               
+                
             }
 
 
@@ -445,7 +457,14 @@ namespace XmWeightForm
                     {
                         string msg = "入库成功：数量" + count + ";毛重：" + weights + "kg";
                         AppNetInfo(msg);
-                        //BeepWarnHelper.OpenGreenLed();
+
+                        BeepWarnHelper.OpenGreenLed(BeepPort);
+                        Thread.Sleep(50);
+                        BeepWarnHelper.OpenWarnBeep(BeepPort);
+                        Thread.Sleep(500);
+                        BeepWarnHelper.CloseGreedLed(BeepPort);
+                        Thread.Sleep(50);
+                        BeepWarnHelper.CloseWarnBeep(BeepPort);
                     }
                     else
                     {
@@ -969,8 +988,26 @@ namespace XmWeightForm
             {
                 _dataQueue.Clear();
             }
-           
-           
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BeepWarnHelper.OpenRedLed(BeepPort);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BeepWarnHelper.CloseRedLed(BeepPort);
+            Thread.Sleep(50);
+            BeepWarnHelper.OpenGreenLed(BeepPort);
+            Thread.Sleep(50);
+            BeepWarnHelper.OpenWarnBeep(BeepPort);
+            Thread.Sleep(500);
+            BeepWarnHelper.CloseGreedLed(BeepPort);
+            Thread.Sleep(50);
+            BeepWarnHelper.CloseWarnBeep(BeepPort);
         }
     }
 }

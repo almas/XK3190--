@@ -10,14 +10,17 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
+using DLLFullPrint;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class ReportGridForm : Form
+    public partial class ReportGridForm : Office2007Form
     {
         public ReportGridForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         public DataTable QueryDataTable = null;
@@ -67,14 +70,15 @@ namespace XmWeightForm.SystemManage
 
             }
 
-            var tempDt = QueryDataTable.Copy();
+            reportGrid.DataSource = QueryDataTable;
+            //var tempDt = QueryDataTable.Copy();
 
-            tempDt.Columns.Remove("Sort");
-            //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
-            string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
-            string[] header = { "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
-            DataReprot dr = new DataReprot("屠宰核算统计报表", tempDt, header, bottomStr);
-            PrintPreviewDialog p = dr.PrintReport();
+            //tempDt.Columns.Remove("Sort");
+            ////string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
+            //string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
+            //string[] header = { "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
+            //DataReprot dr = new DataReprot("屠宰核算统计报表", tempDt, header, bottomStr);
+            //PrintPreviewDialog p = dr.PrintReport();
 
             //this.groupReport.Controls.Add(p);
             //p.Show();
@@ -214,6 +218,42 @@ namespace XmWeightForm.SystemManage
             file.Close();
             stream.Close();
 
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+            if (QueryDataTable == null)
+            {
+                MessageBox.Show("请先查询数据");
+                return;
+
+            }
+            if (QueryDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("未查询到数据");
+                return;
+            }
+
+            System.Data.DataTable dt = new System.Data.DataTable();
+            DataRow dr;
+            //设置列表头 
+            foreach (DataGridViewColumn headerCell in reportGrid.Columns)
+            {
+                dt.Columns.Add(headerCell.HeaderText);
+            }
+            foreach (DataRow item in QueryDataTable.Rows)
+            {
+                dr = dt.NewRow();
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    dr[i] = item[i].ToString();
+                }
+                dt.Rows.Add(dr);
+            }
+            DataSet dy = new DataSet();
+            dy.Tables.Add(dt);
+            MyDLL.TakeOver(dy);
         }
 
     }

@@ -10,20 +10,23 @@ using AppService;
 using AppService.Model;
 using CCWin.SkinClass;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class PriceInfoForm : Form
+    public partial class PriceInfoForm : Office2007Form
     {
         public PriceInfoForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         public int PriceKeyId = 0;
         public PriceInfoForm(int priceKeyId)
         {
             InitializeComponent();
+            this.EnableGlass = false;
             PriceKeyId = priceKeyId;
 
             InitEditData(priceKeyId);

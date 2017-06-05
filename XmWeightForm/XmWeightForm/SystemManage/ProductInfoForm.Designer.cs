@@ -156,7 +156,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(321, 351);
+            this.btnClose.Location = new System.Drawing.Point(348, 351);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 43);
             this.btnClose.TabIndex = 13;
@@ -219,6 +219,7 @@
             this.Controls.Add(this.txtSpec);
             this.Controls.Add(this.productName);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Name = "ProductInfoForm";
             this.Text = "产品信息";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProductInfoForm_FormClosing);

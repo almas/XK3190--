@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using AppService.Model;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {

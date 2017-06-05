@@ -35,8 +35,15 @@
     <Reference Include="CSkin">
       <HintPath>..\lib\CSkin 2.0\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
     <Reference Include="DeviceSDK2">
       <HintPath>..\lib\DeviceSDK2.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLFullPrint">
+      <HintPath>..\lib\DLLFullPrint.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\lib\npoi\Net20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -131,6 +138,12 @@
     <Compile Include="SystemManage\ReportGridForm.Designer.cs">
       <DependentUpon>ReportGridForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\ReportUForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\ReportUForm.Designer.cs">
+      <DependentUpon>ReportUForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\SysManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +161,12 @@
     </Compile>
     <Compile Include="SystemManage\SysPersonInfoForm.Designer.cs">
       <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysManageNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysManageNewForm.Designer.cs">
+      <DependentUpon>SysManageNewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Weights\BeepWarnHelper.cs" />
     <Compile Include="Weights\ElectronicScale.cs" />
@@ -195,6 +214,9 @@
     <EmbeddedResource Include="SystemManage\ReportGridForm.resx">
       <DependentUpon>ReportGridForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\ReportUForm.resx">
+      <DependentUpon>ReportUForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\SysManageForm.resx">
       <DependentUpon>SysManageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\SysPersonInfoForm.resx">
       <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysManageNewForm.resx">
+      <DependentUpon>SysManageNewForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>

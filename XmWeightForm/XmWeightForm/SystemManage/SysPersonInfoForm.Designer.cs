@@ -40,6 +40,8 @@
             this.txtNickName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtJobStation = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +74,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 217);
+            this.label4.Location = new System.Drawing.Point(45, 240);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 3;
@@ -102,7 +104,7 @@
             // chkAdmin
             // 
             this.chkAdmin.AutoSize = true;
-            this.chkAdmin.Location = new System.Drawing.Point(184, 217);
+            this.chkAdmin.Location = new System.Drawing.Point(184, 240);
             this.chkAdmin.Name = "chkAdmin";
             this.chkAdmin.Size = new System.Drawing.Size(36, 16);
             this.chkAdmin.TabIndex = 7;
@@ -145,11 +147,29 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 200);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "所属工位";
+            // 
+            // txtJobStation
+            // 
+            this.txtJobStation.Location = new System.Drawing.Point(184, 200);
+            this.txtJobStation.Name = "txtJobStation";
+            this.txtJobStation.Size = new System.Drawing.Size(214, 21);
+            this.txtJobStation.TabIndex = 13;
+            // 
             // SysPersonInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 372);
+            this.Controls.Add(this.txtJobStation);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtNickName);
@@ -162,6 +182,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Name = "SysPersonInfoForm";
             this.Text = "员工信息";
             this.ResumeLayout(false);
@@ -183,5 +204,7 @@
         private System.Windows.Forms.TextBox txtNickName;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtJobStation;
     }
 }

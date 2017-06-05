@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
-            this.priceGrid = new CCWin.SkinControl.SkinDataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
+            this.animalTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animalTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).BeginInit();
@@ -53,96 +50,70 @@
             // 
             // priceGrid
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.priceGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.priceGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.priceGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.priceGrid.ColumnFont = null;
-            this.priceGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.priceGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.priceGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.priceGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.priceGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
+            this.animalTypeId,
             this.animalTypeName,
             this.price});
-            this.priceGrid.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.priceGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.priceGrid.EnableHeadersVisualStyles = false;
-            this.priceGrid.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.priceGrid.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.priceGrid.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            this.priceGrid.Location = new System.Drawing.Point(36, 71);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.priceGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            this.priceGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.priceGrid.Location = new System.Drawing.Point(23, 83);
             this.priceGrid.Name = "priceGrid";
-            this.priceGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.priceGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.priceGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.priceGrid.RowTemplate.Height = 23;
             this.priceGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.priceGrid.Size = new System.Drawing.Size(864, 412);
-            this.priceGrid.TabIndex = 1;
-            this.priceGrid.TitleBack = null;
-            this.priceGrid.TitleBackColorBegin = System.Drawing.Color.White;
-            this.priceGrid.TitleBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(196)))), ((int)(((byte)(242)))));
+            this.priceGrid.Size = new System.Drawing.Size(945, 456);
+            this.priceGrid.TabIndex = 3;
             this.priceGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellDoubleClick);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(36, 42);
+            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnAdd.Location = new System.Drawing.Point(23, 54);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "新增";
-            this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // id
+            // animalTypeId
             // 
-            this.id.DataPropertyName = "animalTypeId";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.Visible = false;
+            this.animalTypeId.DataPropertyName = "animalTypeId";
+            this.animalTypeId.HeaderText = "animalTypeId";
+            this.animalTypeId.Name = "animalTypeId";
+            this.animalTypeId.Visible = false;
             // 
             // animalTypeName
             // 
             this.animalTypeName.DataPropertyName = "animalTypeName";
             this.animalTypeName.HeaderText = "动物类型";
             this.animalTypeName.Name = "animalTypeName";
-            this.animalTypeName.Width = 200;
             // 
             // price
             // 
             this.price.DataPropertyName = "price";
-            this.price.HeaderText = "价格(kg)";
+            this.price.HeaderText = "单价(kg)";
             this.price.Name = "price";
-            this.price.Width = 200;
             // 
             // AnimalPriceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.priceGrid);
             this.Controls.Add(this.label1);
             this.Name = "AnimalPriceForm";
-            this.Size = new System.Drawing.Size(1000, 596);
+            this.Size = new System.Drawing.Size(984, 558);
             this.Load += new System.EventHandler(this.AnimalPriceForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).EndInit();
             this.ResumeLayout(false);
@@ -153,9 +124,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private CCWin.SkinControl.SkinDataGridView priceGrid;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private DevComponents.DotNetBar.Controls.DataGridViewX priceGrid;
+        private DevComponents.DotNetBar.ButtonX btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
     }

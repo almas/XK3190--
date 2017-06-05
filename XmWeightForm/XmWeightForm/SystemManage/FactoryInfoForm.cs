@@ -9,19 +9,22 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class FactoryInfoForm : Form
+    public partial class FactoryInfoForm : Office2007Form
     {
         public FactoryInfoForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
         public string DataId = String.Empty;
         public FactoryInfoForm(string id)
         {
             InitializeComponent();
+            this.EnableGlass = false;
             DataId=id;
             InitEditData(id);
         }
@@ -44,6 +47,7 @@ namespace XmWeightForm.SystemManage
                 txtHook.Text = model.hookWeight;
                 txtextraRate.Text = model.extraRate;
                 txtmeatRate.Text = model.meatRate;
+                txtTraceUrl.Text = model.traceURL;
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

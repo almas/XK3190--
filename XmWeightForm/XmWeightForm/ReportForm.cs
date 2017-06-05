@@ -10,14 +10,16 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm
 {
-    public partial class ReportForm : Form
+    public partial class ReportForm : Office2007Form
     {
         public ReportForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         public DataTable QueryDataTable = null;

@@ -9,19 +9,22 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class ProductInfoForm : Form
+    public partial class ProductInfoForm : Office2007Form
     {
         public ProductInfoForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         public ProductInfoForm(int productId)
         {
             InitializeComponent();
+            this.EnableGlass = false;
             this.Id = productId;
             InitEditData(productId);
         }
@@ -48,9 +51,12 @@ namespace XmWeightForm.SystemManage
                 isfixed = true;
                 var tempweight1 = spec.Split('*');
 
-                decimal.TryParse(tempweight1[0], out normalWeight);
+                decimal.TryParse(tempweight1[1], out normalWeight);
             }
-
+            if (barcode.Length == 16)
+            {
+                barcode = barcode.Substring(0, 12);
+            }
             int resultNum = 0;
             if (Id == 0)
             {
@@ -143,6 +149,8 @@ namespace XmWeightForm.SystemManage
                 txtRemark.Text = model.comment;
                 txtBarcode.Text = model.barcode;
                 txtExpirate.Text = model.expiration;
+                txtpl.Text = model.ingredients;
+                txtStorage.Text = model.storageCondition;
             }
             else
             {

@@ -14,8 +14,9 @@ namespace AppService.Model
         public bool isAdmin { get; set; }
         public bool isRepoter { get; set; }
         public bool stopped { get; set; }
-        public string JobNumber { get; set; }
+        public string jobNumber { get; set; }
 
         public string isAdminStr { get { return isAdmin ? "是" : "否"; } }
+        public string jobStation { get; set; }
     }
 }

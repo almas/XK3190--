@@ -9,21 +9,23 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using DevComponents.DotNetBar;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class SysPersonInfoForm : Form
+    public partial class SysPersonInfoForm : Office2007Form
     {
         public SysPersonInfoForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
         }
 
         public int DataId = 0;
         public SysPersonInfoForm(int id)
         {
             InitializeComponent();
-
+            this.EnableGlass = false;
             DataId = id;
             InitEditData(id);
         }
@@ -41,9 +43,10 @@ namespace XmWeightForm.SystemManage
             {
                 txtUname.Text = model.userName;
                 txtNickName.Text = model.OperName;
-                txtJobNum.Text = model.JobNumber;
+                txtJobNum.Text = model.jobNumber;
                 txtPwd.Text = model.Password;
                 chkAdmin.Checked = model.isAdmin;
+                txtJobStation.Text = model.jobStation;
             }
         }
 
@@ -54,26 +57,26 @@ namespace XmWeightForm.SystemManage
             var pwd = txtPwd.Text.Trim();
             var jobNum = txtJobNum.Text.Trim();
             var isadmin = chkAdmin.Checked;
-
+            var txtStation = txtJobStation.Text.Trim();
             int resultNum = 0;
             if (DataId == 0)
             {
                 string sql =
-                    @"insert into Opers(userName,operName,password,JobNumber,isAdmin,isRepoter,stopped)
-                       values(@uname,@nickname,@pwd,@jobNum,@isadmin,@isRepoter,@stopped)";
+                    @"insert into Opers(userName,operName,password,jobNumber,isAdmin,isRepoter,stopped,jobStation)
+                       values(@uname,@nickname,@pwd,@jobNum,@isadmin,@isRepoter,@stopped,@jobStation)";
                 using (var db = DapperDao.GetInstance())
                 {
                     resultNum = db.Execute(sql,
-                        new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, isRepoter = false, stopped =false});
+                        new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, isRepoter = false, stopped = false, jobStation =txtStation});
                 }
             }
             else
             {
-                string sql = "update Opers set userName=@uname,operName=@nickname,password=@pwd,JobNumber=@jobNum,isAdmin=@isadmin where Id=" + DataId;
+                string sql = "update Opers set userName=@uname,operName=@nickname,password=@pwd,jobNumber=@jobNum,isAdmin=@isadmin,jobStation=@jobStation where Id=" + DataId;
 
                 using (var db = DapperDao.GetInstance())
                 {
-                    resultNum = db.Execute(sql, new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin });
+                    resultNum = db.Execute(sql, new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, jobStation = txtStation });
                 }
             }
 
