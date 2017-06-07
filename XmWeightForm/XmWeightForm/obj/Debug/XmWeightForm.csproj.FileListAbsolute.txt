@@ -71,3 +71,5 @@ E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SystemManage.Rep
 E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\DLLFullPrint.dll
 E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SystemManage.ReportUForm.resources
 E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.SysManageNewForm.resources
+E:\Work\XK3190\XmWeightForm\XmWeightForm\bin\Debug\DevComponents.DotNetBar2.dll
+E:\Work\XK3190\XmWeightForm\XmWeightForm\obj\Debug\XmWeightForm.UpDataProcess.resources

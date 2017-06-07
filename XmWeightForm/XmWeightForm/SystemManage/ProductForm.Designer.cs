@@ -61,7 +61,7 @@
             // 
             // btnPre
             // 
-            this.btnPre.Location = new System.Drawing.Point(142, 521);
+            this.btnPre.Location = new System.Drawing.Point(743, 479);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(75, 23);
             this.btnPre.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(259, 521);
+            this.btnNext.Location = new System.Drawing.Point(860, 479);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 3;
@@ -82,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(477, 72);
+            this.label1.Location = new System.Drawing.Point(477, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 5;
@@ -90,14 +90,14 @@
             // 
             // queryProductName
             // 
-            this.queryProductName.Location = new System.Drawing.Point(548, 67);
+            this.queryProductName.Location = new System.Drawing.Point(548, 51);
             this.queryProductName.Name = "queryProductName";
             this.queryProductName.Size = new System.Drawing.Size(204, 21);
             this.queryProductName.TabIndex = 6;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(801, 67);
+            this.btnQuery.Location = new System.Drawing.Point(801, 51);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 7;
@@ -107,7 +107,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(17, 67);
+            this.btnAdd.Location = new System.Drawing.Point(17, 51);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 8;
@@ -127,7 +127,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(179, 67);
+            this.btnImport.Location = new System.Drawing.Point(179, 51);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 11;
@@ -141,7 +141,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(17, 521);
+            this.btnRefresh.Location = new System.Drawing.Point(618, 479);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(88, 23);
             this.btnRefresh.TabIndex = 12;
@@ -151,7 +151,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(98, 67);
+            this.btnDel.Location = new System.Drawing.Point(98, 51);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 13;
@@ -161,7 +161,7 @@
             // 
             // productGrid
             // 
-            this.productGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.productGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.productGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.productId,
@@ -184,7 +184,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.productGrid.DefaultCellStyle = dataGridViewCellStyle1;
             this.productGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.productGrid.Location = new System.Drawing.Point(3, 112);
+            this.productGrid.Location = new System.Drawing.Point(3, 79);
             this.productGrid.Name = "productGrid";
             this.productGrid.RowTemplate.Height = 23;
             this.productGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -270,9 +270,9 @@
             // 
             // 
             this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblCount.Location = new System.Drawing.Point(801, 520);
+            this.lblCount.Location = new System.Drawing.Point(5, 479);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(75, 23);
+            this.lblCount.Size = new System.Drawing.Size(338, 23);
             this.lblCount.TabIndex = 15;
             // 
             // ProductForm
@@ -293,7 +293,7 @@
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPre);
             this.Name = "ProductForm";
-            this.Size = new System.Drawing.Size(975, 647);
+            this.Size = new System.Drawing.Size(1025, 580);
             this.Load += new System.EventHandler(this.ProductForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.productGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productModelBindingSource)).EndInit();

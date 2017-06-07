@@ -20,6 +20,7 @@ namespace XmWeightForm
         public SysManageNewForm()
         {
             InitializeComponent();
+            tabReport.AttachedControl.BackColor=Color.Red;
             this.EnableGlass = false;
         }
         private void SysManageNewForm_Load(object sender, EventArgs e)

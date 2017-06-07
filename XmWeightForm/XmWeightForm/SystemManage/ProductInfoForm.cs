@@ -57,75 +57,87 @@ namespace XmWeightForm.SystemManage
             {
                 barcode = barcode.Substring(0, 12);
             }
-            int resultNum = 0;
-            if (Id == 0)
+
+            try
             {
-                string sql = "";
-                if (!string.IsNullOrEmpty(productNo))
+                int resultNum = 0;
+                if (Id == 0)
                 {
-                    sql += "update Products set productNo='' where productNo='" + productNo + "';";
-                }
-                 sql+=
-                    @"insert into Products(productName,productNo,spec,comment,expiration,barcode,isFixedWeight,nominalWeight,ingredients,storageCondition)
+                    string sql = "";
+                    if (!string.IsNullOrEmpty(productNo))
+                    {
+                        sql += "update Products set productNo='' where productNo='" + productNo + "';";
+                    }
+                    sql +=
+                       @"insert into Products(productName,productNo,spec,comment,expiration,barcode,isFixedWeight,nominalWeight,ingredients,storageCondition)
                        values(@productName,@productNo,@spec,@comment,@expiration,@barcode,@isfixed,nominalWeight,ingredients,storageCondition);";
-                using (var db=DapperDao.GetInstance())
-                {
-                    resultNum = db.Execute(sql, 
-                        new { productName = productName, 
-                              productNo = productNo,
-                              spec = spec, 
-                              comment = comment,
-                              barcode = barcode,
-                              expiration = expiration,
-                              isfixed = isfixed,
-                              nominalWeight = normalWeight,
-                              ingredients = pl,
-                              storageCondition=storage
-                        });
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        resultNum = db.Execute(sql,
+                            new
+                            {
+                                productName = productName,
+                                productNo = productNo,
+                                spec = spec,
+                                comment = comment,
+                                barcode = barcode,
+                                expiration = expiration,
+                                isfixed = isfixed,
+                                nominalWeight = normalWeight,
+                                ingredients = pl,
+                                storageCondition = storage
+                            });
+                    }
+
                 }
-              
-            }
-            else
-            {
-                string sql = "";
-                if (!string.IsNullOrEmpty(productNo))
+                else
                 {
-                    sql += "update Products set productNo='' where productNo='" + productNo + "' and productId<>" + Id + ";";
-                }
-                sql +=
-                    @"update Products set productName = @productName, productNo = @productNo, spec = @spec, comment = @comment, barcode = @barcode, expiration = @expiration, isFixedWeight = @isfixed,
+                    string sql = "";
+                    if (!string.IsNullOrEmpty(productNo))
+                    {
+                        sql += "update Products set productNo='' where productNo='" + productNo + "' and productId<>" + Id + ";";
+                    }
+                    sql +=
+                        @"update Products set productName = @productName, productNo = @productNo, spec = @spec, comment = @comment, barcode = @barcode, expiration = @expiration, isFixedWeight = @isfixed,
                     nominalWeight=@nominalWeight,ingredients=@ingredients,storageCondition=@storageCondition where productId=@id";
 
-                using (var db = DapperDao.GetInstance())
-                {
-                    resultNum = db.Execute(sql, new
+                    using (var db = DapperDao.GetInstance())
                     {
-                        productName = productName,
-                        productNo = productNo,
-                        spec = spec,
-                        comment = comment,
-                        barcode = barcode,
-                        expiration = expiration,
-                        isfixed = isfixed,
-                        nominalWeight = normalWeight,
-                        ingredients = pl,
-                        storageCondition = storage,
-                        Id = Id
-                    });
+                        resultNum = db.Execute(sql, new
+                        {
+                            productName = productName,
+                            productNo = productNo,
+                            spec = spec,
+                            comment = comment,
+                            barcode = barcode,
+                            expiration = expiration,
+                            isfixed = isfixed,
+                            nominalWeight = normalWeight,
+                            ingredients = pl,
+                            storageCondition = storage,
+                            Id = Id
+                        });
+                    }
                 }
-            }
 
-            if (resultNum > 0)
-            {
-                MessageBox.Show("保存成功");
-                this.Close();
+                if (resultNum > 0)
+                {
+                    MessageBox.Show("保存成功");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("保存失败");
+                }
+
+                this.DialogResult = DialogResult.OK;
             }
-            else
+            catch (Exception ex)
             {
+                log4netHelper.Exception(ex);
                 MessageBox.Show("保存失败");
             }
-
-            this.DialogResult = DialogResult.OK;
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

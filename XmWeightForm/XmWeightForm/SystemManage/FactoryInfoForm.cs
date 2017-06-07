@@ -48,6 +48,7 @@ namespace XmWeightForm.SystemManage
                 txtextraRate.Text = model.extraRate;
                 txtmeatRate.Text = model.meatRate;
                 txtTraceUrl.Text = model.traceURL;
+                txtServerIp.Text = model.serverUrl;
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -58,6 +59,7 @@ namespace XmWeightForm.SystemManage
             var meatRate = txtmeatRate.Text.Trim();
             var extraRate = txtextraRate.Text.Trim();
             var traceUrl = txtTraceUrl.Text.Trim();
+            var serverIp = txtServerIp.Text.Trim();
 
             if (string.IsNullOrEmpty(factoryName))
             {
@@ -89,42 +91,55 @@ namespace XmWeightForm.SystemManage
                 MessageBox.Show("溯源地址不能为空");
                 return;
             }
-
-            var affectRow = 0;
-            if (string.IsNullOrEmpty(DataId))
+            if (string.IsNullOrEmpty(serverIp))
             {
-                string sql =
-                    @"insert into Params values(@factoryId,@factoryName,@meatRate,@extraRate,@hookWeight,@autoWeighing1,@autoWeighing2,@autoWeighing1,@traceURL)";
-                using (var db = DapperDao.GetInstance())
+                MessageBox.Show("服务器地址不能为空");
+                return;
+            }
+            try
+            {
+                var affectRow = 0;
+                if (string.IsNullOrEmpty(DataId))
                 {
-                    affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, extraRate = extraRate, hookWeight = hook, autoWeighing1 = true, autoWeighing2 = true, autoWeighing3 = true, traceURL=traceUrl });
+                    string sql =
+                        @"insert into Params values(@factoryId,@factoryName,@meatRate,@extraRate,@hookWeight,@autoWeighing1,@autoWeighing2,@autoWeighing1,@traceURL,@serverUrl)";
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, extraRate = extraRate, hookWeight = hook, autoWeighing1 = true, autoWeighing2 = true, autoWeighing3 = true, traceURL = traceUrl, serverUrl = serverIp });
+                    }
+
+
+                }
+                else
+                {
+                    string sql =
+                        @"update Params set factoryId =@factoryId, factoryName = @factoryName, meatRate = @meatRate, extraRate = @extraRate,
+                      hookWeight =@hookWeight, autoWeighing1 = @autoWeighing1, autoWeighing2 = @autoWeighing2, autoWeighing3=@autoWeighing3,traceURL=@traceUrl,serverUrl=@serverIp where factoryId=@id";
+
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, extraRate = extraRate, hookWeight = hook, autoWeighing1 = true, autoWeighing2 = true, autoWeighing3 = true, traceUrl = traceUrl,serverIp=serverIp, id = DataId });
+                    }
                 }
 
-                
-            }
-            else
-            {
-                string sql =
-                    @"update Params set factoryId =@factoryId, factoryName = @factoryName, meatRate = @meatRate, extraRate = @extraRate,
-                      hookWeight =@hookWeight, autoWeighing1 = @autoWeighing1, autoWeighing2 = @autoWeighing2, autoWeighing3=@autoWeighing3,traceURL=@traceUrl where factoryId=@id";
-
-                using (var db = DapperDao.GetInstance())
+                if (affectRow > 0)
                 {
-                    affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, extraRate = extraRate, hookWeight = hook, autoWeighing1 = true, autoWeighing2 = true, autoWeighing3 = true, traceUrl = traceUrl, id = DataId });
+                    MessageBox.Show("保存成功");
+                    this.Close();
                 }
-            }
+                else
+                {
+                    MessageBox.Show("保存失败");
+                }
 
-            if (affectRow > 0)
-            {
-                MessageBox.Show("保存成功");
-                this.Close();
+                this.DialogResult = DialogResult.OK;
             }
-            else
+            catch (Exception ex)
             {
+                log4netHelper.Exception(ex);
                 MessageBox.Show("保存失败");
             }
-
-            this.DialogResult = DialogResult.OK;
+          
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

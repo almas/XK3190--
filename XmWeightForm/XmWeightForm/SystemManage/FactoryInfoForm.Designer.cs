@@ -42,12 +42,16 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTraceUrl = new System.Windows.Forms.TextBox();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.txtServerIp = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 19);
+            this.label1.Location = new System.Drawing.Point(66, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
@@ -56,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 68);
+            this.label2.Location = new System.Drawing.Point(66, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 1;
@@ -65,7 +69,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 117);
+            this.label3.Location = new System.Drawing.Point(68, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 2;
@@ -74,7 +78,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 160);
+            this.label4.Location = new System.Drawing.Point(66, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 3;
@@ -83,7 +87,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(49, 206);
+            this.label5.Location = new System.Drawing.Point(66, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 4;
@@ -91,42 +95,42 @@
             // 
             // txtFactoryNum
             // 
-            this.txtFactoryNum.Location = new System.Drawing.Point(170, 19);
+            this.txtFactoryNum.Location = new System.Drawing.Point(139, 19);
             this.txtFactoryNum.Name = "txtFactoryNum";
             this.txtFactoryNum.Size = new System.Drawing.Size(245, 21);
             this.txtFactoryNum.TabIndex = 5;
             // 
             // txtFactoryName
             // 
-            this.txtFactoryName.Location = new System.Drawing.Point(170, 58);
+            this.txtFactoryName.Location = new System.Drawing.Point(139, 52);
             this.txtFactoryName.Name = "txtFactoryName";
             this.txtFactoryName.Size = new System.Drawing.Size(245, 21);
             this.txtFactoryName.TabIndex = 6;
             // 
             // txtHook
             // 
-            this.txtHook.Location = new System.Drawing.Point(170, 108);
+            this.txtHook.Location = new System.Drawing.Point(139, 87);
             this.txtHook.Name = "txtHook";
             this.txtHook.Size = new System.Drawing.Size(245, 21);
             this.txtHook.TabIndex = 7;
             // 
             // txtmeatRate
             // 
-            this.txtmeatRate.Location = new System.Drawing.Point(170, 150);
+            this.txtmeatRate.Location = new System.Drawing.Point(139, 123);
             this.txtmeatRate.Name = "txtmeatRate";
             this.txtmeatRate.Size = new System.Drawing.Size(245, 21);
             this.txtmeatRate.TabIndex = 8;
             // 
             // txtextraRate
             // 
-            this.txtextraRate.Location = new System.Drawing.Point(170, 196);
+            this.txtextraRate.Location = new System.Drawing.Point(139, 159);
             this.txtextraRate.Name = "txtextraRate";
             this.txtextraRate.Size = new System.Drawing.Size(245, 21);
             this.txtextraRate.TabIndex = 9;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(78, 287);
+            this.btnSave.Location = new System.Drawing.Point(78, 321);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
@@ -136,7 +140,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(261, 287);
+            this.btnCancel.Location = new System.Drawing.Point(261, 321);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -147,7 +151,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(47, 245);
+            this.label6.Location = new System.Drawing.Point(66, 201);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 12;
@@ -155,16 +159,71 @@
             // 
             // txtTraceUrl
             // 
-            this.txtTraceUrl.Location = new System.Drawing.Point(170, 245);
+            this.txtTraceUrl.Location = new System.Drawing.Point(139, 192);
             this.txtTraceUrl.Name = "txtTraceUrl";
             this.txtTraceUrl.Size = new System.Drawing.Size(245, 21);
             this.txtTraceUrl.TabIndex = 13;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(58, 228);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 14;
+            this.labelX1.Text = "服务器地址";
+            // 
+            // txtServerIp
+            // 
+            // 
+            // 
+            // 
+            this.txtServerIp.Border.Class = "TextBoxBorder";
+            this.txtServerIp.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtServerIp.Location = new System.Drawing.Point(139, 228);
+            this.txtServerIp.Name = "txtServerIp";
+            this.txtServerIp.PreventEnterBeep = true;
+            this.txtServerIp.Size = new System.Drawing.Size(245, 21);
+            this.txtServerIp.TabIndex = 15;
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelX2.Location = new System.Drawing.Point(298, 276);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(221, 23);
+            this.labelX2.TabIndex = 16;
+            this.labelX2.Text = "服务器格式:http://www.trace.com";
+            // 
+            // labelX3
+            // 
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelX3.Location = new System.Drawing.Point(12, 276);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(258, 23);
+            this.labelX3.TabIndex = 17;
+            this.labelX3.Text = "溯源地址格式:http://www.trace.com/t/c/";
             // 
             // FactoryInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 360);
+            this.Controls.Add(this.labelX3);
+            this.Controls.Add(this.labelX2);
+            this.Controls.Add(this.txtServerIp);
+            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.txtTraceUrl);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
@@ -203,5 +262,9 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTraceUrl;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtServerIp;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX3;
     }
 }

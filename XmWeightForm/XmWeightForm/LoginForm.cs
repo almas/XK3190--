@@ -9,7 +9,7 @@ using DevComponents.DotNetBar;
 
 namespace XmWeightForm
 {
-    public partial class LoginForm : Office2007Form
+    public partial class LoginForm :Office2007Form
     {
         public LoginForm()
         {

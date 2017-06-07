@@ -19,5 +19,6 @@ namespace AppService.Model
         public DateTime? weighingBeginTime { get; set; }
         public DateTime? weighingFinishedTime { get; set; }
         public string animalTypeName { get; set; }
+        public bool istrace { get; set; }
     }
 }

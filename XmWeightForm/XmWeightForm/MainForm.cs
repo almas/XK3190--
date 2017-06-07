@@ -20,6 +20,7 @@ using DevComponents.DotNetBar;
 using Microsoft.Win32;
 using XmWeightForm.Weights;
 using DeviceSDK;
+using XmWeightForm.log;
 using XmWeightForm.SystemManage;
 
 namespace XmWeightForm
@@ -33,7 +34,12 @@ namespace XmWeightForm
         string currentTagId = string.Empty;
         bool waitForWeighing = false;
         decimal currentWeight = decimal.Zero;
+        private bool currentTraceStatus = false;
         public System.IO.Ports.SerialPort BeepPort = new System.IO.Ports.SerialPort();
+
+        public AnimalBatchModel AnimalBatchModel = new AnimalBatchModel();
+
+        //AutoSizeFormClass asc = new AutoSizeFormClass();
         public MainForm()
         {
             InitializeComponent();
@@ -42,36 +48,16 @@ namespace XmWeightForm
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //asc.controllInitializeSize(this);
             // this.AcceptButton = btnStart;
             btnInsertWeight.Visible = false;
-            InitForm();
+            InitSerialPort();
             InitData();
 
 
         }
 
-        private void InitForm()
-        {
 
-            var beepCom = ConfigurationManager.AppSettings["beepCom"];
-            BeepPort.PortName = beepCom;
-            BeepPort.BaudRate = 9600;
-            BeepPort.DataBits = 8;
-            BeepPort.StopBits = StopBits.One;
-            BeepPort.Parity = Parity.None;
-            //sp1.Open();
-            try
-            {
-                BeepPort.Open();
-            }
-            catch (Exception ex)
-            {
-                log4netHelper.Exception(ex);
-                AppNetInfo(ex.Message);
-            }
-
-
-        }
         public List<string> TempHookList = new List<string>();
 
         private void DealQueueData(object obj)
@@ -115,7 +101,7 @@ namespace XmWeightForm
 
 
                     // decimal weight = CalculateWeight(data);
-                  
+
                     //AppNetInfo(data);
                 }
 
@@ -139,7 +125,7 @@ namespace XmWeightForm
             try
             {
                 //如果当前称重状态为称重完成 不再接收重量数据
-                if(waitForWeighing)
+                if (waitForWeighing)
                     return;
 
                 if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了  
@@ -234,6 +220,23 @@ namespace XmWeightForm
 
         }
 
+        private void ClearNetInfo()
+        {
+            if (txtInfo.InvokeRequired)
+            {
+                Action<bool> actionDelegate = (x) =>
+                {
+
+                    txtInfo.Clear();
+                };
+
+                txtInfo.Invoke(actionDelegate);
+            }
+            else
+            {
+                txtInfo.Clear();
+            }
+        }
         private void showWeigthButton(bool flag)
         {
             if (btnInsertWeight.InvokeRequired)
@@ -290,19 +293,73 @@ namespace XmWeightForm
         #endregion
 
         /// <summary>
+        /// 初始化串口
+        /// </summary>
+        //private void InitSerialPort()
+        //{
+
+        //}
+        private void InitSerialPort()
+        {
+            var weightCom = ConfigurationManager.AppSettings["weightCom"];
+            var hookCom = ConfigurationManager.AppSettings["hookCom"];
+            var beepCom = ConfigurationManager.AppSettings["beepCom"];
+
+            try
+            {
+                //称重
+                weightSerialPort.PortName = weightCom;
+                weightSerialPort.Open();
+
+                //读钩标
+                _device = new PTDevice(hookCom, string.Empty);
+                if (_device.Open())
+                {
+                    _device.TTFMonitor.Start(this);
+                    _device.TTFMonitor.RecordNotify += ShowTagId;
+                }
+                else
+                {
+                    AppNetInfo("钩标感应器已连接失败");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                AppNetInfo(ex.Message);
+            }
+
+            //蜂鸣器
+            BeepPort.PortName = beepCom;
+            BeepPort.BaudRate = 9600;
+            BeepPort.DataBits = 8;
+            BeepPort.StopBits = StopBits.One;
+            BeepPort.Parity = Parity.None;
+            try
+            {
+                BeepPort.Open();
+            }
+            catch (Exception ex)
+            {
+                AppNetInfo(ex.Message);
+            }
+
+        }
+        /// <summary>
         /// 关闭串口
         /// </summary>
         private void CloseSerialPort()
         {
+            //关闭
             try
             {
+                //称重
                 if (weightSerialPort.IsOpen)
                 {
                     //打开时点击，则关闭串口  
                     weightSerialPort.Close();
-                    txtInfo.AppendText("com已关闭");
                 }
-
+                //钩标
                 if (_device != null)
                 {
                     this.Cursor = Cursors.WaitCursor;
@@ -312,6 +369,14 @@ namespace XmWeightForm
                     this.Cursor = Cursors.Default;
 
                 }
+
+                //蜂鸣器
+                if (BeepPort.IsOpen)
+                {
+                    BeepPort.Close();
+                }
+
+                AppNetInfo("com已关闭");
             }
             catch (Exception ex)
             {
@@ -327,36 +392,12 @@ namespace XmWeightForm
         private void btnReport_Click(object sender, EventArgs e)
         {
             var reportForm = new ReportForm();
-           // var reportForm=new ReportGridForm();
-            reportForm.Show();
+            // var reportForm=new ReportGridForm();
+            reportForm.ShowDialog();
             ////reportForm.Show();
             //mainGroup.Controls.Clear();
             //mainGroup.Controls.Add(reportForm);
             //mainGroup.Text = "报表统计";
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (WeghtState == 0)
-            {
-                MessageBox.Show("请先完成称重再关闭程序");
-                e.Cancel = true;
-            }
-            else
-            {
-                DialogResult dr = MessageBox.Show("确定要退出吗?", "退出系统", MessageBoxButtons.OKCancel);
-                if (dr == DialogResult.OK)//如果点击“确定”按钮
-                {
-                    //this.Close();
-                    CloseSerialPort();
-                }
-                else//如果点击“取消”按钮
-                {
-                    e.Cancel = true;
-                }
-            }
-
-
         }
 
         /// <summary>
@@ -396,7 +437,7 @@ namespace XmWeightForm
             BeepWarnHelper.CloseWarnBeep(BeepPort);
             Thread.Sleep(50);
             BeepWarnHelper.CloseRedLed(BeepPort);
-            
+
             int hookCount = TempHookList.Count;
             int sheepIntCount = int.Parse(sheepCount);
             if (TempHookList.Any())
@@ -414,8 +455,10 @@ namespace XmWeightForm
                 InsertWeightData(TempHookList, weightDecimal, TempHookList.Count);
                 TempHookList.Clear();
                 btnInsertWeight.Visible = false;
-               
-                
+
+                //清除数据
+                ClearNetInfo();
+
             }
 
 
@@ -432,14 +475,46 @@ namespace XmWeightForm
                     hookDt.Columns.Add("attachTime", typeof(DateTime));
                     hookDt.Columns.Add("animalId", typeof(string));
 
-                    foreach (var item in hooks)
+
+                    if (currentTraceStatus)
                     {
-                        DataRow dr = hookDt.NewRow();
-                        dr["hookId"] = item;
-                        dr["attachTime"] = DateTime.Now;
-                        dr["animalId"] = "";
-                        hookDt.Rows.Add(dr);
+                        var animallist = GetAnimalIds(count);
+                        int animalCount = animallist.Count;
+                        int hookCount = hooks.Count;
+                        for (int i = 0; i < hookCount; i++)
+                        {
+
+                            DataRow dr = hookDt.NewRow();
+                            dr["hookId"] = hooks[i];
+                            dr["attachTime"] = DateTime.Now;
+                            if (i < animalCount)
+                            {
+                                dr["animalId"] = animallist[i];
+                            }
+                            else
+                            {
+                                dr["animalId"] = "";
+                            }
+
+                            hookDt.Rows.Add(dr);
+                        }
+
                     }
+                    else
+                    {
+                        int hookCount = hooks.Count;
+                        for (int i = 0; i < hookCount; i++)
+                        {
+
+                            DataRow dr = hookDt.NewRow();
+                            dr["hookId"] = hooks[i];
+                            dr["attachTime"] = DateTime.Now;
+                            dr["animalId"] = "";
+                            hookDt.Rows.Add(dr);
+                        }
+                    }
+
+
 
                     SqlParameter[] parameters =
                      {
@@ -453,6 +528,7 @@ namespace XmWeightForm
                     parameters[2].Value = hookDt;
 
                     int affectRow = ExecuteProcedure(connString, "SaveWeighingInfo", parameters);
+
                     if (affectRow > 0)
                     {
                         string msg = "入库成功：数量" + count + ";毛重：" + weights + "kg";
@@ -477,6 +553,77 @@ namespace XmWeightForm
             {
                 AppNetInfo(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// 获取当前需要溯源的羊批次耳标
+        /// </summary>
+        /// <returns></returns>
+        private AnimalBatchModel GetCurrentTraceAnimal()
+        {
+            if (currentTraceStatus)
+            {
+                var yearStr = DateTime.Now.ToString("yyyyMMdd");
+                int yearNum = int.Parse(yearStr);
+                using (var db = DapperDao.GetInstance())
+                {
+                    string sql =
+                        "select top 1 animalId,yearNum,sort from HeadsOff where yearNum=@yearNum and animalId like '%-0' and flag=0 order by sort";
+                    AnimalBatchModel = db.Query<AnimalBatchModel>(sql, new { yearNum = yearNum }).FirstOrDefault();
+                }
+            }
+
+            if (AnimalBatchModel == null)
+            {
+                AnimalBatchModel = new AnimalBatchModel();
+            }
+
+            return AnimalBatchModel;
+        }
+
+        /// <summary>
+        /// 获取去头批次耳标列表
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        private List<string> GetAnimalIds(int count)
+        {
+            var list = new List<string>();
+            try
+            {
+                if (!string.IsNullOrEmpty(AnimalBatchModel.animalId))
+                {
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        var sql =
+                            @"select top @psize animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1'";
+
+                        list =
+                            db.Query<string>(sql,
+                                new
+                                {
+                                    psize = count,
+                                    yearNum = AnimalBatchModel.yearNum,
+                                    sort = AnimalBatchModel.sort,
+                                    currentAnimalId = AnimalBatchModel.animalId
+                                }).ToList();
+
+                        if (list.Any())
+                        {
+                            var anids = list.ToArray();
+                            var upRows = db.Execute("update Headsoff set flag=1 where animalId in @ids", new { ids = anids });
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+              log4netHelper.Exception(ex);
+            }
+           
+
+            return list;
         }
         private int ExecuteProcedure(string conStr, string procName, SqlParameter[] myPar)
         {
@@ -542,19 +689,29 @@ namespace XmWeightForm
         public int WeghtState = 1;
 
         public string BatchId;
-
+        public List<InputUserModel> inputUserList = new List<InputUserModel>();
         private void InitData()
         {
             var list = new List<AnimalTypes>();
 
             var data = new BatchInput();
+            //  var inputUserList=new List<InputUserModel>();
             try
             {
                 using (var db = GetOpenConnection())
                 {
-                    var query = "select top 1 * from Batches where flag=0";
-                    data = db.Query<BatchInput>(query, null).FirstOrDefault();
-                    list = db.Query<AnimalTypes>("select * from AnimalTypes", null).ToList();
+                    // var query = "select top 1 * from Batches where flag=0";
+                    // data = db.Query<BatchInput>(query, null).FirstOrDefault();
+                    // list = db.Query<AnimalTypes>("select * from AnimalTypes", null).ToList();
+
+                    string multisql = @"select top 1 * from Batches where flag=0;
+                                      select * from AnimalTypes;
+                                      select distinct PIN,hostName from Batches;";
+                    var gridreader = db.QueryMultiple(multisql, null, CommandType.Text);
+
+                    data = gridreader.Read<BatchInput>().FirstOrDefault();
+                    list = gridreader.Read<AnimalTypes>().ToList();
+                    inputUserList = gridreader.Read<InputUserModel>().ToList();
                 }
             }
             catch
@@ -565,15 +722,28 @@ namespace XmWeightForm
             animalSel.ValueMember = "animalTypeId";
             animalSel.DataSource = list;
 
+            //送宰人自动选择
+            if (inputUserList.Any())
+            {
+                var tempUser = inputUserList.Select(s => s.hostName).ToArray();
+                var autoList = new AutoCompleteStringCollection();
+                autoList.AddRange(tempUser);
+                txtName.AutoCompleteCustomSource = autoList;
+            }
+
+
+
             if (data != null)
             {
                 txtName.Text = data.hostName;
                 txtIdNumber.Text = data.PIN;
                 txtTel.Text = data.tel;
-
+                cboxTrace.Checked = data.istrace;
                 animalSel.SelectedValue = data.animalTypeId;
-                BatchId = data.batchId;
                 lblCurrentPerson.Text = data.hostName;
+                BatchId = data.batchId;
+
+                currentTraceStatus = data.istrace;
                 //称重状态 1-结束，0-称重中
                 SwitchButtonStatus(0);
                 InitDataDealQueue();
@@ -584,6 +754,7 @@ namespace XmWeightForm
             }
 
         }
+
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -597,7 +768,7 @@ namespace XmWeightForm
             //Thread.Sleep(500);
             //BeepWarnHelper.CloseRedLed(port);
             //return;
-            
+
 
             var batckId = DateTime.Now.ToString("yyyyMMdd");
             int yearNum = int.Parse(batckId);
@@ -607,6 +778,8 @@ namespace XmWeightForm
             var userTel = txtTel.Text.Trim();
             int animalType = (int)animalSel.SelectedValue;
             var animaltypeName = animalSel.Text;
+            var istrace = cboxTrace.Checked;
+            currentTraceStatus = istrace;
             if (string.IsNullOrEmpty(uname))
             {
                 MessageBox.Show("请输入送宰人信息");
@@ -638,8 +811,8 @@ namespace XmWeightForm
                     sort++;
                     string sortNum = sort.ToString().PadLeft(2, '0');
                     string sql =
-                        @"insert into Batches(batchId,yearNum,sort,hostName,PIN,tel,animalTypeId,animalTypeName,flag,upload,weighingBeginTime)
-                               values(@batchId,@yearNum,@sort,@hostName,@IdNum,@tel,@animalType,@animalTypeName,@flag,@upload,@beginTime)";
+                        @"insert into Batches(batchId,yearNum,sort,hostName,PIN,tel,animalTypeId,animalTypeName,flag,upload,weighingBeginTime,istrace)
+                               values(@batchId,@yearNum,@sort,@hostName,@IdNum,@tel,@animalType,@animalTypeName,@flag,@upload,@beginTime,@istrace)";
                     db.Execute(sql, new
                     {
                         batchId = batckId + "-" + sortNum,
@@ -652,9 +825,15 @@ namespace XmWeightForm
                         animalTypeName = animaltypeName,
                         flag = 0,
                         upload = false,
-                        beginTime = DateTime.Now
+                        beginTime = DateTime.Now,
+                        istrace = istrace
                     });
                     BatchId = batckId + "-" + sortNum;
+                }
+
+                if (currentTraceStatus)
+                {
+                    GetCurrentTraceAnimal();
                 }
                 lblCurrentPerson.Text = uname;
                 SwitchButtonStatus(0);
@@ -675,7 +854,12 @@ namespace XmWeightForm
             {
                 if (!string.IsNullOrEmpty(BatchId))
                 {
-                    var sql = "update Batches set flag=1,weighingFinishedTime=@endtime where batchId=@batchId";
+                    var sql = "update Batches set flag=1,weighingFinishedTime=@endtime where batchId=@batchId;";
+
+                    if (currentTraceStatus && !string.IsNullOrEmpty(AnimalBatchModel.animalId))
+                    {
+                        sql += "update Headsoff set flag=1 where animalId=" + AnimalBatchModel.animalId;
+                    }
 
                     int returnVal = 0;
                     using (var db = GetOpenConnection())
@@ -702,6 +886,7 @@ namespace XmWeightForm
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex.Message);
+                MessageBox.Show("系统错误,请联系管理员");
             }
 
         }
@@ -872,8 +1057,9 @@ namespace XmWeightForm
 
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                log4netHelper.Exception(ex);
                 //outWeight = 0.000M;
             }
 
@@ -881,70 +1067,7 @@ namespace XmWeightForm
 
         #endregion
 
-        private void btnHook_Click(object sender, EventArgs e)
-        {
-            var hookCom = ConfigurationManager.AppSettings["hookCom"];
-            try
-            {
-                if (_device != null)
-                {
-                    this.Cursor = Cursors.WaitCursor;
-                    _device.Close();
-                    _device.Dispose();
-                    _device = null;
-                    this.Cursor = Cursors.Default;
-                    btnHook.Text = "连接";
-                }
-                else
-                {
-                    _device = new PTDevice(hookCom, string.Empty);
-                    if (_device.Open())
-                    {
-                        _device.TTFMonitor.Start(this);
-                        _device.TTFMonitor.RecordNotify += ShowTagId;
-                        btnHook.Text = "断开";
-                    }
-                    else
-                    {
-                        AppNetInfo("钩标感应器已连接失败");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                AppNetInfo(ex.Message);
-            }
-        }
-
-        private void btnWeight_Click(object sender, EventArgs e)
-        {
-            var weightCom = ConfigurationManager.AppSettings["weightCom"];
-
-            try
-            {
-                if (weightSerialPort.IsOpen)
-                {
-                    //weightSerialPort.PortName = weightCom;
-                    weightSerialPort.Close();
-                    btnWeight.Text = "连接";
-                }
-                else
-                {
-                    weightSerialPort.PortName = weightCom;
-                    weightSerialPort.Open();
-                    btnWeight.Text = "断开";
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-
-                AppNetInfo(ex.Message);
-            }
-
-
-        }
+        #region 钩标
 
         public Queue<string> _hookQueue = new Queue<string>();
         private void ShowTagId(MonitorBase oSrc, Tag oTag)
@@ -969,7 +1092,7 @@ namespace XmWeightForm
                 AppNetInfo("不可识别的ID: " + oTag.Id);
             }
         }
-
+        #endregion
 
         /// <summary>
         ///初始化钩标队列和称重队列相关数据
@@ -979,35 +1102,148 @@ namespace XmWeightForm
             waitForWeighing = true;
             previousTagId = string.Empty;
             currentTagId = string.Empty;
+            currentTraceStatus = false;
             if (_hookQueue.Count > 0)
             {
                 _hookQueue.Clear();
-                
+
             }
             if (_dataQueue.Count > 0)
             {
                 _dataQueue.Clear();
             }
 
+            AnimalBatchModel = new AnimalBatchModel();
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            //Thread.Sleep(500);
+            var name = txtName.Text.Trim();
+            if (!string.IsNullOrEmpty(name))
+            {
+                if (inputUserList.Any())
+                {
+                    var tempData = inputUserList.Where(s => s.hostName == name).Select(s => s.PIN).FirstOrDefault();
+                    if (tempData != null)
+                    {
+                        txtIdNumber.Text = tempData.Trim();
+                    }
+                }
+
+            }
+            else
+            {
+                txtIdNumber.Text = string.Empty;
+            }
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BeepWarnHelper.OpenRedLed(BeepPort);
+            using (var db = DapperDao.GetInstance())
+            {
+              var list=new List<string>();
+
+              list.Add("900002660010015");
+              list.Add("900002660010016");
+              list.Add("900002660010017");
+                if (list.Any())
+                {
+                    var anids = list.ToArray();
+                    var upRows = db.Execute("update Headsoff set flag=1 where animalId in @ids", new { ids = anids });
+
+                }
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            BeepWarnHelper.CloseRedLed(BeepPort);
-            Thread.Sleep(50);
-            BeepWarnHelper.OpenGreenLed(BeepPort);
-            Thread.Sleep(50);
-            BeepWarnHelper.OpenWarnBeep(BeepPort);
-            Thread.Sleep(500);
-            BeepWarnHelper.CloseGreedLed(BeepPort);
-            Thread.Sleep(50);
-            BeepWarnHelper.CloseWarnBeep(BeepPort);
+            
+
+
+        }
+        private System.Threading.Thread updateThread = null;
+        private void btnCloseForm_Click(object sender, EventArgs e)
+        {
+            if (WeghtState == 0)
+            {
+                MessageBox.Show("请先完成称重再关闭程序");
+                return;
+            }
+            else
+            {
+
+                DialogResult dr = MessageBox.Show("确定要退出吗?", "退出系统", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK) //如果点击“确定”按钮
+                {
+                    CloseSerialPort();
+                    CloseAndUploadData();
+                    //this.Close();
+                }
+
+            }
+            
+        }
+
+        private void CloseAndUploadData()
+        {
+            updateThread = new System.Threading.Thread(new System.Threading.ThreadStart(ShowProcessWin));
+            updateThread.Start();
+            //this.Close();
+            lblUploadInfo.Visible = true;
+            uploadProcess.IsRunning = true;
+            this.uploadProcess.Enabled = true;
+            this.uploadProcess.Visible = true;
+            btnStart.Visible = false;
+            btnEnd.Visible = false;
+            txtName.Enabled = false;
+        }
+        private void ShowProcessWin()
+        {
+            try
+            {
+                string url = string.Empty;
+
+                using (var db=DapperDao.GetInstance())
+                {
+                    url =
+                        db.Query<string>("select top 1 serverUrl from Params where factoryId=@facid",
+                            new {facid = "047901"}).FirstOrDefault();
+                }
+
+                var updata = new UploadWeightData(url);
+                updata.UploadHeadsoff();
+                updata.UploadBatchs();
+                updata.UploadWeighings();
+                updata.UploadPreDeAcid();
+                updata.UploadPostDeAcid();
+                updata.UploadCuttings();
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+         
+        }
+
+        private void CloseProcessWin()
+        {
+            try
+            {
+                lblUploadInfo.Visible = false;
+                uploadProcess.IsRunning = false;
+                this.uploadProcess.Enabled = false;
+                this.uploadProcess.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+                //MessageBox.Show(ex.Message);
+            }
         }
     }
 }

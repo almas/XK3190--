@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace HxUtility
+namespace AppService
 {
     /// <summary>
     /// 定义Web请求响应对象

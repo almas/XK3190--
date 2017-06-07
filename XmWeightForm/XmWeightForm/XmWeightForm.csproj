@@ -11,9 +11,24 @@
     <AssemblyName>XmWeightForm</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>E:\Work\CHENGZHONG\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>_64X25.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
       <HintPath>..\lib\CSkin 2.0\CSkin.dll</HintPath>
@@ -38,6 +56,7 @@
     <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DeviceSDK2">
       <HintPath>..\lib\DeviceSDK2.dll</HintPath>
@@ -53,6 +72,10 @@
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\lognet\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\lib\npoi\Net20\NPOI.dll</HintPath>
@@ -73,9 +96,12 @@
     <Compile Include="InputForm.Designer.cs">
       <DependentUpon>InputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="log\AutoSizeFormClass.cs" />
     <Compile Include="log\DataReport.cs" />
     <Compile Include="log\ExcelHelper.cs" />
     <Compile Include="log\log4netHelper.cs" />
+    <Compile Include="log\ThreadWithState.cs" />
+    <Compile Include="log\UploadWeightData.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +279,21 @@
       <Project>{ac05c2dc-8f4a-4cde-a73c-80f8b6410a1d}</Project>
       <Name>Dapper NET20</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_64X25.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

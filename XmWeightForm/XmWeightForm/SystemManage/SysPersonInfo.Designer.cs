@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
@@ -38,8 +38,8 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.lblCount = new System.Windows.Forms.Label();
             this.personGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.lblCount = new DevComponents.DotNetBar.LabelX();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +56,7 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(371, 32);
+            this.skinLabel1.Location = new System.Drawing.Point(371, 20);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(69, 19);
             this.skinLabel1.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(36, 92);
+            this.btnAdd.Location = new System.Drawing.Point(25, 64);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(118, 91);
+            this.btnDel.Location = new System.Drawing.Point(106, 64);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(488, 92);
+            this.txtName.Location = new System.Drawing.Point(488, 64);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(154, 21);
             this.txtName.TabIndex = 4;
@@ -92,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(421, 97);
+            this.label1.Location = new System.Drawing.Point(421, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 5;
@@ -100,7 +100,7 @@
             // 
             // brnQuery
             // 
-            this.brnQuery.Location = new System.Drawing.Point(661, 89);
+            this.brnQuery.Location = new System.Drawing.Point(661, 61);
             this.brnQuery.Name = "brnQuery";
             this.brnQuery.Size = new System.Drawing.Size(75, 23);
             this.brnQuery.TabIndex = 6;
@@ -110,7 +110,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(36, 453);
+            this.btnRefresh.Location = new System.Drawing.Point(695, 424);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 7;
@@ -120,7 +120,7 @@
             // 
             // btnPre
             // 
-            this.btnPre.Location = new System.Drawing.Point(192, 452);
+            this.btnPre.Location = new System.Drawing.Point(785, 425);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(75, 23);
             this.btnPre.TabIndex = 8;
@@ -130,7 +130,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(372, 452);
+            this.btnNext.Location = new System.Drawing.Point(877, 424);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 9;
@@ -138,17 +138,9 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // lblCount
-            // 
-            this.lblCount.AutoSize = true;
-            this.lblCount.Location = new System.Drawing.Point(661, 463);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(0, 12);
-            this.lblCount.TabIndex = 10;
-            // 
             // personGrid
             // 
-            this.personGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.personGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.personGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.personGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -158,28 +150,40 @@
             this.isAdminStr,
             this.JobNumber,
             this.JobStation});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.personGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.personGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.personGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.personGrid.Location = new System.Drawing.Point(19, 118);
+            this.personGrid.Location = new System.Drawing.Point(19, 93);
             this.personGrid.Name = "personGrid";
             this.personGrid.RowTemplate.Height = 23;
             this.personGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.personGrid.Size = new System.Drawing.Size(856, 328);
+            this.personGrid.Size = new System.Drawing.Size(936, 328);
             this.personGrid.TabIndex = 11;
             this.personGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.personGrid_CellDoubleClick);
+            // 
+            // lblCount
+            // 
+            // 
+            // 
+            // 
+            this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblCount.Location = new System.Drawing.Point(19, 423);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(210, 23);
+            this.lblCount.TabIndex = 12;
             // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // userName
             // 
@@ -222,8 +226,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
-            this.Controls.Add(this.personGrid);
             this.Controls.Add(this.lblCount);
+            this.Controls.Add(this.personGrid);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPre);
             this.Controls.Add(this.btnRefresh);
@@ -234,7 +238,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.skinLabel1);
             this.Name = "SysPersonInfo";
-            this.Size = new System.Drawing.Size(913, 532);
+            this.Size = new System.Drawing.Size(1000, 580);
             this.Load += new System.EventHandler(this.SysPersonInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.personGrid)).EndInit();
             this.ResumeLayout(false);
@@ -253,8 +257,8 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Label lblCount;
         private DevComponents.DotNetBar.Controls.DataGridViewX personGrid;
+        private DevComponents.DotNetBar.LabelX lblCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;
         private System.Windows.Forms.DataGridViewTextBoxColumn operName;

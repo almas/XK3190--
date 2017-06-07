@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysManageNewForm));
             this.sysTabControl = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.tabReport = new DevComponents.DotNetBar.SuperTabItem();
@@ -65,13 +66,12 @@
             this.sysTabControl.Controls.Add(this.superTabControlPanel5);
             this.sysTabControl.Controls.Add(this.superTabControlPanel4);
             this.sysTabControl.Controls.Add(this.superTabControlPanel3);
-            this.sysTabControl.Location = new System.Drawing.Point(-1, -3);
-            this.sysTabControl.Margin = new System.Windows.Forms.Padding(4);
+            this.sysTabControl.Location = new System.Drawing.Point(-1, -2);
             this.sysTabControl.Name = "sysTabControl";
             this.sysTabControl.ReorderTabsEnabled = true;
             this.sysTabControl.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.sysTabControl.SelectedTabIndex = 4;
-            this.sysTabControl.Size = new System.Drawing.Size(1227, 738);
+            this.sysTabControl.Size = new System.Drawing.Size(1035, 618);
             this.sysTabControl.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.sysTabControl.TabIndex = 0;
             this.sysTabControl.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -84,12 +84,12 @@
             // 
             // superTabControlPanel1
             // 
+            this.superTabControlPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 28);
-            this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(1227, 710);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(1035, 590);
             this.superTabControlPanel1.TabIndex = 1;
             this.superTabControlPanel1.TabItem = this.tabReport;
             // 
@@ -104,10 +104,9 @@
             // superTabControlPanel2
             // 
             this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 35);
-            this.superTabControlPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 28);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(1336, 640);
+            this.superTabControlPanel2.Size = new System.Drawing.Size(1035, 590);
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.tabProduct;
             // 
@@ -122,10 +121,9 @@
             // superTabControlPanel5
             // 
             this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 35);
-            this.superTabControlPanel5.Margin = new System.Windows.Forms.Padding(4);
+            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 28);
             this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1336, 640);
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1002, 512);
             this.superTabControlPanel5.TabIndex = 0;
             this.superTabControlPanel5.TabItem = this.tabUser;
             // 
@@ -140,10 +138,9 @@
             // superTabControlPanel4
             // 
             this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 35);
-            this.superTabControlPanel4.Margin = new System.Windows.Forms.Padding(4);
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 28);
             this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(1336, 640);
+            this.superTabControlPanel4.Size = new System.Drawing.Size(1002, 512);
             this.superTabControlPanel4.TabIndex = 0;
             this.superTabControlPanel4.TabItem = this.tabFactory;
             // 
@@ -158,10 +155,9 @@
             // superTabControlPanel3
             // 
             this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 35);
-            this.superTabControlPanel3.Margin = new System.Windows.Forms.Padding(4);
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 28);
             this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(1336, 640);
+            this.superTabControlPanel3.Size = new System.Drawing.Size(1002, 512);
             this.superTabControlPanel3.TabIndex = 0;
             this.superTabControlPanel3.TabItem = this.tabPrice;
             // 
@@ -175,13 +171,13 @@
             // 
             // SysManageNewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1225, 732);
+            this.ClientSize = new System.Drawing.Size(1032, 613);
             this.Controls.Add(this.sysTabControl);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SysManageNewForm";
             this.Text = "系统管理";
             this.Load += new System.EventHandler(this.SysManageNewForm_Load);

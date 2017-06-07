@@ -1,0 +1,207 @@
+
+[2017-06-06 15:12:15,033] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:17:03,855] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:21:25,159] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:22:14,918] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:28:58,994] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:32:05,489] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:41:06,446] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 15:42:27,940] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 65
+
+[2017-06-06 17:22:55,008] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:23:40,277] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:24:36,770] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:25:19,447] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:26:27,228] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:29:39,058] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:30:42,251] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:32:04,638] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:33:38,669] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:35:32,735] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:36:39,650] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:38:01,765] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:42:41,734] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:43:03,752] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68
+
+[2017-06-06 17:49:28,948] Exception 
+error
+
+System.IO.IOException: 端口“COM4”不存在。
+   在 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   在 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   在 System.IO.Ports.SerialPort.Open()
+   在 XmWeightForm.MainForm.InitForm() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 68

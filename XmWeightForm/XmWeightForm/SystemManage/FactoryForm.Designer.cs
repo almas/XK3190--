@@ -36,8 +36,9 @@
             this.factoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hookWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.meatRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extraRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traceURL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRefresh = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.factoryGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,15 +68,15 @@
             // 
             // factoryGrid
             // 
-            this.factoryGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.factoryGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.factoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.factoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.factoryId,
             this.factoryName,
             this.hookWeight,
             this.meatRate,
-            this.extraRate,
-            this.traceURL});
+            this.traceURL,
+            this.serverUrl});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -85,11 +86,11 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.factoryGrid.DefaultCellStyle = dataGridViewCellStyle1;
             this.factoryGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.factoryGrid.Location = new System.Drawing.Point(18, 136);
+            this.factoryGrid.Location = new System.Drawing.Point(3, 136);
             this.factoryGrid.Name = "factoryGrid";
             this.factoryGrid.RowTemplate.Height = 23;
             this.factoryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.factoryGrid.Size = new System.Drawing.Size(882, 355);
+            this.factoryGrid.Size = new System.Drawing.Size(1019, 355);
             this.factoryGrid.TabIndex = 4;
             this.factoryGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.factoryGrid_CellDoubleClick);
             // 
@@ -118,12 +119,6 @@
             this.meatRate.HeaderText = "出肉率";
             this.meatRate.Name = "meatRate";
             // 
-            // extraRate
-            // 
-            this.extraRate.DataPropertyName = "extraRate";
-            this.extraRate.HeaderText = "耗损率";
-            this.extraRate.Name = "extraRate";
-            // 
             // traceURL
             // 
             this.traceURL.DataPropertyName = "traceURL";
@@ -131,16 +126,35 @@
             this.traceURL.Name = "traceURL";
             this.traceURL.Width = 300;
             // 
+            // serverUrl
+            // 
+            this.serverUrl.DataPropertyName = "serverUrl";
+            this.serverUrl.HeaderText = "服务器地址";
+            this.serverUrl.Name = "serverUrl";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnRefresh.Location = new System.Drawing.Point(859, 107);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FactoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.factoryGrid);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.skinLabel1);
             this.Name = "FactoryForm";
-            this.Size = new System.Drawing.Size(921, 531);
+            this.Size = new System.Drawing.Size(1025, 580);
             this.Load += new System.EventHandler(this.FactoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.factoryGrid)).EndInit();
             this.ResumeLayout(false);
@@ -157,7 +171,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn factoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn hookWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn meatRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn extraRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn traceURL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serverUrl;
+        private DevComponents.DotNetBar.ButtonX btnRefresh;
     }
 }

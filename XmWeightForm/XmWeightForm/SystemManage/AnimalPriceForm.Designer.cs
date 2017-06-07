@@ -31,10 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.priceGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             this.animalTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animalTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             // 
             // priceGrid
             // 
-            this.priceGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.priceGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.priceGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.priceGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.animalTypeId,
@@ -73,18 +73,6 @@
             this.priceGrid.TabIndex = 3;
             this.priceGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellDoubleClick);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAdd.Location = new System.Drawing.Point(23, 54);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Text = "新增";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // animalTypeId
             // 
             this.animalTypeId.DataPropertyName = "animalTypeId";
@@ -104,6 +92,18 @@
             this.price.HeaderText = "单价(kg)";
             this.price.Name = "price";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnAdd.Location = new System.Drawing.Point(23, 54);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // AnimalPriceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -113,7 +113,7 @@
             this.Controls.Add(this.priceGrid);
             this.Controls.Add(this.label1);
             this.Name = "AnimalPriceForm";
-            this.Size = new System.Drawing.Size(984, 558);
+            this.Size = new System.Drawing.Size(1025, 580);
             this.Load += new System.EventHandler(this.AnimalPriceForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).EndInit();
             this.ResumeLayout(false);

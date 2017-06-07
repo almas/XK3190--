@@ -16,5 +16,6 @@ namespace AppService.Model
        public bool autoWeighing3 { get; set; }
 
        public string traceURL { get; set; }
+       public string serverUrl { get; set; }
     }
 }

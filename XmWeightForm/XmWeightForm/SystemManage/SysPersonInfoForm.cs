@@ -59,38 +59,47 @@ namespace XmWeightForm.SystemManage
             var isadmin = chkAdmin.Checked;
             var txtStation = txtJobStation.Text.Trim();
             int resultNum = 0;
-            if (DataId == 0)
+            try
             {
-                string sql =
-                    @"insert into Opers(userName,operName,password,jobNumber,isAdmin,isRepoter,stopped,jobStation)
+                if (DataId == 0)
+                {
+                    string sql =
+                        @"insert into Opers(userName,operName,password,jobNumber,isAdmin,isRepoter,stopped,jobStation)
                        values(@uname,@nickname,@pwd,@jobNum,@isadmin,@isRepoter,@stopped,@jobStation)";
-                using (var db = DapperDao.GetInstance())
-                {
-                    resultNum = db.Execute(sql,
-                        new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, isRepoter = false, stopped = false, jobStation =txtStation});
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        resultNum = db.Execute(sql,
+                            new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, isRepoter = false, stopped = false, jobStation = txtStation });
+                    }
                 }
-            }
-            else
-            {
-                string sql = "update Opers set userName=@uname,operName=@nickname,password=@pwd,jobNumber=@jobNum,isAdmin=@isadmin,jobStation=@jobStation where Id=" + DataId;
-
-                using (var db = DapperDao.GetInstance())
+                else
                 {
-                    resultNum = db.Execute(sql, new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, jobStation = txtStation });
-                }
-            }
+                    string sql = "update Opers set userName=@uname,operName=@nickname,password=@pwd,jobNumber=@jobNum,isAdmin=@isadmin,jobStation=@jobStation where Id=" + DataId;
 
-            if (resultNum > 0)
-            {
-                MessageBox.Show("保存成功");
-                this.Close();
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        resultNum = db.Execute(sql, new { uname = uname, nickname = nickname, pwd = pwd, jobNum = jobNum, isadmin = isadmin, jobStation = txtStation });
+                    }
+                }
+
+                if (resultNum > 0)
+                {
+                    MessageBox.Show("保存成功");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("保存失败");
+                }
+
+                this.DialogResult = DialogResult.OK;
             }
-            else
+            catch (Exception ex)
             {
+                log4netHelper.Exception(ex);
                 MessageBox.Show("保存失败");
             }
-
-            this.DialogResult = DialogResult.OK;
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

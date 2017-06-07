@@ -81,5 +81,10 @@ namespace XmWeightForm.SystemManage
                 InitData();
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            InitData();
+        }
     }
 }

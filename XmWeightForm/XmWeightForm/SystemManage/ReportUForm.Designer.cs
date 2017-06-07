@@ -49,10 +49,10 @@
             this.endTime.DropDownWidth = 120;
             this.endTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.endTime.Items = null;
-            this.endTime.Location = new System.Drawing.Point(470, 99);
+            this.endTime.Location = new System.Drawing.Point(390, 39);
             this.endTime.Margin = new System.Windows.Forms.Padding(4);
             this.endTime.Name = "endTime";
-            this.endTime.Size = new System.Drawing.Size(134, 28);
+            this.endTime.Size = new System.Drawing.Size(183, 28);
             this.endTime.TabIndex = 34;
             this.endTime.text = "";
             // 
@@ -64,17 +64,17 @@
             this.startTime.DropDownWidth = 120;
             this.startTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.startTime.Items = null;
-            this.startTime.Location = new System.Drawing.Point(179, 100);
+            this.startTime.Location = new System.Drawing.Point(99, 40);
             this.startTime.Margin = new System.Windows.Forms.Padding(4);
             this.startTime.Name = "startTime";
-            this.startTime.Size = new System.Drawing.Size(144, 27);
+            this.startTime.Size = new System.Drawing.Size(183, 27);
             this.startTime.TabIndex = 33;
             this.startTime.text = "";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(392, 106);
+            this.label4.Location = new System.Drawing.Point(312, 46);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
@@ -84,7 +84,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(103, 107);
+            this.label3.Location = new System.Drawing.Point(23, 47);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
@@ -93,7 +93,7 @@
             // 
             // txtIdNum
             // 
-            this.txtIdNum.Location = new System.Drawing.Point(470, 52);
+            this.txtIdNum.Location = new System.Drawing.Point(390, 10);
             this.txtIdNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdNum.Name = "txtIdNum";
             this.txtIdNum.Size = new System.Drawing.Size(183, 21);
@@ -101,7 +101,7 @@
             // 
             // txtname
             // 
-            this.txtname.Location = new System.Drawing.Point(179, 54);
+            this.txtname.Location = new System.Drawing.Point(99, 12);
             this.txtname.Margin = new System.Windows.Forms.Padding(4);
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(183, 21);
@@ -110,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(407, 58);
+            this.label2.Location = new System.Drawing.Point(327, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
@@ -120,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 58);
+            this.label1.Location = new System.Drawing.Point(53, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
@@ -129,7 +129,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(861, 84);
+            this.btnExport.Location = new System.Drawing.Point(724, 29);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 29);
@@ -140,7 +140,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(738, 84);
+            this.btnQuery.Location = new System.Drawing.Point(601, 29);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 29);
@@ -151,11 +151,11 @@
             // 
             // groupReport
             // 
-            this.groupReport.Location = new System.Drawing.Point(25, 135);
+            this.groupReport.Location = new System.Drawing.Point(16, 68);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
             this.groupReport.Padding = new System.Windows.Forms.Padding(4);
-            this.groupReport.Size = new System.Drawing.Size(1091, 545);
+            this.groupReport.Size = new System.Drawing.Size(994, 491);
             this.groupReport.TabIndex = 24;
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
@@ -177,7 +177,7 @@
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.groupReport);
             this.Name = "ReportUForm";
-            this.Size = new System.Drawing.Size(1229, 700);
+            this.Size = new System.Drawing.Size(1025, 580);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -49,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 110);
+            this.label2.Location = new System.Drawing.Point(79, 113);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
@@ -59,7 +60,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(178, 44);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(196, 24);
             this.txtName.TabIndex = 2;
@@ -67,7 +68,7 @@
             // txtPwd
             // 
             this.txtPwd.Location = new System.Drawing.Point(178, 110);
-            this.txtPwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPwd.Margin = new System.Windows.Forms.Padding(4);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(196, 24);
             this.txtPwd.TabIndex = 3;
@@ -75,7 +76,7 @@
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(82, 190);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(104, 29);
             this.btnLogin.TabIndex = 4;
@@ -86,7 +87,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(238, 190);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
             this.btnCancel.TabIndex = 5;
@@ -105,8 +106,10 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginForm";
             this.Text = "用户登录";
             this.Load += new System.EventHandler(this.LoginForm_Load);

@@ -77,38 +77,46 @@ namespace XmWeightForm.SystemManage
                     
                 //}
             }
-
-            int resultNum = 0;
-            if (PriceKeyId == 0)
+            try
             {
-                string sql = "insert into AnimalTypes(animalTypeName,price)values(@animalTypeName,@price)";
-                using (var db = DapperDao.GetInstance())
+                int resultNum = 0;
+                if (PriceKeyId == 0)
                 {
-                    resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal});
+                    string sql = "insert into AnimalTypes(animalTypeName,price)values(@animalTypeName,@price)";
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal });
+                    }
                 }
-            }
-            else
-            {
-                string sql = "update AnimalTypes set animalTypeName=@animalTypeName,price=@price where animalTypeId=" +
-                             PriceKeyId;
-
-                using (var db = DapperDao.GetInstance())
+                else
                 {
-                    resultNum = db.Execute(sql, new { animalTypeName = name, price = price });
-                }
-            }
+                    string sql = "update AnimalTypes set animalTypeName=@animalTypeName,price=@price where animalTypeId=" +
+                                 PriceKeyId;
 
-            if (resultNum > 0)
-            {
-                MessageBox.Show("保存成功");
-                this.Close();
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        resultNum = db.Execute(sql, new { animalTypeName = name, price = price });
+                    }
+                }
+
+                if (resultNum > 0)
+                {
+                    MessageBox.Show("保存成功");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("保存失败");
+                }
+
+                this.DialogResult = DialogResult.OK;
             }
-            else
+            catch (Exception ex)
             {
+               log4netHelper.Exception(ex);
                 MessageBox.Show("保存失败");
             }
-
-            this.DialogResult = DialogResult.OK;
+           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

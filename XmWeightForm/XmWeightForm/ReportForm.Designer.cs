@@ -49,10 +49,10 @@
             this.endTime.DropDownWidth = 120;
             this.endTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.endTime.Items = null;
-            this.endTime.Location = new System.Drawing.Point(415, 75);
+            this.endTime.Location = new System.Drawing.Point(381, 62);
             this.endTime.Margin = new System.Windows.Forms.Padding(4);
             this.endTime.Name = "endTime";
-            this.endTime.Size = new System.Drawing.Size(134, 28);
+            this.endTime.Size = new System.Drawing.Size(183, 28);
             this.endTime.TabIndex = 23;
             this.endTime.text = "";
             // 
@@ -64,17 +64,17 @@
             this.startTime.DropDownWidth = 120;
             this.startTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.startTime.Items = null;
-            this.startTime.Location = new System.Drawing.Point(124, 76);
+            this.startTime.Location = new System.Drawing.Point(90, 63);
             this.startTime.Margin = new System.Windows.Forms.Padding(4);
             this.startTime.Name = "startTime";
-            this.startTime.Size = new System.Drawing.Size(144, 27);
+            this.startTime.Size = new System.Drawing.Size(183, 27);
             this.startTime.TabIndex = 22;
             this.startTime.text = "";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(337, 82);
+            this.label4.Location = new System.Drawing.Point(303, 69);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
@@ -84,7 +84,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 83);
+            this.label3.Location = new System.Drawing.Point(14, 70);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
@@ -93,7 +93,7 @@
             // 
             // txtIdNum
             // 
-            this.txtIdNum.Location = new System.Drawing.Point(415, 28);
+            this.txtIdNum.Location = new System.Drawing.Point(381, 28);
             this.txtIdNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdNum.Name = "txtIdNum";
             this.txtIdNum.Size = new System.Drawing.Size(183, 21);
@@ -101,7 +101,7 @@
             // 
             // txtname
             // 
-            this.txtname.Location = new System.Drawing.Point(124, 30);
+            this.txtname.Location = new System.Drawing.Point(90, 30);
             this.txtname.Margin = new System.Windows.Forms.Padding(4);
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(183, 21);
@@ -110,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(352, 34);
+            this.label2.Location = new System.Drawing.Point(318, 34);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
@@ -120,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 34);
+            this.label1.Location = new System.Drawing.Point(44, 34);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
@@ -129,7 +129,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(806, 60);
+            this.btnExport.Location = new System.Drawing.Point(704, 61);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 29);
@@ -140,7 +140,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(683, 60);
+            this.btnQuery.Location = new System.Drawing.Point(581, 61);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 29);
@@ -151,11 +151,11 @@
             // 
             // groupReport
             // 
-            this.groupReport.Location = new System.Drawing.Point(7, 111);
+            this.groupReport.Location = new System.Drawing.Point(7, 98);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
             this.groupReport.Padding = new System.Windows.Forms.Padding(4);
-            this.groupReport.Size = new System.Drawing.Size(1017, 513);
+            this.groupReport.Size = new System.Drawing.Size(944, 453);
             this.groupReport.TabIndex = 13;
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 652);
+            this.ClientSize = new System.Drawing.Size(962, 572);
             this.Controls.Add(this.endTime);
             this.Controls.Add(this.startTime);
             this.Controls.Add(this.label4);
@@ -176,8 +176,9 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.groupReport);
+            this.DoubleBuffered = true;
             this.Name = "ReportForm";
-            this.Text = "ReportForm";
+            this.Text = "报表统计";
             this.ResumeLayout(false);
             this.PerformLayout();
 

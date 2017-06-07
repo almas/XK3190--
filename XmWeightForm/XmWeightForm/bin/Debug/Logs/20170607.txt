@@ -1,0 +1,27 @@
+
+[2017-06-07 16:11:32,484] InfoLog 
+新线程: 开始执行 ..
+
+
+[2017-06-07 16:11:54,664] InfoLog 
+新线程: 开始执行 ..
+
+
+[2017-06-07 16:14:16,095] Exception 
+error
+
+System.InvalidOperationException: 线程间操作无效: 从不是创建控件“MainForm”的线程访问它。
+   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SendMessage(Int32 msg, Int32 wparam, Int32 lparam)
+   在 System.Windows.Forms.Form.Close()
+   在 XmWeightForm.MainForm.ShowProcessWin() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 1238
+
+[2017-06-07 16:18:50,579] Exception 
+error
+
+System.InvalidOperationException: 在创建窗口句柄之前，不能在控件上调用 Invoke 或 BeginInvoke。
+   在 System.Windows.Forms.Control.WaitForWaitHandle(WaitHandle waitHandle)
+   在 System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   在 System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   在 XmWeightForm.MainForm.AppNetInfo(String msg) 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 213
+   在 XmWeightForm.MainForm.ShowProcessWin() 位置 e:\Work\XK3190\XmWeightForm\XmWeightForm\MainForm.cs:行号 1223
