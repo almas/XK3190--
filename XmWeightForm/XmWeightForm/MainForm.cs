@@ -73,11 +73,24 @@ namespace XmWeightForm
                     int hookCount = _hookQueue.Count;
                     if (hookCount >= 4)
                     {
-                        for (int i = 0; i < 4; i++)
+                        int tempInt = 0;
+
+                        do
                         {
                             string hook = _hookQueue.Dequeue(); //将数据出队
+                            hookCount = _hookQueue.Count;
+                            if (hookList.Exists(s => s == hook))
+                            {
+                                continue;
+                            }
                             hookList.Add(hook);
-                        }
+                            tempInt++;
+                        } while (tempInt < 4 && hookCount > 0);
+
+                        //for (int i = 0; i < 4; i++)
+                        //{
+                             
+                        //}
                         UpdateWeightText(weightdata.ToString());
                         InsertWeightData(hookList, weightdata, 4);
 
@@ -91,6 +104,11 @@ namespace XmWeightForm
                         for (int i = 0; i < hookCount; i++)
                         {
                             string hook = _hookQueue.Dequeue(); //将数据出队
+                            if (TempHookList.Exists(s => s == hook))
+                            {
+                                continue;
+                               
+                            }
                             TempHookList.Add(hook);
                         }
                         showWeigthButton(true);
