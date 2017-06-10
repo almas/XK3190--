@@ -15,6 +15,7 @@ namespace XmWeightForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             //Application.Run(new SysManageForm());
             //Application.Run(new MainForm());
             //Application.Run(new SysManageNewForm());
@@ -37,6 +38,16 @@ namespace XmWeightForm
                 return;
             }
           
+        }
+
+        /// <summary>
+        /// 线程异常处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            log4netHelper.Exception(e.Exception.Message);
         }
     }
 }

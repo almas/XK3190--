@@ -33,7 +33,6 @@
             this.weightSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.btnReport = new System.Windows.Forms.Button();
             this.mainGroup = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.txtName = new DevComponents.DotNetBar.Controls.TextBoxDropDown();
             this.cboxTrace = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -81,7 +80,6 @@
             // 
             // mainGroup
             // 
-            this.mainGroup.Controls.Add(this.button1);
             this.mainGroup.Controls.Add(this.txtName);
             this.mainGroup.Controls.Add(this.cboxTrace);
             this.mainGroup.Controls.Add(this.label3);
@@ -102,16 +100,6 @@
             this.mainGroup.TabIndex = 3;
             this.mainGroup.TabStop = false;
             this.mainGroup.Text = "信息录入";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(479, 192);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtName
             // 
@@ -457,7 +445,6 @@
         private System.Windows.Forms.CheckBox cboxTrace;
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.Controls.TextBoxDropDown txtName;
-        private System.Windows.Forms.Button button1;
         private DevComponents.DotNetBar.LabelX lblCurrentPerson;
         private DevComponents.DotNetBar.ButtonX btnCloseForm;
         private DevComponents.DotNetBar.Controls.CircularProgress uploadProcess;

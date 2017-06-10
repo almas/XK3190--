@@ -14,8 +14,8 @@ namespace AppService
 {
     public class UploadWeightData
     {
-          private string serverIp = ConfigurationManager.AppSettings["serverIp"];
-          public WebApiClient _apiClient = new WebApiClient();
+         private string serverIp = ConfigurationManager.AppSettings["serverIp"];
+         public WebApiClient _apiClient = new WebApiClient();
         private string _baseUrl = "";
         public int UploadPerSize = 100;
         public int maxReqSize = 100;
@@ -30,6 +30,7 @@ namespace AppService
             if (string.IsNullOrEmpty(url))
             {
                 url = serverIp;
+                log4netHelper.Info("dburl为null");
             }
             _baseUrl = url;
         }

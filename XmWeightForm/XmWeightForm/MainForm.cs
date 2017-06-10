@@ -32,7 +32,7 @@ namespace XmWeightForm
 
         string previousTagId = string.Empty;
         string currentTagId = string.Empty;
-        bool waitForWeighing = false;
+        //bool waitForWeighing = false;
         decimal currentWeight = decimal.Zero;
         private bool currentTraceStatus = false;
         public System.IO.Ports.SerialPort BeepPort = new System.IO.Ports.SerialPort();
@@ -67,6 +67,8 @@ namespace XmWeightForm
 
                 if (_dataQueue.Count >= 1 && _hookQueue.Count >= 1) //队列中有数据
                 {
+                    //清楚上一个称重信息
+                    ClearNetInfo();
                     decimal weightdata = _dataQueue.Dequeue();
                     _dataQueue.Clear();
                     var hookList = new List<string>();
@@ -143,7 +145,7 @@ namespace XmWeightForm
             try
             {
                 //如果当前称重状态为称重完成 不再接收重量数据
-                if (waitForWeighing)
+                if (WeghtState==1)
                     return;
 
                 if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了  
@@ -238,6 +240,9 @@ namespace XmWeightForm
 
         }
 
+        /// <summary>
+        ///清除数据
+        /// </summary>
         private void ClearNetInfo()
         {
             if (txtInfo.InvokeRequired)
@@ -248,7 +253,7 @@ namespace XmWeightForm
                     txtInfo.Clear();
                 };
 
-                txtInfo.Invoke(actionDelegate);
+                txtInfo.Invoke(actionDelegate,true);
             }
             else
             {
@@ -469,13 +474,11 @@ namespace XmWeightForm
                         TempHookList.Add(DateTime.Now.ToString("yyMMddHHmmssfff"));
                     }
                 }
-
                 InsertWeightData(TempHookList, weightDecimal, TempHookList.Count);
                 TempHookList.Clear();
                 btnInsertWeight.Visible = false;
 
-                //清除数据
-                ClearNetInfo();
+               
 
             }
 
@@ -485,7 +488,7 @@ namespace XmWeightForm
         private void InsertWeightData(List<string> hooks, decimal weights, int count)
         {
             try
-            {
+            {   
                 if (hooks.Any() && weights > MinWeight)
                 {
                     var hookDt = new DataTable("Hooks");
@@ -493,7 +496,7 @@ namespace XmWeightForm
                     hookDt.Columns.Add("attachTime", typeof(DateTime));
                     hookDt.Columns.Add("animalId", typeof(string));
 
-
+                    
                     if (currentTraceStatus)
                     {
                         var animallist = GetAnimalIds(count);
@@ -569,7 +572,7 @@ namespace XmWeightForm
             }
             catch (Exception ex)
             {
-                AppNetInfo(ex.Message);
+                AppNetInfo("入库失败"+ex.Message);
             }
         }
 
@@ -577,7 +580,7 @@ namespace XmWeightForm
         /// 获取当前需要溯源的羊批次耳标
         /// </summary>
         /// <returns></returns>
-        private AnimalBatchModel GetCurrentTraceAnimal()
+        private void GetCurrentTraceAnimal()
         {
             if (currentTraceStatus)
             {
@@ -596,7 +599,7 @@ namespace XmWeightForm
                 AnimalBatchModel = new AnimalBatchModel();
             }
 
-            return AnimalBatchModel;
+            //return AnimalBatchModel;
         }
 
         /// <summary>
@@ -611,16 +614,20 @@ namespace XmWeightForm
             {
                 if (!string.IsNullOrEmpty(AnimalBatchModel.animalId))
                 {
+                    StringBuilder sb=new StringBuilder();
+                    sb.AppendFormat(
+                        "select top {0} animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1'",
+                        count);
                     using (var db = DapperDao.GetInstance())
                     {
-                        var sql =
-                            @"select top @psize animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1'";
+
+                        var sql = sb.ToString();
+                           
 
                         list =
                             db.Query<string>(sql,
                                 new
                                 {
-                                    psize = count,
                                     yearNum = AnimalBatchModel.yearNum,
                                     sort = AnimalBatchModel.sort,
                                     currentAnimalId = AnimalBatchModel.animalId
@@ -707,6 +714,7 @@ namespace XmWeightForm
         public int WeghtState = 1;
 
         public string BatchId;
+        public string GlobalUploadUrl = string.Empty;
         public List<InputUserModel> inputUserList = new List<InputUserModel>();
         private void InitData()
         {
@@ -724,12 +732,13 @@ namespace XmWeightForm
 
                     string multisql = @"select top 1 * from Batches where flag=0;
                                       select * from AnimalTypes;
-                                      select distinct PIN,hostName from Batches;";
+                                      select distinct PIN,hostName from Batches;
+                                       select top 1 serverUrl from Params where factoryId='047901';";
                     var gridreader = db.QueryMultiple(multisql, null, CommandType.Text);
-
                     data = gridreader.Read<BatchInput>().FirstOrDefault();
                     list = gridreader.Read<AnimalTypes>().ToList();
                     inputUserList = gridreader.Read<InputUserModel>().ToList();
+                    GlobalUploadUrl = gridreader.Read<string>().FirstOrDefault();
                 }
             }
             catch
@@ -751,7 +760,7 @@ namespace XmWeightForm
 
 
 
-            if (data != null)
+            if (data != null&&!string.IsNullOrEmpty(data.batchId))
             {
                 txtName.Text = data.hostName;
                 txtIdNumber.Text = data.PIN;
@@ -762,6 +771,10 @@ namespace XmWeightForm
                 BatchId = data.batchId;
 
                 currentTraceStatus = data.istrace;
+                if (currentTraceStatus)
+                {
+                    GetCurrentTraceAnimal();
+                }
                 //称重状态 1-结束，0-称重中
                 SwitchButtonStatus(0);
                 InitDataDealQueue();
@@ -797,7 +810,7 @@ namespace XmWeightForm
             int animalType = (int)animalSel.SelectedValue;
             var animaltypeName = animalSel.Text;
             var istrace = cboxTrace.Checked;
-            currentTraceStatus = istrace;
+            
             if (string.IsNullOrEmpty(uname))
             {
                 MessageBox.Show("请输入送宰人信息");
@@ -848,11 +861,12 @@ namespace XmWeightForm
                     });
                     BatchId = batckId + "-" + sortNum;
                 }
-
+                currentTraceStatus = istrace;
                 if (currentTraceStatus)
                 {
                     GetCurrentTraceAnimal();
                 }
+               
                 lblCurrentPerson.Text = uname;
                 SwitchButtonStatus(0);
 
@@ -876,7 +890,7 @@ namespace XmWeightForm
 
                     if (currentTraceStatus && !string.IsNullOrEmpty(AnimalBatchModel.animalId))
                     {
-                        sql += "update Headsoff set flag=1 where animalId=" + AnimalBatchModel.animalId;
+                        sql += "update Headsoff set flag=1 where animalId='" + AnimalBatchModel.animalId+"'";
                     }
 
                     int returnVal = 0;
@@ -918,7 +932,7 @@ namespace XmWeightForm
         {
             if (state == 0)
             {
-                waitForWeighing = false;
+                //waitForWeighing = false;
                 WeghtState = state;
                 this.btnStart.Enabled = false;
                 this.btnStart.BackColor = Color.DarkGray;
@@ -1070,7 +1084,7 @@ namespace XmWeightForm
                         _lastWeight = newWeight;
                         //_lastWeight = Decimal.Zero;
                         _isChanged = false;
-                        AppNetInfo(newWeight.ToString());
+                       // AppNetInfo(newWeight.ToString());
                     }
 
                 }
@@ -1090,7 +1104,7 @@ namespace XmWeightForm
         public Queue<string> _hookQueue = new Queue<string>();
         private void ShowTagId(MonitorBase oSrc, Tag oTag)
         {
-            if (waitForWeighing) return;  //如何当前状态为称重结束，不再接收钩标数据
+            if (WeghtState==1) return;  //如何当前状态为称重结束 或者还未开始称重，不再接收钩标数据
             if (oTag is ISO11784)
             {
                 if (oTag.Id != previousTagId)
@@ -1117,7 +1131,7 @@ namespace XmWeightForm
         /// </summary>
         private void InitHookAndWeightData()
         {
-            waitForWeighing = true;
+            //waitForWeighing = true;
             previousTagId = string.Empty;
             currentTagId = string.Empty;
             currentTraceStatus = false;
@@ -1158,23 +1172,23 @@ namespace XmWeightForm
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using (var db = DapperDao.GetInstance())
-            {
-              var list=new List<string>();
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    using (var db = DapperDao.GetInstance())
+        //    {
+        //      var list=new List<string>();
 
-              list.Add("900002660010015");
-              list.Add("900002660010016");
-              list.Add("900002660010017");
-                if (list.Any())
-                {
-                    var anids = list.ToArray();
-                    var upRows = db.Execute("update Headsoff set flag=1 where animalId in @ids", new { ids = anids });
+        //      list.Add("900002660010015");
+        //      list.Add("900002660010016");
+        //      list.Add("900002660010017");
+        //        if (list.Any())
+        //        {
+        //            var anids = list.ToArray();
+        //            var upRows = db.Execute("update Headsoff set flag=1 where animalId in @ids", new { ids = anids });
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1223,16 +1237,17 @@ namespace XmWeightForm
         {
             try
             {
-                string url = string.Empty;
 
-                using (var db=DapperDao.GetInstance())
-                {
-                    url =
-                        db.Query<string>("select top 1 serverUrl from Params where factoryId=@facid",
-                            new {facid = "047901"}).FirstOrDefault();
-                }
+                //string url = string.Empty;
 
-                var updata = new UploadWeightData(url);
+                //using (var db=DapperDao.GetInstance())
+                //{
+                //    url =
+                //        db.Query<string>("select top 1 serverUrl from Params where factoryId=@facid",
+                //            new {facid = "047901"}).FirstOrDefault();
+                //}
+
+                var updata = new UploadWeightData(GlobalUploadUrl);
                 updata.UploadHeadsoff();
                 updata.UploadBatchs();
                 updata.UploadWeighings();

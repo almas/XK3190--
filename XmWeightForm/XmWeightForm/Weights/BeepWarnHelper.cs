@@ -13,7 +13,7 @@ namespace XmWeightForm.Weights
         /// <param name="port"></param>
         public static void OpenGreenLed(SerialPort port)
         {
-           byte[] com = new byte[8];
+            byte[] com = new byte[8];
             com[0] = 0x01;
             com[1] = 0x05;
             com[2] = 0x0;
@@ -22,11 +22,23 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0xdd;
             com[7] = 0xfa;
-            if (port.IsOpen)
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
             }
-           
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
+            }
+            
+
         }
 
         /// <summary>
@@ -44,9 +56,20 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0x9c;
             com[7] = 0x0a;
-            if (port.IsOpen)
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
             }
         }
 
@@ -65,9 +88,21 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0x8c;
             com[7] = 0x3a;
-            if (port.IsOpen)
+
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
             }
         }
 
@@ -86,9 +121,20 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0xcd;
             com[7] = 0xca;
-            if (port.IsOpen)
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
             }
         }
         /// <summary>
@@ -106,9 +152,20 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0x2d;
             com[7] = 0xfa;
-            if (port.IsOpen)
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
             }
         }
 
@@ -127,9 +184,20 @@ namespace XmWeightForm.Weights
             com[5] = 0x0;
             com[6] = 0x6c;
             com[7] = 0x0a;
-            if (port.IsOpen)
+            try
             {
-                port.Write(com, 0, 8);
+                if (port.IsOpen)
+                {
+                    port.Write(com, 0, 8);
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                com = null;
             }
         }
     }
