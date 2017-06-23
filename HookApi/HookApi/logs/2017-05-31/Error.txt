@@ -1,0 +1,2 @@
+2017-05-31 15:27:21.4592|ERROR|LogMsg|System.Exception: hhe
+   ÔÚ HookApi.Controllers.HookApiController.PostHookData(String hookId, String animalId) Î»ÖÃ e:\Work\HookApi\HookApi\Controllers\HookApiController.cs:ÐÐºÅ 43

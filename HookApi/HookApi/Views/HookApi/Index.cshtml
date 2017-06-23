@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+
+    <button onclick="postData()">提交数据</button>
+    <script src="~/Scripts/jquery-1.11.1.js"></script>
+    <script>
+
+        function postData() {
+            $.ajax({
+                async: true,
+                url: '/HookApi/PostTestData',
+                type: "GET",
+                data: null,
+                cache: false,
+                dataType: 'JSON',
+                timeout :60000,
+                success: function (data, textStatus, jqXHr) {
+                    if (data.Status) {
+                        alert("上传成功");
+                    } else {
+                        alert(data.Msg);
+                    }
+                },error: function (textStatus) {
+                   // console.error(textStatus);
+                },
+            complete: function (XMLHttpRequest,status) {
+                //if(status == 'timeout') {
+                //    xhr.abort();    // 超时后中断请求
+                //    $.alert("网络超时，请刷新", function () {
+                //        location.reload();
+                //    })
+                //}
+            }
+            });
+        }
+    </script>
+</div>
+</body>
+</html>

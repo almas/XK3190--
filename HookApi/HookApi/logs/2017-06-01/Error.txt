@@ -1,0 +1,16 @@
+2017-06-01 17:16:54.4072|ERROR|LogMsg|System.ArgumentNullException: 值不能为 null。
+参数名: requestUriString
+   在 System.Net.WebRequest.Create(String requestUriString)
+   在 HookApi.MvcApplication.Application_End(Object sender, EventArgs e) 位置 e:\Work\HookApi\HookApi\Global.asax.cs:行号 87
+2017-06-01 17:20:41.0632|ERROR|LogMsg|System.Net.WebException: 远程服务器返回错误: (404) 未找到。
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 HookApi.MvcApplication.Application_End(Object sender, EventArgs e) 位置 e:\Work\HookApi\HookApi\Global.asax.cs:行号 88
+2017-06-01 17:21:02.9802|ERROR|LogMsg|System.Net.WebException: 远程服务器返回错误: (404) 未找到。
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 HookApi.MvcApplication.Application_End(Object sender, EventArgs e) 位置 e:\Work\HookApi\HookApi\Global.asax.cs:行号 88
+2017-06-01 17:42:56.0012|ERROR|LogMsg|System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.200:9021
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 HookApi.MvcApplication.Application_End(Object sender, EventArgs e) 位置 e:\Work\HookApi\HookApi\Global.asax.cs:行号 88
