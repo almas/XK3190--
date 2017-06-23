@@ -151,7 +151,7 @@
             // 
             // groupReport
             // 
-            this.groupReport.Location = new System.Drawing.Point(16, 68);
+            this.groupReport.Location = new System.Drawing.Point(4, 85);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
             this.groupReport.Padding = new System.Windows.Forms.Padding(4);

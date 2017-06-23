@@ -15,9 +15,9 @@ using DLLFullPrint;
 
 namespace XmWeightForm.SystemManage
 {
-    public partial class ReportGridForm : Office2007Form
+    public partial class ReportGridForm1 : Office2007Form
     {
-        public ReportGridForm()
+        public ReportGridForm1()
         {
             InitializeComponent();
             this.EnableGlass = false;
@@ -70,7 +70,7 @@ namespace XmWeightForm.SystemManage
 
             }
 
-            reportGrid.DataSource = QueryDataTable;
+            reportGrid1.DataSource = QueryDataTable;
             //var tempDt = QueryDataTable.Copy();
 
             //tempDt.Columns.Remove("Sort");
@@ -238,7 +238,7 @@ namespace XmWeightForm.SystemManage
             System.Data.DataTable dt = new System.Data.DataTable();
             DataRow dr;
             //设置列表头 
-            foreach (DataGridViewColumn headerCell in reportGrid.Columns)
+            foreach (DataGridViewColumn headerCell in reportGrid1.Columns)
             {
                 dt.Columns.Add(headerCell.HeaderText);
             }

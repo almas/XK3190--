@@ -16,6 +16,8 @@ namespace XmWeightForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             //Application.Run(new SysManageForm());
             //Application.Run(new MainForm());
             //Application.Run(new SysManageNewForm());
@@ -31,13 +33,13 @@ namespace XmWeightForm
                 {
                     Application.Run(new MainForm());
                 }
-                
+
             }
             else
             {
                 return;
             }
-          
+          //  Application.Run(new ReportGridForm1());
         }
 
         /// <summary>
@@ -48,6 +50,11 @@ namespace XmWeightForm
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             log4netHelper.Exception(e.Exception.Message);
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs ex)
+        {
+            log4netHelper.Exception(ex.ToString());
         }
     }
 }

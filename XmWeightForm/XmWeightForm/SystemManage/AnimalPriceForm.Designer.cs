@@ -31,10 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.priceGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             this.animalTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animalTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
+            this.traceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,8 @@
             this.priceGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.animalTypeId,
             this.animalTypeName,
-            this.price});
+            this.price,
+            this.traceCode});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -72,6 +74,18 @@
             this.priceGrid.Size = new System.Drawing.Size(945, 456);
             this.priceGrid.TabIndex = 3;
             this.priceGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellDoubleClick);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnAdd.Location = new System.Drawing.Point(23, 54);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // animalTypeId
             // 
@@ -92,17 +106,11 @@
             this.price.HeaderText = "单价(kg)";
             this.price.Name = "price";
             // 
-            // btnAdd
+            // traceCode
             // 
-            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAdd.Location = new System.Drawing.Point(23, 54);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Text = "新增";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.traceCode.DataPropertyName = "traceCode";
+            this.traceCode.HeaderText = "溯源编号";
+            this.traceCode.Name = "traceCode";
             // 
             // AnimalPriceForm
             // 
@@ -129,5 +137,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn traceCode;
     }
 }

@@ -45,6 +45,7 @@ namespace XmWeightForm.SystemManage
             {
                 animalName.Text = model.animalTypeName;
                 txtPrice.Text = model.price.ToString();
+                txttraceCode.Text = model.traceCode;
             }
         }
 
@@ -52,10 +53,21 @@ namespace XmWeightForm.SystemManage
         {
             var name = animalName.Text.Trim();
             var price = txtPrice.Text.Trim();
+            string traceCode = txttraceCode.Text.Trim();
             decimal priceDecimal = 0;
             if (string.IsNullOrEmpty(name))
             {
                 MessageBox.Show("动物类型不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(traceCode))
+            {
+                MessageBox.Show("溯源编号不能为空");
+                return;
+            }
+            if (traceCode.Length != 2)
+            {
+                MessageBox.Show("溯源编号长度为两位");
                 return;
             }
             if (!string.IsNullOrEmpty(price))
@@ -82,7 +94,7 @@ namespace XmWeightForm.SystemManage
                 int resultNum = 0;
                 if (PriceKeyId == 0)
                 {
-                    string sql = "insert into AnimalTypes(animalTypeName,price)values(@animalTypeName,@price)";
+                    string sql = "insert into AnimalTypes(animalTypeName,price,traceCode)values(@animalTypeName,@price,@traceCode)";
                     using (var db = DapperDao.GetInstance())
                     {
                         resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal });
@@ -90,12 +102,12 @@ namespace XmWeightForm.SystemManage
                 }
                 else
                 {
-                    string sql = "update AnimalTypes set animalTypeName=@animalTypeName,price=@price where animalTypeId=" +
+                    string sql = "update AnimalTypes set animalTypeName=@animalTypeName,price=@price,traceCode=@traceCode where animalTypeId=" +
                                  PriceKeyId;
 
                     using (var db = DapperDao.GetInstance())
                     {
-                        resultNum = db.Execute(sql, new { animalTypeName = name, price = price });
+                        resultNum = db.Execute(sql, new { animalTypeName = name, price = price, traceCode=traceCode });
                     }
                 }
 

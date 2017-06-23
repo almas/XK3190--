@@ -9,5 +9,6 @@ namespace AppService.Model
         public int animalTypeId { get; set; }
         public string animalTypeName { get; set; }
         public decimal? price { get; set; }
+        public string traceCode { get; set; }
     }
 }

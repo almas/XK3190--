@@ -17,10 +17,17 @@ namespace AppService
 
         public static IDbConnection GetInstance()
         {
-
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            conn.Open();
-            return conn;
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                conn.Open();
+                return conn;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+         
 
         }
     }

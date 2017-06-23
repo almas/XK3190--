@@ -35,6 +35,7 @@
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chkStart = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -70,6 +71,7 @@
             this.txtPwd.Location = new System.Drawing.Point(178, 110);
             this.txtPwd.Margin = new System.Windows.Forms.Padding(4);
             this.txtPwd.Name = "txtPwd";
+            this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(196, 24);
             this.txtPwd.TabIndex = 3;
             // 
@@ -95,6 +97,18 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // chkStart
+            // 
+            this.chkStart.AutoSize = true;
+            this.chkStart.Checked = true;
+            this.chkStart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkStart.Location = new System.Drawing.Point(178, 154);
+            this.chkStart.Name = "chkStart";
+            this.chkStart.Size = new System.Drawing.Size(86, 19);
+            this.chkStart.TabIndex = 6;
+            this.chkStart.Text = "开机启动";
+            this.chkStart.UseVisualStyleBackColor = true;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -102,6 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(221)))), ((int)(((byte)(238)))));
             this.ClientSize = new System.Drawing.Size(468, 270);
+            this.Controls.Add(this.chkStart);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPwd);
@@ -128,5 +143,6 @@
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.CheckBox chkStart;
     }
 }

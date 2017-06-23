@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnInsertWeight = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblWarnCount = new DevComponents.DotNetBar.LabelX();
             this.txtSheepNum = new DevComponents.Editors.IntegerInput();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -58,6 +59,10 @@
             this.btnCloseForm = new DevComponents.DotNetBar.ButtonX();
             this.uploadProcess = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.lblUploadInfo = new DevComponents.DotNetBar.LabelX();
+            this.lblRight = new CCWin.SkinControl.SkinLabel();
+            this.btnFullScreen = new DevComponents.DotNetBar.ButtonX();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtOriginalPlace = new System.Windows.Forms.ComboBox();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
@@ -80,6 +85,11 @@
             // 
             // mainGroup
             // 
+            this.mainGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainGroup.Controls.Add(this.txtOriginalPlace);
+            this.mainGroup.Controls.Add(this.label8);
             this.mainGroup.Controls.Add(this.txtName);
             this.mainGroup.Controls.Add(this.cboxTrace);
             this.mainGroup.Controls.Add(this.label3);
@@ -96,14 +106,14 @@
             this.mainGroup.Margin = new System.Windows.Forms.Padding(4);
             this.mainGroup.Name = "mainGroup";
             this.mainGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.mainGroup.Size = new System.Drawing.Size(665, 365);
+            this.mainGroup.Size = new System.Drawing.Size(614, 365);
             this.mainGroup.TabIndex = 3;
             this.mainGroup.TabStop = false;
             this.mainGroup.Text = "信息录入";
             // 
             // txtName
             // 
-            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             // 
             // 
@@ -230,6 +240,8 @@
             // 
             // txtInfo
             // 
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInfo.Location = new System.Drawing.Point(3, 471);
             this.txtInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInfo.Name = "txtInfo";
@@ -281,18 +293,34 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lblWarnCount);
             this.groupBox1.Controls.Add(this.txtSheepNum);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnInsertWeight);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtSheepWeight);
-            this.groupBox1.Location = new System.Drawing.Point(675, 88);
+            this.groupBox1.Location = new System.Drawing.Point(624, 88);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(283, 365);
+            this.groupBox1.Size = new System.Drawing.Size(334, 365);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "称重信息";
+            // 
+            // lblWarnCount
+            // 
+            // 
+            // 
+            // 
+            this.lblWarnCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWarnCount.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWarnCount.ForeColor = System.Drawing.Color.Red;
+            this.lblWarnCount.Location = new System.Drawing.Point(151, 69);
+            this.lblWarnCount.Name = "lblWarnCount";
+            this.lblWarnCount.Size = new System.Drawing.Size(146, 30);
+            this.lblWarnCount.TabIndex = 19;
             // 
             // txtSheepNum
             // 
@@ -346,6 +374,7 @@
             // btnCloseForm
             // 
             this.btnCloseForm.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCloseForm.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnCloseForm.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -386,12 +415,60 @@
             this.lblUploadInfo.Text = "数据上传中,请稍后...";
             this.lblUploadInfo.Visible = false;
             // 
+            // lblRight
+            // 
+            this.lblRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRight.AutoSize = true;
+            this.lblRight.BackColor = System.Drawing.Color.Transparent;
+            this.lblRight.BorderColor = System.Drawing.Color.White;
+            this.lblRight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRight.Location = new System.Drawing.Point(743, 584);
+            this.lblRight.Name = "lblRight";
+            this.lblRight.Size = new System.Drawing.Size(152, 17);
+            this.lblRight.TabIndex = 27;
+            this.lblRight.Text = "江苏真源网络服务有限公司";
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFullScreen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnFullScreen.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnFullScreen.Location = new System.Drawing.Point(786, 4);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(89, 37);
+            this.btnFullScreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnFullScreen.TabIndex = 28;
+            this.btnFullScreen.Text = "全屏显示";
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 209);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "羊原产地";
+            // 
+            // txtOriginalPlace
+            // 
+            this.txtOriginalPlace.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtOriginalPlace.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtOriginalPlace.FormattingEnabled = true;
+            this.txtOriginalPlace.Location = new System.Drawing.Point(115, 209);
+            this.txtOriginalPlace.Name = "txtOriginalPlace";
+            this.txtOriginalPlace.Size = new System.Drawing.Size(252, 23);
+            this.txtOriginalPlace.TabIndex = 20;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 583);
+            this.ClientSize = new System.Drawing.Size(973, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.btnFullScreen);
+            this.Controls.Add(this.lblRight);
             this.Controls.Add(this.uploadProcess);
             this.Controls.Add(this.lblUploadInfo);
             this.Controls.Add(this.btnCloseForm);
@@ -449,6 +526,11 @@
         private DevComponents.DotNetBar.ButtonX btnCloseForm;
         private DevComponents.DotNetBar.Controls.CircularProgress uploadProcess;
         private DevComponents.DotNetBar.LabelX lblUploadInfo;
+        private CCWin.SkinControl.SkinLabel lblRight;
+        private DevComponents.DotNetBar.ButtonX btnFullScreen;
+        private DevComponents.DotNetBar.LabelX lblWarnCount;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox txtOriginalPlace;
     }
 }
 

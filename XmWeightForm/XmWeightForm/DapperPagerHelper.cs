@@ -12,28 +12,34 @@ namespace XmWeightForm
         public static List<T> GetPagerData(string tablename, int page, int psize, string ordefield,string wheresql,ref int total)
         {
             var data=new List<T>();
-            int skipCount = psize*(page - 1);
-            string sql =
-                "select top @psize * from (select row_number() over (order by @ordefield asc) as RowNumber,* from @tablename where 1=1";
-            if (!string.IsNullOrEmpty(wheresql))
+            try
             {
-                sql +=" "+wheresql;
+                int skipCount = psize * (page - 1);
+                string sql =
+                    "select top @psize * from (select row_number() over (order by @ordefield asc) as RowNumber,* from @tablename where 1=1";
+                if (!string.IsNullOrEmpty(wheresql))
+                {
+                    sql += " " + wheresql;
+                }
+                sql += ") as temp where RowNumber > @skipCount";
+
+                string countsql = "select count(0) from @tablename";
+
+
+                if (!string.IsNullOrEmpty(wheresql))
+                {
+                    countsql += " " + wheresql;
+                }
+                using (var db = DapperDao.GetInstance())
+                {
+                    data = db.Query<T>(sql, new { tablename = tablename, wheresql = wheresql, psize = psize, ordefield = ordefield, skipCount = skipCount }).ToList();
+                    total = db.Query<int>(countsql, new { tablename = tablename, wheresql = wheresql }).FirstOrDefault();
+                }
             }
-                sql+=") as temp where RowNumber > @skipCount";
-
-            string countsql = "select count(0) from @tablename";
-
-
-            if (!string.IsNullOrEmpty(wheresql))
+            catch (Exception ex)
             {
-                countsql += " " + wheresql;
+                log4netHelper.Exception(ex);
             }
-            using (var db = DapperDao.GetInstance())
-            {
-                data = db.Query<T>(sql, new { tablename = tablename,wheresql=wheresql, psize = psize, ordefield = ordefield, skipCount=skipCount}).ToList();
-                total = db.Query<int>(countsql, new { tablename = tablename, wheresql = wheresql }).FirstOrDefault();
-            }
-
 
             return data;
         }
@@ -68,14 +74,19 @@ namespace XmWeightForm
                 sbcount.Append(" " + wheresql);
             }
             string countsql = sbcount.ToString();
-            using (var db = DapperDao.GetInstance())
+            try
             {
-                data = db.Query<T>(sql, null).ToList();
-               // data = db.Query<T>(AppendFormat, new { tablename = tablename, wheresql = wheresql, endpage = endpage, ordefield = ordefield, startpage = startpage }).ToList();
-                total = db.Query<int>(countsql,null).FirstOrDefault();
+                using (var db = DapperDao.GetInstance())
+                {
+                    data = db.Query<T>(sql, null).ToList();
+                    // data = db.Query<T>(AppendFormat, new { tablename = tablename, wheresql = wheresql, endpage = endpage, ordefield = ordefield, startpage = startpage }).ToList();
+                    total = db.Query<int>(countsql, null).FirstOrDefault();
+                }
             }
-
-
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
             return data;
         }
     }

@@ -54,7 +54,7 @@ namespace AppService
                         {
                             break;
                         }
-                        string sql = "select top " + UploadPerSize + " * from Batches where upload=0 order by yearNum";
+                        string sql = "select top " + UploadPerSize + " * from Batches where upload=0 and flag==1 order by yearNum";
                         var batchs = db.Query<BatchInput>(sql,null).ToList();
                         if (batchs.Any())
                         {

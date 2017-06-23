@@ -34,6 +34,8 @@
             this.animalName = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txttraceCode = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnSave
@@ -88,17 +90,36 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(81, 169);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "溯源编码";
+            // 
+            // txttraceCode
+            // 
+            this.txttraceCode.Location = new System.Drawing.Point(170, 159);
+            this.txttraceCode.Name = "txttraceCode";
+            this.txttraceCode.Size = new System.Drawing.Size(158, 21);
+            this.txttraceCode.TabIndex = 8;
+            // 
             // PriceInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 364);
+            this.Controls.Add(this.txttraceCode);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.animalName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
+            this.DoubleBuffered = true;
             this.Name = "PriceInfoForm";
             this.Text = "酮体价格";
             this.ResumeLayout(false);
@@ -114,5 +135,7 @@
         private System.Windows.Forms.TextBox animalName;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txttraceCode;
     }
 }
