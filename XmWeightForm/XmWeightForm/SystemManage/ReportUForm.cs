@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Windows.Forms;
 using AppService;
@@ -20,6 +21,7 @@ namespace XmWeightForm.SystemManage
             InitializeComponent();
         }
         public DataTable QueryDataTable = null;
+        public int NodeType = 1;
         private void btnQuery_Click(object sender, EventArgs e)
         {
             var startTime = this.startTime.Text;
@@ -28,37 +30,74 @@ namespace XmWeightForm.SystemManage
             var name = txtname.Text.Trim();
             var idNum = txtIdNum.Text.Trim();
 
+           // int nodeType = 1;
+            if (nodeptt.Checked)
+            {
+                NodeType = 1;
+            }
+            if (nodepsq.Checked)
+            {
+                NodeType = 2;
+            }
+            if (nodepsh.Checked)
+            {
+                NodeType = 3;
+            }
+
+
             var whereSql = string.Empty;
-            if (!string.IsNullOrEmpty(name))
+            if (NodeType == 1)
             {
-                whereSql += " and hostName like '%" + name + "%'";
-            }
-            if (!string.IsNullOrEmpty(idNum))
-            {
-                whereSql += " and PIN like '%" + idNum + "%'";
-            }
-            if (!string.IsNullOrEmpty(startTime))
-            {
-                if (ValidaterHelper.IsStringDate(startTime))
+                if (!string.IsNullOrEmpty(name))
                 {
-                    var tempStime = DateTime.Parse(startTime).ToString("yyyyMMdd");
-                    int tempStimeInt = int.Parse(tempStime);
-                    whereSql += " and yearNum >=" + tempStimeInt;
+                    whereSql += " and b.hostName like '%" + name + "%'";
+                }
+                if (!string.IsNullOrEmpty(idNum))
+                {
+                    whereSql += " and b.PIN like '%" + idNum + "%'";
+                }
+                if (!string.IsNullOrEmpty(startTime))
+                {
+                    if (ValidaterHelper.IsStringDate(startTime))
+                    {
+                        var tempStime = DateTime.Parse(startTime).ToString("yyyyMMdd");
+                        int tempStimeInt = int.Parse(tempStime);
+                        whereSql += " and b.yearNum >=" + tempStimeInt;
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(endTime))
+                {
+                    if (ValidaterHelper.IsStringDate(endTime))
+                    {
+                        var tempetime = DateTime.Parse(endTime).ToString("yyyyMMdd");
+                        int tempetimeInt = int.Parse(tempetime);
+                        whereSql += " and b.yearNum <=" + tempetimeInt;
+                    }
+
                 }
 
+                ShowTTReport(whereSql);
             }
-            if (!string.IsNullOrEmpty(endTime))
+            else if (NodeType == 2)
             {
-                if (ValidaterHelper.IsStringDate(endTime))
-                {
-                    var tempetime = DateTime.Parse(endTime).ToString("yyyyMMdd");
-                    int tempetimeInt = int.Parse(tempetime);
-                    whereSql += " and yearNum <=" + tempetimeInt;
-                }
+
+            }
+            else if (NodeType == 3)
+            {
 
             }
 
-            QueryDataTable = GetData(whereSql);
+        }
+
+
+        /// <summary>
+        /// 酮体
+        /// </summary>
+        /// <param name="wheresql"></param>
+        private void ShowTTReport(string wheresql)
+        {
+            QueryDataTable = GetTTData(wheresql);
             if (QueryDataTable.Rows.Count == 0)
             {
                 MessageBox.Show("未查询到数据");
@@ -66,106 +105,115 @@ namespace XmWeightForm.SystemManage
 
             }
 
-            var tempDt = QueryDataTable.Copy();
+            // var tempDt = QueryDataTable.Copy();
 
-            tempDt.Columns.Remove("Sort");
+            //tempDt.Columns.Remove("Sort");
             //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
             string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
-            string[] header = { "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
-            DataReprot dr = new DataReprot("屠宰核算统计报表", tempDt, header, bottomStr);
+            //, "单价", "金额", "称重起止时间"
+            string[] header = { "姓名", "身份证", "品名", "毛重", "数量" };
+            DataReprot dr = new DataReprot("屠宰核算统计报表", QueryDataTable, header, bottomStr);
             PrintPreviewDialog p = dr.PrintReport();
 
             this.groupReport.Controls.Add(p);
             p.Show();
             groupReport.Width += 1;
             this.Refresh();
-            tempDt = null;
+            //tempDt = null;
         }
-
         /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="wheresql"></param>
         /// <returns></returns>
-        private DataTable GetData(string wheresql)
+        private DataTable GetTTData(string wheresql)
         {
             if (string.IsNullOrEmpty(wheresql))
             {
                 var dtnow = DateTime.Now.ToString("yyyyMMdd");
                 int dtint = int.Parse(dtnow);
-                wheresql = " and yearNum=" + dtint;
+                wheresql = " and b.yearNum=" + dtint;
             }
 
-            var dt = new DataTable("WeightReport");
-            dt.Columns.Add("Sort", typeof(int));
-            dt.Columns.Add("Name", typeof(string));
-            dt.Columns.Add("IdNum", typeof(string));
-            dt.Columns.Add("ProductName", typeof(string));
-            dt.Columns.Add("ProductNum", typeof(int));
-            dt.Columns.Add("Weights", typeof(decimal));
-            dt.Columns.Add("Price", typeof(decimal));
-            dt.Columns.Add("TotalPrice", typeof(decimal));
-            dt.Columns.Add("WeightTime", typeof(string));
+            //var dt = new DataTable("WeightReport");
+            //dt.Columns.Add("Sort", typeof(int));
+            //dt.Columns.Add("Name", typeof(string));
+            //dt.Columns.Add("IdNum", typeof(string));
+            //dt.Columns.Add("ProductName", typeof(string));
+            //dt.Columns.Add("ProductNum", typeof(int));
+            //dt.Columns.Add("Weights", typeof(decimal));
+            //dt.Columns.Add("Price", typeof(decimal));
+            //dt.Columns.Add("TotalPrice", typeof(decimal));
+            //dt.Columns.Add("WeightTime", typeof(string));
             try
             {
-                var batchlist = new List<BatchInput>();
-                var weightList = new List<WeighingsRaw>();
-                var animalList = new List<AnimalTypes>();
+                //var batchlist = new List<BatchInput>();
+                //var weightList = new List<WeighingsRaw>();
+                //var animalList = new List<AnimalTypes>();
                 using (var db = DapperDao.GetInstance())
                 {
-                    string batchsql = "select * from Batches where flag=@flag and 1=1";
+                    string batchsql = @"select b.hostName Name,b.PIN IdNum,b.animalTypeName ProductName,
+                                        w.grossWeights Weights,w.hooksCount ProductNum from Batches b
+                                        join  WeighingsRaw w on b.batchId=w.batchId
+                                        where b.flag=@flag and 1=1";
                     batchsql += wheresql;
-                    batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
-                    if (batchlist.Any())
+                    //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
+                    var ds = db.ExecuteDataSet(batchsql, new {flag = true},null,null,null);
+                    if (ds.Tables.Count == 1)
                     {
-                        var animalType = batchlist.Select(s => s.animalTypeId).Distinct().ToArray();
-                        animalList = db.Query<AnimalTypes>("select * from AnimalTypes where animalTypeId in @ids",
-                                new { ids = animalType }).ToList();
-
-
-                        var bids = batchlist.Select(s => s.batchId).ToArray();
-                        weightList =
-                            db.Query<WeighingsRaw>("select * from WeighingsRaw where batchId in @ids", new { ids = bids })
-                                .ToList();
-
+                        return ds.Tables[0];
                     }
+
+                    //if (batchlist.Any())
+                    //{
+                    //    //var animalType = batchlist.Select(s => s.animalTypeId).Distinct().ToArray();
+                    //    //animalList = db.Query<AnimalTypes>("select * from AnimalTypes where animalTypeId in @ids",
+                    //    //        new { ids = animalType }).ToList();
+
+
+                    //    //var bids = batchlist.Select(s => s.batchId).ToArray();
+                    //    //weightList =
+                    //    //    db.Query<WeighingsRaw>("select * from WeighingsRaw where batchId in @ids", new { ids = bids })
+                    //    //        .ToList();
+
+                    //}
                 }
 
 
-                if (batchlist.Any() && weightList.Any())
-                {
-                    int count = 1;
-                    foreach (var bItem in batchlist)
-                    {
-                        var num = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.hooksCount);
-                        var grossweight = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.grossWeights);
-                        var price = animalList.Where(s => s.animalTypeId == bItem.animalTypeId).Select(s => s.price).First();
-                        var row = dt.NewRow();
-                        row["Sort"] = count;
-                        row["Name"] = bItem.hostName;
-                        row["IdNum"] = bItem.PIN;
-                        row["ProductName"] = bItem.animalTypeName;
-                        row["ProductNum"] = num;
-                        row["Weights"] = grossweight;
-                        row["Price"] = price;
-                        row["TotalPrice"] = grossweight * price;
-                        if (bItem.weighingBeginTime != null && bItem.weighingFinishedTime != null)
-                        {
-                            row["WeightTime"] = bItem.weighingBeginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "至" + bItem.weighingFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                        }
+                //if (batchlist.Any() && weightList.Any())
+                //{
+                //    int count = 1;
+                //    foreach (var bItem in batchlist)
+                //    {
+                //        //var num = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.hooksCount);
+                //        //var grossweight = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.grossWeights);
+                //        //var price = animalList.Where(s => s.animalTypeId == bItem.animalTypeId).Select(s => s.price).First();
+                //        var row = dt.NewRow();
+                //        row["Sort"] = count;
+                //        row["Name"] = bItem.hostName;
+                //        row["IdNum"] = bItem.PIN;
+                //        row["ProductName"] = bItem.animalTypeName;
+                //        row["ProductNum"] = num;
+                //        row["Weights"] = grossweight;
+                //        row["Price"] = price;
+                //        row["TotalPrice"] = grossweight * price;
+                //        if (bItem.weighingBeginTime != null && bItem.weighingFinishedTime != null)
+                //        {
+                //            row["WeightTime"] = bItem.weighingBeginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "至" + bItem.weighingFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                //        }
 
-                        dt.Rows.Add(row);
+                //        dt.Rows.Add(row);
 
-                        count++;
-                    }
-                }
+                //        count++;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
             }
 
-            return dt;
+            return null;
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -195,16 +243,14 @@ namespace XmWeightForm.SystemManage
 
         private void SaveAsExcel(string filePath)
         {
-
-
-            string[] headers = { "序号", "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
-            string fileName = "屠宰统计";
-            string[] colNames = { "Sort", "Name", "IdNum", "ProductName", "ProductNum", "Weights", "Price",
-                                    "TotalPrice","WeightTime"};
-
-
             var stream = new MemoryStream();
-            stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
+            if (NodeType == 1)
+            {
+                string[] headers = { "姓名", "身份证", "品名", "毛重", "数量" };
+                string fileName = "酮体称重统计";
+                string[] colNames = { "Name", "IdNum", "ProductName", "ProductNum", "Weights"};
+                stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
+            }
 
             FileStream file = new FileStream(filePath, FileMode.Create, System.IO.FileAccess.Write);
             byte[] bytes = new byte[stream.Length];

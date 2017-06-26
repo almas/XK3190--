@@ -39,6 +39,11 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.groupReport = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nodeptt = new System.Windows.Forms.RadioButton();
+            this.nodepsq = new System.Windows.Forms.RadioButton();
+            this.nodepsh = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // endTime
@@ -49,7 +54,7 @@
             this.endTime.DropDownWidth = 120;
             this.endTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.endTime.Items = null;
-            this.endTime.Location = new System.Drawing.Point(390, 39);
+            this.endTime.Location = new System.Drawing.Point(384, 39);
             this.endTime.Margin = new System.Windows.Forms.Padding(4);
             this.endTime.Name = "endTime";
             this.endTime.Size = new System.Drawing.Size(183, 28);
@@ -74,7 +79,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(312, 46);
+            this.label4.Location = new System.Drawing.Point(306, 46);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
@@ -93,7 +98,7 @@
             // 
             // txtIdNum
             // 
-            this.txtIdNum.Location = new System.Drawing.Point(390, 10);
+            this.txtIdNum.Location = new System.Drawing.Point(384, 10);
             this.txtIdNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdNum.Name = "txtIdNum";
             this.txtIdNum.Size = new System.Drawing.Size(183, 21);
@@ -110,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(327, 16);
+            this.label2.Location = new System.Drawing.Point(321, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
@@ -129,7 +134,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(724, 29);
+            this.btnExport.Location = new System.Drawing.Point(724, 50);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 29);
@@ -140,7 +145,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(601, 29);
+            this.btnQuery.Location = new System.Drawing.Point(600, 50);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 29);
@@ -151,7 +156,7 @@
             // 
             // groupReport
             // 
-            this.groupReport.Location = new System.Drawing.Point(4, 85);
+            this.groupReport.Location = new System.Drawing.Point(14, 104);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
             this.groupReport.Padding = new System.Windows.Forms.Padding(4);
@@ -160,11 +165,57 @@
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nodepsh);
+            this.groupBox1.Controls.Add(this.nodepsq);
+            this.groupBox1.Controls.Add(this.nodeptt);
+            this.groupBox1.Location = new System.Drawing.Point(600, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(384, 33);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "节点";
+            // 
+            // nodeptt
+            // 
+            this.nodeptt.AutoSize = true;
+            this.nodeptt.Location = new System.Drawing.Point(7, 11);
+            this.nodeptt.Name = "nodeptt";
+            this.nodeptt.Size = new System.Drawing.Size(47, 16);
+            this.nodeptt.TabIndex = 0;
+            this.nodeptt.TabStop = true;
+            this.nodeptt.Text = "酮体";
+            this.nodeptt.UseVisualStyleBackColor = true;
+            // 
+            // nodepsq
+            // 
+            this.nodepsq.AutoSize = true;
+            this.nodepsq.Location = new System.Drawing.Point(114, 11);
+            this.nodepsq.Name = "nodepsq";
+            this.nodepsq.Size = new System.Drawing.Size(59, 16);
+            this.nodepsq.TabIndex = 1;
+            this.nodepsq.TabStop = true;
+            this.nodepsq.Text = "排酸前";
+            this.nodepsq.UseVisualStyleBackColor = true;
+            // 
+            // nodepsh
+            // 
+            this.nodepsh.AutoSize = true;
+            this.nodepsh.Location = new System.Drawing.Point(239, 11);
+            this.nodepsh.Name = "nodepsh";
+            this.nodepsh.Size = new System.Drawing.Size(59, 16);
+            this.nodepsh.TabIndex = 2;
+            this.nodepsh.TabStop = true;
+            this.nodepsh.Text = "排酸后";
+            this.nodepsh.UseVisualStyleBackColor = true;
+            // 
             // ReportUForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.endTime);
             this.Controls.Add(this.startTime);
             this.Controls.Add(this.label4);
@@ -177,7 +228,9 @@
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.groupReport);
             this.Name = "ReportUForm";
-            this.Size = new System.Drawing.Size(1025, 580);
+            this.Size = new System.Drawing.Size(1025, 599);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +249,9 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.GroupBox groupReport;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton nodepsh;
+        private System.Windows.Forms.RadioButton nodepsq;
+        private System.Windows.Forms.RadioButton nodeptt;
     }
 }
