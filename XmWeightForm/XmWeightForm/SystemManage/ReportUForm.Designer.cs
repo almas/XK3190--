@@ -40,9 +40,8 @@
             this.btnQuery = new System.Windows.Forms.Button();
             this.groupReport = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nodeptt = new System.Windows.Forms.RadioButton();
             this.nodepsq = new System.Windows.Forms.RadioButton();
-            this.nodepsh = new System.Windows.Forms.RadioButton();
+            this.nodeptt = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,7 +166,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.nodepsh);
             this.groupBox1.Controls.Add(this.nodepsq);
             this.groupBox1.Controls.Add(this.nodeptt);
             this.groupBox1.Location = new System.Drawing.Point(600, 10);
@@ -176,6 +174,17 @@
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "节点";
+            // 
+            // nodepsq
+            // 
+            this.nodepsq.AutoSize = true;
+            this.nodepsq.Location = new System.Drawing.Point(114, 11);
+            this.nodepsq.Name = "nodepsq";
+            this.nodepsq.Size = new System.Drawing.Size(47, 16);
+            this.nodepsq.TabIndex = 1;
+            this.nodepsq.TabStop = true;
+            this.nodepsq.Text = "排酸";
+            this.nodepsq.UseVisualStyleBackColor = true;
             // 
             // nodeptt
             // 
@@ -187,28 +196,6 @@
             this.nodeptt.TabStop = true;
             this.nodeptt.Text = "酮体";
             this.nodeptt.UseVisualStyleBackColor = true;
-            // 
-            // nodepsq
-            // 
-            this.nodepsq.AutoSize = true;
-            this.nodepsq.Location = new System.Drawing.Point(114, 11);
-            this.nodepsq.Name = "nodepsq";
-            this.nodepsq.Size = new System.Drawing.Size(59, 16);
-            this.nodepsq.TabIndex = 1;
-            this.nodepsq.TabStop = true;
-            this.nodepsq.Text = "排酸前";
-            this.nodepsq.UseVisualStyleBackColor = true;
-            // 
-            // nodepsh
-            // 
-            this.nodepsh.AutoSize = true;
-            this.nodepsh.Location = new System.Drawing.Point(239, 11);
-            this.nodepsh.Name = "nodepsh";
-            this.nodepsh.Size = new System.Drawing.Size(59, 16);
-            this.nodepsh.TabIndex = 2;
-            this.nodepsh.TabStop = true;
-            this.nodepsh.Text = "排酸后";
-            this.nodepsh.UseVisualStyleBackColor = true;
             // 
             // ReportUForm
             // 
@@ -229,6 +216,7 @@
             this.Controls.Add(this.groupReport);
             this.Name = "ReportUForm";
             this.Size = new System.Drawing.Size(1025, 599);
+            this.Load += new System.EventHandler(this.ReportUForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -250,7 +238,6 @@
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.GroupBox groupReport;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton nodepsh;
         private System.Windows.Forms.RadioButton nodepsq;
         private System.Windows.Forms.RadioButton nodeptt;
     }
