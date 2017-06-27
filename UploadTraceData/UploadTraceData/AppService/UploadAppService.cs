@@ -83,14 +83,14 @@ namespace UploadTraceData.AppService
                             flag = false;
                         }
                     } while (flag);
-                   
+
                 }
             }
             catch (Exception ex)
             {
                 LogNHelper.Exception(ex);
             }
-          
+
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace UploadTraceData.AppService
 
                         reqTime++;
                     } while (flag);
-                  
+
                 }
             }
             catch (Exception ex)
@@ -211,7 +211,7 @@ namespace UploadTraceData.AppService
 
                         reqTime++;
                     } while (flag);
-                   
+
                 }
             }
             catch (Exception ex)
@@ -355,7 +355,7 @@ namespace UploadTraceData.AppService
             }
         }
 
-      
+
         /// <summary>
         /// 产品线
         /// </summary>
