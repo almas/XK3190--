@@ -33,6 +33,8 @@
             this.weightSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.btnReport = new System.Windows.Forms.Button();
             this.mainGroup = new System.Windows.Forms.GroupBox();
+            this.txtOriginalPlace = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtName = new DevComponents.DotNetBar.Controls.TextBoxDropDown();
             this.cboxTrace = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
             this.lblUploadInfo = new DevComponents.DotNetBar.LabelX();
             this.lblRight = new CCWin.SkinControl.SkinLabel();
             this.btnFullScreen = new DevComponents.DotNetBar.ButtonX();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtOriginalPlace = new System.Windows.Forms.ComboBox();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
@@ -110,6 +110,25 @@
             this.mainGroup.TabIndex = 3;
             this.mainGroup.TabStop = false;
             this.mainGroup.Text = "信息录入";
+            // 
+            // txtOriginalPlace
+            // 
+            this.txtOriginalPlace.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtOriginalPlace.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtOriginalPlace.FormattingEnabled = true;
+            this.txtOriginalPlace.Location = new System.Drawing.Point(115, 209);
+            this.txtOriginalPlace.Name = "txtOriginalPlace";
+            this.txtOriginalPlace.Size = new System.Drawing.Size(252, 23);
+            this.txtOriginalPlace.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 209);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "羊原产地";
             // 
             // txtName
             // 
@@ -257,6 +276,7 @@
             this.txtSheepWeight.Name = "txtSheepWeight";
             this.txtSheepWeight.Size = new System.Drawing.Size(168, 30);
             this.txtSheepWeight.TabIndex = 11;
+            this.txtSheepWeight.Text = "0.0";
             // 
             // label1
             // 
@@ -441,25 +461,6 @@
             this.btnFullScreen.TabIndex = 28;
             this.btnFullScreen.Text = "全屏显示";
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 209);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 15);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "羊原产地";
-            // 
-            // txtOriginalPlace
-            // 
-            this.txtOriginalPlace.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtOriginalPlace.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtOriginalPlace.FormattingEnabled = true;
-            this.txtOriginalPlace.Location = new System.Drawing.Point(115, 209);
-            this.txtOriginalPlace.Name = "txtOriginalPlace";
-            this.txtOriginalPlace.Size = new System.Drawing.Size(252, 23);
-            this.txtOriginalPlace.TabIndex = 20;
             // 
             // MainForm
             // 

@@ -77,7 +77,7 @@ namespace XmWeightForm
                         decimal weightdata = _dataQueue.Dequeue();
                         _dataQueue.Clear();
                         var hookList = new List<string>();
-                        
+
                         if (hookCount >= 4)
                         {
                             int tempInt = 0;
@@ -143,7 +143,7 @@ namespace XmWeightForm
             {
                 log4netHelper.Exception(ex);
             }
-           
+
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace XmWeightForm
                 if (WeghtState==1)
                     return;
 
-                if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了  
+                if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
                 {
                     string strTemp = "";
                     double iSecond = 0.5;
@@ -237,7 +237,7 @@ namespace XmWeightForm
                 if (WeghtState == 1)
                     return;
 
-                if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了  
+                if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
                 {
                     string strtemp = "";
                     byte firstByte = Convert.ToByte(weightSerialPort.ReadByte());
@@ -269,8 +269,8 @@ namespace XmWeightForm
             {
 
             }
- 
-           
+
+
             //AppNetInfo(aa);
         }
 
@@ -470,7 +470,7 @@ namespace XmWeightForm
                 //称重
                 if (weightSerialPort.IsOpen)
                 {
-                    //打开时点击，则关闭串口  
+                    //打开时点击，则关闭串口
                     weightSerialPort.Close();
                 }
                 //钩标
@@ -579,7 +579,7 @@ namespace XmWeightForm
         private void InsertWeightData(List<string> hooks, decimal weights, int count)
         {
             try
-            {   
+            {
                 if (hooks.Any() && weights > MinWeight)
                 {
                     var hookDt = new DataTable("Hooks");
@@ -587,7 +587,7 @@ namespace XmWeightForm
                     hookDt.Columns.Add("attachTime", typeof(DateTime));
                     hookDt.Columns.Add("animalId", typeof(string));
 
-                    
+
                     if (currentTraceStatus)
                     {
                          GetAnimalIds(count);
@@ -614,7 +614,7 @@ namespace XmWeightForm
                             {
                                 dr["animalId"] = "";
                             }
-                           
+
 
                             hookDt.Rows.Add(dr);
                         }
@@ -708,7 +708,7 @@ namespace XmWeightForm
             {
                 log4netHelper.Exception(ex);
             }
-           
+
 
             //return AnimalBatchModel;
         }
@@ -747,7 +747,7 @@ namespace XmWeightForm
             {
               log4netHelper.Exception(ex);
             }
-           
+
 
             //return list;
         }
@@ -768,7 +768,7 @@ namespace XmWeightForm
 
                         CurrentAnimalIds = new List<string>();
                     }
-                
+
             }
             catch(Exception ex)
             {
@@ -786,7 +786,7 @@ namespace XmWeightForm
 
 
                 sqlCmd = new SqlCommand(procName, sqlCon);
-                sqlCmd.CommandType = CommandType.StoredProcedure; //设置调用的类型为存储过程 
+                sqlCmd.CommandType = CommandType.StoredProcedure; //设置调用的类型为存储过程
                 if (myPar != null)
                 {
                     foreach (SqlParameter spar in myPar)
@@ -1000,7 +1000,7 @@ namespace XmWeightForm
                 {
                     GetCurrentTraceAnimal();
                 }
-               
+
                 lblCurrentPerson.Text = uname;
                 SwitchButtonStatus(0);
 
@@ -1336,7 +1336,7 @@ namespace XmWeightForm
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
 
 
         }
@@ -1360,7 +1360,7 @@ namespace XmWeightForm
                 }
 
             }
-            
+
         }
 
         private void CloseAndUploadData()
@@ -1403,7 +1403,7 @@ namespace XmWeightForm
             {
                 log4netHelper.Exception(ex);
             }
-         
+
         }
 
         private void CloseProcessWin()
