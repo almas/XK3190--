@@ -74,7 +74,7 @@ namespace XmWeightForm
             tempDt.Columns.Remove("Sort");
             //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
             string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
-            string[] header = { "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
+            string[] header = { "姓名", "身份证", "品名", "数量", "重量", "单价", "金额"};
             DataReprot dr = new DataReprot("屠宰核算统计报表", tempDt, header, bottomStr);
             PrintPreviewDialog p = dr.PrintReport();
 
@@ -108,7 +108,7 @@ namespace XmWeightForm
             dt.Columns.Add("Weights", typeof(decimal));
             dt.Columns.Add("Price", typeof(decimal));
             dt.Columns.Add("TotalPrice", typeof(decimal));
-            dt.Columns.Add("WeightTime", typeof(string));
+            //dt.Columns.Add("WeightTime", typeof(string));
             try
             {
                 var batchlist = new List<BatchInput>();
@@ -152,10 +152,10 @@ namespace XmWeightForm
                         row["Weights"] = grossweight;
                         row["Price"] = price;
                         row["TotalPrice"] = grossweight * price;
-                        if (bItem.weighingBeginTime != null && bItem.weighingFinishedTime != null)
-                        {
-                            row["WeightTime"] = bItem.weighingBeginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "至" + bItem.weighingFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                        }
+                        //if (bItem.weighingBeginTime != null && bItem.weighingFinishedTime != null)
+                        //{
+                        //    row["WeightTime"] = bItem.weighingBeginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "至" + bItem.weighingFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                        //}
 
                         dt.Rows.Add(row);
 
@@ -200,10 +200,10 @@ namespace XmWeightForm
         {
 
 
-            string[] headers = { "序号", "姓名", "身份证", "品名", "数量", "重量", "单价", "金额", "称重起止时间" };
+            string[] headers = { "序号", "姓名", "身份证", "品名", "数量", "重量", "单价", "金额" };
             string fileName = "屠宰统计";
             string[] colNames = { "Sort", "Name", "IdNum", "ProductName", "ProductNum", "Weights", "Price",
-                                    "TotalPrice","WeightTime"};
+                                    "TotalPrice"};
 
 
             var stream = new MemoryStream();

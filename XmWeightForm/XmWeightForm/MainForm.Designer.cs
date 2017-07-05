@@ -59,8 +59,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblCurrentPerson = new DevComponents.DotNetBar.LabelX();
             this.btnCloseForm = new DevComponents.DotNetBar.ButtonX();
-            this.uploadProcess = new DevComponents.DotNetBar.Controls.CircularProgress();
-            this.lblUploadInfo = new DevComponents.DotNetBar.LabelX();
             this.lblRight = new CCWin.SkinControl.SkinLabel();
             this.btnFullScreen = new DevComponents.DotNetBar.ButtonX();
             this.mainGroup.SuspendLayout();
@@ -407,34 +405,6 @@
             this.btnCloseForm.Text = "关闭窗口";
             this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
             // 
-            // uploadProcess
-            // 
-            // 
-            // 
-            // 
-            this.uploadProcess.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.uploadProcess.Location = new System.Drawing.Point(293, 23);
-            this.uploadProcess.Name = "uploadProcess";
-            this.uploadProcess.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
-            this.uploadProcess.Size = new System.Drawing.Size(154, 58);
-            this.uploadProcess.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
-            this.uploadProcess.TabIndex = 26;
-            this.uploadProcess.Visible = false;
-            // 
-            // lblUploadInfo
-            // 
-            // 
-            // 
-            // 
-            this.lblUploadInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblUploadInfo.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblUploadInfo.Location = new System.Drawing.Point(453, 34);
-            this.lblUploadInfo.Name = "lblUploadInfo";
-            this.lblUploadInfo.Size = new System.Drawing.Size(164, 42);
-            this.lblUploadInfo.TabIndex = 25;
-            this.lblUploadInfo.Text = "数据上传中,请稍后...";
-            this.lblUploadInfo.Visible = false;
-            // 
             // lblRight
             // 
             this.lblRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -470,8 +440,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnFullScreen);
             this.Controls.Add(this.lblRight);
-            this.Controls.Add(this.uploadProcess);
-            this.Controls.Add(this.lblUploadInfo);
             this.Controls.Add(this.btnCloseForm);
             this.Controls.Add(this.lblCurrentPerson);
             this.Controls.Add(this.label10);
@@ -525,8 +493,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxDropDown txtName;
         private DevComponents.DotNetBar.LabelX lblCurrentPerson;
         private DevComponents.DotNetBar.ButtonX btnCloseForm;
-        private DevComponents.DotNetBar.Controls.CircularProgress uploadProcess;
-        private DevComponents.DotNetBar.LabelX lblUploadInfo;
         private CCWin.SkinControl.SkinLabel lblRight;
         private DevComponents.DotNetBar.ButtonX btnFullScreen;
         private DevComponents.DotNetBar.LabelX lblWarnCount;

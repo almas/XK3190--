@@ -11,11 +11,9 @@ namespace AppService.Model
        public string hookWeight { get; set; }
        public string meatRate { get; set; }
        public string extraRate { get; set; }
-       public bool autoWeighing1 { get; set; }
-       public bool autoWeighing2 { get; set; }
-       public bool autoWeighing3 { get; set; }
 
        public string traceURL { get; set; }
        public string serverUrl { get; set; }
+       public decimal bonedRate { get; set; }
     }
 }

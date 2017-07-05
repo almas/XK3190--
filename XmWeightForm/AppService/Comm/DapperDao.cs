@@ -13,7 +13,7 @@ namespace AppService
         {
         }
 
-        private static string ConnectionString = ConfigurationManager.ConnectionStrings["xlhotDbConn"].ConnectionString;
+        public static string ConnectionString = ConfigurationManager.ConnectionStrings["xlhotDbConn"].ConnectionString;
 
         public static IDbConnection GetInstance()
         {
@@ -27,10 +27,10 @@ namespace AppService
             {
                 throw ex;
             }
-         
+
 
         }
     }
 
-   
+
 }

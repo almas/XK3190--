@@ -44,7 +44,7 @@ namespace XmWeightForm.SystemManage
             var storage = txtStorage.Text.Trim();
             string tempWeight = string.Empty;
             decimal normalWeight = 0.00M;
-
+            bool isbone = chkBoned.Checked;
             bool isfixed = false;
             if(spec.Contains("*"))
             {
@@ -69,8 +69,8 @@ namespace XmWeightForm.SystemManage
                         sql += "update Products set productNo='' where productNo='" + productNo + "';";
                     }
                     sql +=
-                       @"insert into Products(productName,productNo,spec,comment,expiration,barcode,isFixedWeight,nominalWeight,ingredients,storageCondition)
-                       values(@productName,@productNo,@spec,@comment,@expiration,@barcode,@isfixed,nominalWeight,ingredients,storageCondition);";
+                       @"insert into Products(productName,productNo,spec,comment,expiration,barcode,isFixedWeight,nominalWeight,ingredients,storageCondition,isBoned)
+                       values(@productName,@productNo,@spec,@comment,@expiration,@barcode,@isfixed,@nominalWeight,@ingredients,@storageCondition,@isBoned);";
                     using (var db = DapperDao.GetInstance())
                     {
                         resultNum = db.Execute(sql,
@@ -85,7 +85,8 @@ namespace XmWeightForm.SystemManage
                                 isfixed = isfixed,
                                 nominalWeight = normalWeight,
                                 ingredients = pl,
-                                storageCondition = storage
+                                storageCondition = storage,
+                                isBoned=isbone
                             });
                     }
 
@@ -99,7 +100,7 @@ namespace XmWeightForm.SystemManage
                     }
                     sql +=
                         @"update Products set productName = @productName, productNo = @productNo, spec = @spec, comment = @comment, barcode = @barcode, expiration = @expiration, isFixedWeight = @isfixed,
-                    nominalWeight=@nominalWeight,ingredients=@ingredients,storageCondition=@storageCondition where productId=@id";
+                    nominalWeight=@nominalWeight,ingredients=@ingredients,storageCondition=@storageCondition,isBoned=@isBoned where productId=@id";
 
                     using (var db = DapperDao.GetInstance())
                     {
@@ -115,7 +116,8 @@ namespace XmWeightForm.SystemManage
                             nominalWeight = normalWeight,
                             ingredients = pl,
                             storageCondition = storage,
-                            Id = Id
+                            Id = Id,
+                            isBoned = isbone
                         });
                     }
                 }
@@ -137,7 +139,7 @@ namespace XmWeightForm.SystemManage
                 log4netHelper.Exception(ex);
                 MessageBox.Show("保存失败");
             }
-            
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)

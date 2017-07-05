@@ -27,7 +27,7 @@ namespace UploadTraceData
         {
             try
             {
-                int taskMinute = 10;
+                int taskMinute = 60;
                 var taskInterval = ConfigurationManager.AppSettings["TimerInterval"];
                 if (!string.IsNullOrEmpty(taskInterval))
                 {

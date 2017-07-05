@@ -18,6 +18,8 @@ namespace AppService.Model
         public string ingredients { get; set; }
         public string expiration { get; set; }
         public string storageCondition { get;set; }
+
+        public bool isBoned { get; set; }
         public string isfixedStr { get { return isFixedWeight ? "是" : "否"; } }
     }
 }
