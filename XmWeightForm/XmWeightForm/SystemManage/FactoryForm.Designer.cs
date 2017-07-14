@@ -2,12 +2,12 @@
 {
     partial class FactoryForm
     {
-        /// <summary> 
+        /// <summary>
         /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
@@ -22,7 +22,7 @@
 
         #region 组件设计器生成的代码
 
-        /// <summary> 
+        /// <summary>
         /// 设计器支持所需的方法 - 不要
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
@@ -41,9 +41,9 @@
             this.btnRefresh = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.factoryGrid)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // skinLabel1
-            // 
+            //
             this.skinLabel1.AutoSize = true;
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
@@ -53,9 +53,9 @@
             this.skinLabel1.Size = new System.Drawing.Size(84, 19);
             this.skinLabel1.TabIndex = 2;
             this.skinLabel1.Text = "加工厂信息";
-            // 
+            //
             // btnAdd
-            // 
+            //
             this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnAdd.Location = new System.Drawing.Point(33, 92);
@@ -65,9 +65,9 @@
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
+            //
             // factoryGrid
-            // 
+            //
             this.factoryGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.factoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.factoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -93,47 +93,47 @@
             this.factoryGrid.Size = new System.Drawing.Size(1019, 355);
             this.factoryGrid.TabIndex = 4;
             this.factoryGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.factoryGrid_CellDoubleClick);
-            // 
+            //
             // factoryId
-            // 
+            //
             this.factoryId.DataPropertyName = "factoryId";
             this.factoryId.HeaderText = "加工厂代码";
             this.factoryId.Name = "factoryId";
-            // 
+            //
             // factoryName
-            // 
+            //
             this.factoryName.DataPropertyName = "factoryName";
             this.factoryName.HeaderText = "加工厂名称";
             this.factoryName.Name = "factoryName";
             this.factoryName.Width = 300;
-            // 
+            //
             // hookWeight
-            // 
+            //
             this.hookWeight.DataPropertyName = "hookWeight";
             this.hookWeight.HeaderText = "毛重";
             this.hookWeight.Name = "hookWeight";
-            // 
+            //
             // meatRate
-            // 
+            //
             this.meatRate.DataPropertyName = "meatRate";
             this.meatRate.HeaderText = "出肉率";
             this.meatRate.Name = "meatRate";
-            // 
+            //
             // traceURL
-            // 
+            //
             this.traceURL.DataPropertyName = "traceURL";
             this.traceURL.HeaderText = "溯源网址";
             this.traceURL.Name = "traceURL";
             this.traceURL.Width = 300;
-            // 
+            //
             // serverUrl
-            // 
+            //
             this.serverUrl.DataPropertyName = "serverUrl";
             this.serverUrl.HeaderText = "服务器地址";
             this.serverUrl.Name = "serverUrl";
-            // 
+            //
             // btnRefresh
-            // 
+            //
             this.btnRefresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnRefresh.Location = new System.Drawing.Point(859, 107);
@@ -143,9 +143,9 @@
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
+            //
             // FactoryForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));

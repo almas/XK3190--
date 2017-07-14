@@ -84,6 +84,16 @@ namespace XmWeightForm.SystemManage
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void priceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         
     }
 }

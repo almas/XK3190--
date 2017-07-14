@@ -23,6 +23,7 @@ namespace XmWeightForm.SystemManage
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
+            btnImport.Visible = false;
             productGrid.AutoGenerateColumns = false;
            // Thread.Sleep(1000);
             InitData();

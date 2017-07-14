@@ -51,15 +51,11 @@ namespace XmWeightForm
                     MessageBox.Show(loginResult.Msg);
                     return;
                 }
-                
-            }
 
-            bool flag = chkStart.Checked;
-            StartAppOn(flag);
-           
+            }
             this.DialogResult=DialogResult.OK;
             this.Close();
-            
+
             //MainForm fm = new MainForm();
             //fm.Show(); //打开主窗口
             //this.Close();    //关闭登录窗口
@@ -72,7 +68,7 @@ namespace XmWeightForm
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private LoginResult AdminLogin(string uname, string pwd)
@@ -109,37 +105,40 @@ namespace XmWeightForm
             {
                 string dir = Directory.GetCurrentDirectory();
 
-                ////获取可执行文件的全部路径  
-                string exeDir = dir + "\\XmWeightForm.exe";  
+                ////获取可执行文件的全部路径
+                string exeDir = dir + "\\XmWeightForm.exe";
                 //string StartupPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Startup);
                 //System.IO.File.Copy(exeDir, StartupPath + "XmWeightForm.exe", true);
 
-                RegistryKey key1 = Registry.LocalMachine;
-                RegistryKey key2 = key1.CreateSubKey("SOFTWARE");
-                RegistryKey key3 = key2.CreateSubKey("Microsoft");
-                RegistryKey key4 = key3.CreateSubKey("Windows");
-                RegistryKey key5 = key4.CreateSubKey("CurrentVersion");
-                RegistryKey key6 = key5.CreateSubKey("Run");
+                RegistryKey rootKey = Registry.LocalMachine;
+                RegistryKey subKey = rootKey.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run\");
 
-                //在Run键中写入一个新的键值  
+
+                //在Run键中写入一个新的键值
                 if (flag)
                 {
-                    key6.SetValue("xmweightApp", exeDir);
+                    subKey.SetValue("xmweightApp", exeDir);
                 }
                 else
                 {
-                    key6.SetValue("xmweightApp", false);
+                    subKey.DeleteValue("xmweightApp");
                 }
 
-                key6.Close();
+                subKey.Close();
 
-                //如果要取消的话就将key6.SetValue("myForm",exeDir);改成  
+                //如果要取消的话就将key6.SetValue("myForm",exeDir);改成
                 //key6.SetValue("myForm",false);
             }
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
             }
+        }
+
+        private void chkStart_CheckedChanged(object sender, EventArgs e)
+        {
+            bool flag = chkStart.Checked;
+            StartAppOn(flag);
         }
     }
 

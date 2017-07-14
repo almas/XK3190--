@@ -29,7 +29,7 @@ namespace XmWeightForm
         private int _BottomMargin = 60;
         private Font _TitleFont = new Font("宋体", 18, FontStyle.Bold);
         private Font _ColumnsHeaderFont = new Font("宋体", 10, FontStyle.Bold);
-        private Font _ContentFont = new Font("宋体", 9, FontStyle.Regular);
+        private Font _ContentFont = new Font("宋体", 7, FontStyle.Regular);
         SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
         Pen pen = new Pen(new SolidBrush(System.Drawing.Color.Black));
         int _RowHeight = 30;
@@ -94,7 +94,7 @@ namespace XmWeightForm
             PrintPreviewDialog pPreviewDialog = new PrintPreviewDialog();
             pPreviewDialog.Document = printDoc;
             pPreviewDialog.ShowIcon = false;
-            pPreviewDialog.PrintPreviewControl.Zoom = 1.0;
+            pPreviewDialog.PrintPreviewControl.Zoom = 1.5;
             pPreviewDialog.TopLevel = false;
            
             SetPrintPreviewDialog(pPreviewDialog);

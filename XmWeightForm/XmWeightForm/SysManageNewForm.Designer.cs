@@ -40,6 +40,8 @@
             this.tabFactory = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.tabPrice = new DevComponents.DotNetBar.SuperTabItem();
+            this.cardTab = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
             ((System.ComponentModel.ISupportInitialize)(this.sysTabControl)).BeginInit();
             this.sysTabControl.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +63,10 @@
             this.sysTabControl.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.sysTabControl.ControlBox.MenuBox,
             this.sysTabControl.ControlBox.CloseBox});
+            this.sysTabControl.Controls.Add(this.superTabControlPanel6);
+            this.sysTabControl.Controls.Add(this.superTabControlPanel5);
             this.sysTabControl.Controls.Add(this.superTabControlPanel1);
             this.sysTabControl.Controls.Add(this.superTabControlPanel2);
-            this.sysTabControl.Controls.Add(this.superTabControlPanel5);
             this.sysTabControl.Controls.Add(this.superTabControlPanel4);
             this.sysTabControl.Controls.Add(this.superTabControlPanel3);
             this.sysTabControl.Location = new System.Drawing.Point(-1, -2);
@@ -79,7 +82,8 @@
             this.tabProduct,
             this.tabPrice,
             this.tabFactory,
-            this.tabUser});
+            this.tabUser,
+            this.cardTab});
             this.sysTabControl.Text = "superTabControl1";
             // 
             // superTabControlPanel1
@@ -123,7 +127,7 @@
             this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel5.Location = new System.Drawing.Point(0, 28);
             this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1002, 512);
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1035, 590);
             this.superTabControlPanel5.TabIndex = 0;
             this.superTabControlPanel5.TabItem = this.tabUser;
             // 
@@ -169,6 +173,23 @@
             this.tabPrice.Text = "酮体价格";
             this.tabPrice.Click += new System.EventHandler(this.tabPrice_Click);
             // 
+            // cardTab
+            // 
+            this.cardTab.AttachedControl = this.superTabControlPanel6;
+            this.cardTab.GlobalItem = false;
+            this.cardTab.Name = "cardTab";
+            this.cardTab.Text = "卡号";
+            this.cardTab.Click += new System.EventHandler(this.cardTab_Click);
+            // 
+            // superTabControlPanel6
+            // 
+            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 28);
+            this.superTabControlPanel6.Name = "superTabControlPanel6";
+            this.superTabControlPanel6.Size = new System.Drawing.Size(1035, 590);
+            this.superTabControlPanel6.TabIndex = 0;
+            this.superTabControlPanel6.TabItem = this.cardTab;
+            // 
             // SysManageNewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -200,6 +221,8 @@
         private DevComponents.DotNetBar.SuperTabItem tabProduct;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel5;
         private DevComponents.DotNetBar.SuperTabItem tabUser;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel6;
+        private DevComponents.DotNetBar.SuperTabItem cardTab;
 
     }
 }

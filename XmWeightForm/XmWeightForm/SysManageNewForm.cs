@@ -17,6 +17,7 @@ namespace XmWeightForm
         private SysPersonInfo personInfoForm;
         private FactoryForm factoryForm;
         private ReportUForm reportForm;
+        private CardNumForm cardNumForm;
         public SysManageNewForm()
         {
             InitializeComponent();
@@ -100,6 +101,14 @@ namespace XmWeightForm
                 }
             }
             return isOpened;
+        }
+
+        private void cardTab_Click(object sender, EventArgs e)
+        {
+            cardNumForm = new CardNumForm();
+            cardNumForm.Show();
+            cardTab.AttachedControl.Controls.Clear();
+            cardTab.AttachedControl.Controls.Add(cardNumForm);
         }
     }
 }

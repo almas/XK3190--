@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using AppService;
 using AppService.Model;
-using CCWin.SkinClass;
 using Dapper_NET20;
 using DevComponents.DotNetBar;
 
@@ -62,8 +61,9 @@ namespace XmWeightForm.SystemManage
             }
             if (string.IsNullOrEmpty(traceCode))
             {
-                MessageBox.Show("溯源编号不能为空");
-                return;
+                traceCode = "01";
+                //MessageBox.Show("溯源编号不能为空");
+                //return;
             }
             if (traceCode.Length != 2)
             {
@@ -97,7 +97,7 @@ namespace XmWeightForm.SystemManage
                     string sql = "insert into AnimalTypes(animalTypeName,price,traceCode)values(@animalTypeName,@price,@traceCode)";
                     using (var db = DapperDao.GetInstance())
                     {
-                        resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal });
+                        resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal, traceCode = traceCode });
                     }
                 }
                 else
@@ -107,21 +107,22 @@ namespace XmWeightForm.SystemManage
 
                     using (var db = DapperDao.GetInstance())
                     {
-                        resultNum = db.Execute(sql, new { animalTypeName = name, price = price, traceCode=traceCode });
+                        resultNum = db.Execute(sql, new { animalTypeName = name, price = priceDecimal, traceCode = traceCode });
                     }
                 }
 
                 if (resultNum > 0)
                 {
                     MessageBox.Show("保存成功");
-                    this.Close();
+                    this.DialogResult = DialogResult.OK;
+                   
                 }
                 else
                 {
                     MessageBox.Show("保存失败");
                 }
 
-                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -55,12 +55,12 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "动物类型";
+            this.label1.Text = "货物名称";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(91, 105);
+            this.label2.Location = new System.Drawing.Point(91, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 2;
@@ -98,13 +98,15 @@
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "溯源编码";
+            this.label3.Visible = false;
             // 
             // txttraceCode
             // 
-            this.txttraceCode.Location = new System.Drawing.Point(170, 159);
+            this.txttraceCode.Location = new System.Drawing.Point(170, 166);
             this.txttraceCode.Name = "txttraceCode";
             this.txttraceCode.Size = new System.Drawing.Size(158, 21);
             this.txttraceCode.TabIndex = 8;
+            this.txttraceCode.Visible = false;
             // 
             // PriceInfoForm
             // 

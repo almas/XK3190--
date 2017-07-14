@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -83,6 +83,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\lib\sqlite\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -100,8 +103,10 @@
     <Compile Include="log\DataReport.cs" />
     <Compile Include="log\ExcelHelper.cs" />
     <Compile Include="log\log4netHelper.cs" />
-    <Compile Include="log\ThreadWithState.cs" />
+    <Compile Include="log\SQLiteHelper.cs" />
+    <Compile Include="log\UnixTimSpanHelper.cs" />
     <Compile Include="log\UploadWeightData.cs" />
+    <Compile Include="log\VoiceHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +133,18 @@
     <Compile Include="SystemManage\AnimalPriceForm.Designer.cs">
       <DependentUpon>AnimalPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\CardNumForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemManage\CardNumForm.Designer.cs">
+      <DependentUpon>CardNumForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\CardNumInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\CardNumInfoForm.Designer.cs">
+      <DependentUpon>CardNumInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\FactoryForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,6 +156,12 @@
     </Compile>
     <Compile Include="SystemManage\FactoryInfoForm.Designer.cs">
       <DependentUpon>FactoryInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\GrossWeightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\GrossWeightForm.Designer.cs">
+      <DependentUpon>GrossWeightForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemManage\PriceInfoForm.cs">
       <SubType>Form</SubType>
@@ -157,6 +180,12 @@
     </Compile>
     <Compile Include="SystemManage\ProductInfoForm.Designer.cs">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\ProductInfoNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\ProductInfoNew.Designer.cs">
+      <DependentUpon>ProductInfoNew.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemManage\ReportGridForm.cs">
       <SubType>Form</SubType>
@@ -222,11 +251,20 @@
     <EmbeddedResource Include="SystemManage\AnimalPriceForm.resx">
       <DependentUpon>AnimalPriceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\CardNumForm.resx">
+      <DependentUpon>CardNumForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\CardNumInfoForm.resx">
+      <DependentUpon>CardNumInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\FactoryForm.resx">
       <DependentUpon>FactoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\FactoryInfoForm.resx">
       <DependentUpon>FactoryInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\GrossWeightForm.resx">
+      <DependentUpon>GrossWeightForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\PriceInfoForm.resx">
       <DependentUpon>PriceInfoForm.cs</DependentUpon>
@@ -236,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\ProductInfoForm.resx">
       <DependentUpon>ProductInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\ProductInfoNew.resx">
+      <DependentUpon>ProductInfoNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\ReportGridForm.resx">
       <DependentUpon>ReportGridForm.cs</DependentUpon>
@@ -258,7 +299,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="log4net.config" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\AppService.Model.ProductModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

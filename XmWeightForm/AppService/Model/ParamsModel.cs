@@ -8,10 +8,8 @@ namespace AppService.Model
     {
        public string factoryId { get; set; }
        public string factoryName { get; set; }
-       public string hookWeight { get; set; }
-       public string meatRate { get; set; }
-       public string extraRate { get; set; }
-
+       public decimal hookWeight { get; set; }
+       public decimal meatRate { get; set; }
        public string traceURL { get; set; }
        public string serverUrl { get; set; }
        public decimal bonedRate { get; set; }

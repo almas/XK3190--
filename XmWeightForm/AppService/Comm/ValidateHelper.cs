@@ -59,6 +59,12 @@ namespace AppService
         {
             return ValidaterHelper.QuickValidate("^(0|([1-9]+[0-9]*))(.[0-9]+)?$", _value);
         }
+        public static bool IsNumberOrFloat(string _value)
+        {
+
+            return QuickValidate(@"^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$", _value);
+            //return QuickValidate("^(0|([1-9]+[0-9]*))(.[0-9]+)?$", _value);
+        }
         /// <summary>
         /// 判断是否是IP地址
         /// </summary>

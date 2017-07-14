@@ -7,7 +7,7 @@ using Dapper_NET20;
 
 namespace XmWeightForm
 {
-    public class DapperPagerHelper<T> where T:class 
+    public class DapperPagerHelper<T> where T:class
     {
         public static List<T> GetPagerData(string tablename, int page, int psize, string ordefield,string wheresql,ref int total)
         {
@@ -54,7 +54,7 @@ namespace XmWeightForm
                 "select * from ( select * ,row_index=row_number() over(order by {0} asc ) from {1} where 1=1", ordefield,
                 tablename);
             //string sql ="select * from ( select * ,row_index=row_number() over(order by @ordefield asc ) from @tablename where 1=1";
-              
+
             if (!string.IsNullOrEmpty(wheresql))
             {
                 sb.Append(" " + wheresql);

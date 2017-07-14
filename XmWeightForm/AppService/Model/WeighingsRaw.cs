@@ -12,5 +12,7 @@ namespace AppService.Model
         public decimal grossWeights { get; set; }
         public decimal hookWeights { get; set; }
         public DateTime weighingTime { get; set; }
+        public string productName { get; set; }
+        public decimal? ProductPrice { get; set; }
     }
 }

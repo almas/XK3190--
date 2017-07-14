@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.weightSerialPort = new System.IO.Ports.SerialPort(this.components);
-            this.btnReport = new System.Windows.Forms.Button();
             this.mainGroup = new System.Windows.Forms.GroupBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtOriginalPlace = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtName = new DevComponents.DotNetBar.Controls.TextBoxDropDown();
@@ -53,39 +55,48 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnInsertWeight = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblWarnCount = new DevComponents.DotNetBar.LabelX();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnQupi = new System.Windows.Forms.Button();
+            this.txtQupi = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.txtSheepNum = new DevComponents.Editors.IntegerInput();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblCurrentPerson = new DevComponents.DotNetBar.LabelX();
-            this.btnCloseForm = new DevComponents.DotNetBar.ButtonX();
             this.lblRight = new CCWin.SkinControl.SkinLabel();
-            this.btnFullScreen = new DevComponents.DotNetBar.ButtonX();
+            this.datagridWeight = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.SerialNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrossWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TareWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NetWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblWeight = new DevComponents.DotNetBar.LabelX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.lblWeightGridCount = new DevComponents.DotNetBar.LabelX();
+            this.bar1 = new DevComponents.DotNetBar.Bar();
+            this.btnSystem = new DevComponents.DotNetBar.ButtonItem();
+            this.btnProductPriceItem = new DevComponents.DotNetBar.ButtonItem();
+            this.btnGrossWeight = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReportItem = new DevComponents.DotNetBar.ButtonItem();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar1)).BeginInit();
             this.SuspendLayout();
             // 
             // weightSerialPort
             // 
             this.weightSerialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.weightSerialPort_DataReceived);
             // 
-            // btnReport
-            // 
-            this.btnReport.Location = new System.Drawing.Point(11, 10);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(110, 31);
-            this.btnReport.TabIndex = 1;
-            this.btnReport.Text = "报表统计";
-            this.btnReport.UseVisualStyleBackColor = true;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
             // mainGroup
             // 
             this.mainGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainGroup.Controls.Add(this.txtPrice);
+            this.mainGroup.Controls.Add(this.label9);
             this.mainGroup.Controls.Add(this.txtOriginalPlace);
             this.mainGroup.Controls.Add(this.label8);
             this.mainGroup.Controls.Add(this.txtName);
@@ -100,14 +111,31 @@
             this.mainGroup.Controls.Add(this.label6);
             this.mainGroup.Controls.Add(this.animalSel);
             this.mainGroup.Controls.Add(this.label7);
-            this.mainGroup.Location = new System.Drawing.Point(3, 88);
+            this.mainGroup.Location = new System.Drawing.Point(3, 106);
             this.mainGroup.Margin = new System.Windows.Forms.Padding(4);
             this.mainGroup.Name = "mainGroup";
             this.mainGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.mainGroup.Size = new System.Drawing.Size(614, 365);
+            this.mainGroup.Size = new System.Drawing.Size(643, 341);
             this.mainGroup.TabIndex = 3;
             this.mainGroup.TabStop = false;
             this.mainGroup.Text = "信息录入";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(408, 23);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
+            this.txtPrice.Size = new System.Drawing.Size(142, 24);
+            this.txtPrice.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(322, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 15);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "货物单价";
             // 
             // txtOriginalPlace
             // 
@@ -116,7 +144,7 @@
             this.txtOriginalPlace.FormattingEnabled = true;
             this.txtOriginalPlace.Location = new System.Drawing.Point(115, 209);
             this.txtOriginalPlace.Name = "txtOriginalPlace";
-            this.txtOriginalPlace.Size = new System.Drawing.Size(252, 23);
+            this.txtOriginalPlace.Size = new System.Drawing.Size(286, 23);
             this.txtOriginalPlace.TabIndex = 20;
             // 
             // label8
@@ -140,7 +168,7 @@
             this.txtName.ButtonDropDown.Visible = true;
             this.txtName.Location = new System.Drawing.Point(115, 90);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(252, 23);
+            this.txtName.Size = new System.Drawing.Size(286, 23);
             this.txtName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtName.TabIndex = 18;
             this.txtName.Text = "";
@@ -183,7 +211,7 @@
             this.txtTel.Location = new System.Drawing.Point(115, 163);
             this.txtTel.Margin = new System.Windows.Forms.Padding(4);
             this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(252, 24);
+            this.txtTel.Size = new System.Drawing.Size(286, 24);
             this.txtTel.TabIndex = 15;
             // 
             // btnStart
@@ -203,7 +231,7 @@
             this.txtIdNumber.Location = new System.Drawing.Point(115, 123);
             this.txtIdNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdNumber.Name = "txtIdNumber";
-            this.txtIdNumber.Size = new System.Drawing.Size(252, 24);
+            this.txtIdNumber.Size = new System.Drawing.Size(286, 24);
             this.txtIdNumber.TabIndex = 13;
             // 
             // label4
@@ -242,8 +270,9 @@
             this.animalSel.Location = new System.Drawing.Point(115, 24);
             this.animalSel.Margin = new System.Windows.Forms.Padding(4);
             this.animalSel.Name = "animalSel";
-            this.animalSel.Size = new System.Drawing.Size(160, 23);
+            this.animalSel.Size = new System.Drawing.Size(173, 23);
             this.animalSel.TabIndex = 9;
+            this.animalSel.SelectedIndexChanged += new System.EventHandler(this.animalSel_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -253,26 +282,26 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 8;
-            this.label7.Text = "送宰类型";
+            this.label7.Text = "货物名称";
             // 
             // txtInfo
             // 
-            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInfo.Location = new System.Drawing.Point(3, 471);
+            this.txtInfo.Location = new System.Drawing.Point(10, 234);
             this.txtInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInfo.Name = "txtInfo";
-            this.txtInfo.Size = new System.Drawing.Size(955, 109);
+            this.txtInfo.Size = new System.Drawing.Size(317, 130);
             this.txtInfo.TabIndex = 10;
             this.txtInfo.Text = "";
             // 
             // txtSheepWeight
             // 
             this.txtSheepWeight.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtSheepWeight.Location = new System.Drawing.Point(27, 160);
+            this.txtSheepWeight.Location = new System.Drawing.Point(103, 65);
             this.txtSheepWeight.Margin = new System.Windows.Forms.Padding(4);
             this.txtSheepWeight.Name = "txtSheepWeight";
-            this.txtSheepWeight.Size = new System.Drawing.Size(168, 30);
+            this.txtSheepWeight.Size = new System.Drawing.Size(139, 30);
             this.txtSheepWeight.TabIndex = 11;
             this.txtSheepWeight.Text = "0.0";
             // 
@@ -280,18 +309,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(24, 125);
+            this.label1.Location = new System.Drawing.Point(33, 70);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 12;
-            this.label1.Text = "重量：";
+            this.label1.Text = "毛重：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(24, 36);
+            this.label2.Location = new System.Drawing.Point(7, 32);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
@@ -300,12 +329,14 @@
             // 
             // btnInsertWeight
             // 
+            this.btnInsertWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInsertWeight.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnInsertWeight.Location = new System.Drawing.Point(27, 234);
+            this.btnInsertWeight.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnInsertWeight.Location = new System.Drawing.Point(30, 172);
             this.btnInsertWeight.Name = "btnInsertWeight";
-            this.btnInsertWeight.Size = new System.Drawing.Size(151, 55);
+            this.btnInsertWeight.Size = new System.Drawing.Size(126, 55);
             this.btnInsertWeight.TabIndex = 16;
-            this.btnInsertWeight.Text = "称重入库";
+            this.btnInsertWeight.Text = "保存数据";
             this.btnInsertWeight.UseVisualStyleBackColor = false;
             this.btnInsertWeight.Click += new System.EventHandler(this.btnInsertWeight_Click);
             // 
@@ -313,32 +344,76 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.lblWarnCount);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnQupi);
+            this.groupBox1.Controls.Add(this.txtQupi);
+            this.groupBox1.Controls.Add(this.labelX1);
             this.groupBox1.Controls.Add(this.txtSheepNum);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnInsertWeight);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtInfo);
             this.groupBox1.Controls.Add(this.txtSheepWeight);
-            this.groupBox1.Location = new System.Drawing.Point(624, 88);
+            this.groupBox1.Location = new System.Drawing.Point(653, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(334, 365);
+            this.groupBox1.Size = new System.Drawing.Size(334, 371);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "称重信息";
             // 
-            // lblWarnCount
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(258, 113);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 20);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "公斤";
+            // 
+            // btnQupi
+            // 
+            this.btnQupi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQupi.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnQupi.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnQupi.Location = new System.Drawing.Point(181, 172);
+            this.btnQupi.Name = "btnQupi";
+            this.btnQupi.Size = new System.Drawing.Size(126, 55);
+            this.btnQupi.TabIndex = 21;
+            this.btnQupi.Text = "去皮";
+            this.btnQupi.UseVisualStyleBackColor = false;
+            this.btnQupi.Click += new System.EventHandler(this.btnQupi_Click);
+            // 
+            // txtQupi
             // 
             // 
             // 
             // 
-            this.lblWarnCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblWarnCount.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblWarnCount.ForeColor = System.Drawing.Color.Red;
-            this.lblWarnCount.Location = new System.Drawing.Point(151, 69);
-            this.lblWarnCount.Name = "lblWarnCount";
-            this.lblWarnCount.Size = new System.Drawing.Size(146, 30);
-            this.lblWarnCount.TabIndex = 19;
+            this.txtQupi.Border.Class = "TextBoxBorder";
+            this.txtQupi.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtQupi.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtQupi.Location = new System.Drawing.Point(103, 111);
+            this.txtQupi.Name = "txtQupi";
+            this.txtQupi.PreventEnterBeep = true;
+            this.txtQupi.ReadOnly = true;
+            this.txtQupi.Size = new System.Drawing.Size(139, 30);
+            this.txtQupi.TabIndex = 20;
+            this.txtQupi.Text = "0.0";
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelX1.Location = new System.Drawing.Point(21, 114);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(68, 23);
+            this.labelX1.TabIndex = 19;
+            this.labelX1.Text = "去皮重：";
             // 
             // txtSheepNum
             // 
@@ -350,7 +425,7 @@
             this.txtSheepNum.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.txtSheepNum.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSheepNum.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left;
-            this.txtSheepNum.Location = new System.Drawing.Point(26, 69);
+            this.txtSheepNum.Location = new System.Drawing.Point(103, 26);
             this.txtSheepNum.MaxValue = 4;
             this.txtSheepNum.MinValue = 1;
             this.txtSheepNum.Name = "txtSheepNum";
@@ -363,47 +438,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(202, 163);
+            this.label11.Location = new System.Drawing.Point(258, 68);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 20);
+            this.label11.Size = new System.Drawing.Size(49, 20);
             this.label11.TabIndex = 17;
-            this.label11.Text = "KG";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 54);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 15);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "当前称重：";
-            // 
-            // lblCurrentPerson
-            // 
-            // 
-            // 
-            // 
-            this.lblCurrentPerson.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblCurrentPerson.Location = new System.Drawing.Point(99, 49);
-            this.lblCurrentPerson.Name = "lblCurrentPerson";
-            this.lblCurrentPerson.Size = new System.Drawing.Size(271, 23);
-            this.lblCurrentPerson.TabIndex = 23;
-            // 
-            // btnCloseForm
-            // 
-            this.btnCloseForm.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCloseForm.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCloseForm.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCloseForm.Location = new System.Drawing.Point(881, 4);
-            this.btnCloseForm.Name = "btnCloseForm";
-            this.btnCloseForm.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnCloseForm.Size = new System.Drawing.Size(87, 37);
-            this.btnCloseForm.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnCloseForm.TabIndex = 24;
-            this.btnCloseForm.Text = "关闭窗口";
-            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
+            this.label11.Text = "公斤";
             // 
             // lblRight
             // 
@@ -412,41 +451,197 @@
             this.lblRight.BackColor = System.Drawing.Color.Transparent;
             this.lblRight.BorderColor = System.Drawing.Color.White;
             this.lblRight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRight.Location = new System.Drawing.Point(743, 584);
+            this.lblRight.Location = new System.Drawing.Point(772, 714);
             this.lblRight.Name = "lblRight";
             this.lblRight.Size = new System.Drawing.Size(152, 17);
             this.lblRight.TabIndex = 27;
             this.lblRight.Text = "江苏真源网络服务有限公司";
             // 
-            // btnFullScreen
+            // datagridWeight
             // 
-            this.btnFullScreen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFullScreen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnFullScreen.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnFullScreen.Location = new System.Drawing.Point(786, 4);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(89, 37);
-            this.btnFullScreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnFullScreen.TabIndex = 28;
-            this.btnFullScreen.Text = "全屏显示";
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
+            this.datagridWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.datagridWeight.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridWeight.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SerialNum,
+            this.IdNum,
+            this.ProductName,
+            this.Price,
+            this.GrossWeight,
+            this.TareWeight,
+            this.NetWeight,
+            this.TotalPrice});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridWeight.DefaultCellStyle = dataGridViewCellStyle1;
+            this.datagridWeight.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.datagridWeight.Location = new System.Drawing.Point(3, 485);
+            this.datagridWeight.Name = "datagridWeight";
+            this.datagridWeight.RowTemplate.Height = 23;
+            this.datagridWeight.Size = new System.Drawing.Size(994, 226);
+            this.datagridWeight.TabIndex = 30;
+            // 
+            // SerialNum
+            // 
+            this.SerialNum.DataPropertyName = "SerialNum";
+            this.SerialNum.HeaderText = "编号";
+            this.SerialNum.Name = "SerialNum";
+            this.SerialNum.Width = 150;
+            // 
+            // IdNum
+            // 
+            this.IdNum.DataPropertyName = "IdNum";
+            this.IdNum.HeaderText = "身份证";
+            this.IdNum.Name = "IdNum";
+            this.IdNum.Width = 200;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "货物名称";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.Width = 150;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "单价";
+            this.Price.Name = "Price";
+            // 
+            // GrossWeight
+            // 
+            this.GrossWeight.DataPropertyName = "GrossWeight";
+            this.GrossWeight.HeaderText = "毛重";
+            this.GrossWeight.Name = "GrossWeight";
+            // 
+            // TareWeight
+            // 
+            this.TareWeight.DataPropertyName = "TareWeight";
+            this.TareWeight.HeaderText = "皮重";
+            this.TareWeight.Name = "TareWeight";
+            // 
+            // NetWeight
+            // 
+            this.NetWeight.DataPropertyName = "NetWeight";
+            this.NetWeight.HeaderText = "净重";
+            this.NetWeight.Name = "NetWeight";
+            // 
+            // TotalPrice
+            // 
+            this.TotalPrice.DataPropertyName = "TotalPrice";
+            this.TotalPrice.HeaderText = "金额";
+            this.TotalPrice.Name = "TotalPrice";
+            this.TotalPrice.Width = 200;
+            // 
+            // lblWeight
+            // 
+            this.lblWeight.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblWeight.BackColor = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            this.lblWeight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeight.Font = new System.Drawing.Font("宋体", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWeight.FontBold = true;
+            this.lblWeight.ForeColor = System.Drawing.Color.Crimson;
+            this.lblWeight.Location = new System.Drawing.Point(333, 28);
+            this.lblWeight.Name = "lblWeight";
+            this.lblWeight.Size = new System.Drawing.Size(307, 74);
+            this.lblWeight.TabIndex = 31;
+            this.lblWeight.Text = "0.0";
+            this.lblWeight.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(95, 70);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 32;
+            this.buttonX1.Text = "buttonX1";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click_1);
+            // 
+            // lblWeightGridCount
+            // 
+            this.lblWeightGridCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.lblWeightGridCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeightGridCount.FontBold = true;
+            this.lblWeightGridCount.ForeColor = System.Drawing.Color.Red;
+            this.lblWeightGridCount.Location = new System.Drawing.Point(3, 456);
+            this.lblWeightGridCount.Name = "lblWeightGridCount";
+            this.lblWeightGridCount.Size = new System.Drawing.Size(643, 23);
+            this.lblWeightGridCount.TabIndex = 34;
+            this.lblWeightGridCount.Text = "入库提示";
+            // 
+            // bar1
+            // 
+            this.bar1.AntiAlias = true;
+            this.bar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bar1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.bar1.IsMaximized = false;
+            this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnSystem,
+            this.btnReportItem});
+            this.bar1.Location = new System.Drawing.Point(0, 0);
+            this.bar1.Name = "bar1";
+            this.bar1.Size = new System.Drawing.Size(1002, 27);
+            this.bar1.Stretch = true;
+            this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.bar1.TabIndex = 35;
+            this.bar1.TabStop = false;
+            this.bar1.Text = "bar1";
+            // 
+            // btnSystem
+            // 
+            this.btnSystem.Name = "btnSystem";
+            this.btnSystem.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnProductPriceItem,
+            this.btnGrossWeight});
+            this.btnSystem.Text = "系统管理";
+            // 
+            // btnProductPriceItem
+            // 
+            this.btnProductPriceItem.Name = "btnProductPriceItem";
+            this.btnProductPriceItem.Text = "货物价格";
+            this.btnProductPriceItem.Click += new System.EventHandler(this.btnProductPriceItem_Click);
+            // 
+            // btnGrossWeight
+            // 
+            this.btnGrossWeight.Name = "btnGrossWeight";
+            this.btnGrossWeight.Text = "毛重";
+            this.btnGrossWeight.Click += new System.EventHandler(this.btnGrossWeight_Click);
+            // 
+            // btnReportItem
+            // 
+            this.btnReportItem.Name = "btnReportItem";
+            this.btnReportItem.Text = "报表统计";
+            this.btnReportItem.Click += new System.EventHandler(this.btnReportItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 600);
-            this.ControlBox = false;
-            this.Controls.Add(this.btnFullScreen);
+            this.ClientSize = new System.Drawing.Size(1002, 730);
+            this.Controls.Add(this.bar1);
+            this.Controls.Add(this.lblWeightGridCount);
+            this.Controls.Add(this.buttonX1);
+            this.Controls.Add(this.lblWeight);
+            this.Controls.Add(this.datagridWeight);
             this.Controls.Add(this.lblRight);
-            this.Controls.Add(this.btnCloseForm);
-            this.Controls.Add(this.lblCurrentPerson);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.mainGroup);
-            this.Controls.Add(this.btnReport);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -460,6 +655,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,7 +665,6 @@
         #endregion
 
         private System.IO.Ports.SerialPort weightSerialPort;
-        private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.GroupBox mainGroup;
         private System.Windows.Forms.RichTextBox txtInfo;
         private System.Windows.Forms.TextBox txtSheepWeight;
@@ -485,19 +681,37 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnEnd;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private DevComponents.Editors.IntegerInput txtSheepNum;
         private System.Windows.Forms.CheckBox cboxTrace;
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.Controls.TextBoxDropDown txtName;
-        private DevComponents.DotNetBar.LabelX lblCurrentPerson;
-        private DevComponents.DotNetBar.ButtonX btnCloseForm;
         private CCWin.SkinControl.SkinLabel lblRight;
-        private DevComponents.DotNetBar.ButtonX btnFullScreen;
-        private DevComponents.DotNetBar.LabelX lblWarnCount;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox txtOriginalPlace;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label9;
+        private DevComponents.DotNetBar.Controls.DataGridViewX datagridWeight;
+        private DevComponents.DotNetBar.LabelX lblWeight;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.LabelX lblWeightGridCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GrossWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TareWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NetWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
+        private System.Windows.Forms.Button btnQupi;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtQupi;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private System.Windows.Forms.Label label10;
+        private DevComponents.DotNetBar.Bar bar1;
+        private DevComponents.DotNetBar.ButtonItem btnReportItem;
+        private DevComponents.DotNetBar.ButtonItem btnSystem;
+        private DevComponents.DotNetBar.ButtonItem btnProductPriceItem;
+        private DevComponents.DotNetBar.ButtonItem btnGrossWeight;
     }
 }
 

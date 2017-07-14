@@ -44,8 +44,8 @@ namespace XmWeightForm.SystemManage
             {
                 txtFactoryName.Text = model.factoryName;
                 txtFactoryNum.Text = model.factoryId;
-                txtHook.Text = model.hookWeight;
-                txtmeatRate.Text = model.meatRate;
+                txtHook.Text = model.hookWeight.ToString();
+                txtmeatRate.Text = model.meatRate.ToString();
                 txtTraceUrl.Text = model.traceURL;
                 txtServerIp.Text = model.serverUrl;
             }
@@ -123,7 +123,7 @@ namespace XmWeightForm.SystemManage
                 if (affectRow > 0)
                 {
                     MessageBox.Show("保存成功");
-                    this.Close();
+
                 }
                 else
                 {
@@ -131,6 +131,7 @@ namespace XmWeightForm.SystemManage
                 }
 
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {

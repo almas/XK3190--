@@ -103,7 +103,8 @@ namespace XmWeightForm.SystemManage
             //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
             string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
             //, "单价", "金额", "称重起止时间"
-            string[] header = { "姓名", "身份证", "品名", "毛重", "数量" };
+            string[] header = { "姓名", "身份证", "品名", "毛重","皮重","净重", "数量" };
+            int[] rowWidth = { 50, 100, 50, 50, 50, 50, 50, 50, 50 };
             DataReprot dr = new DataReprot("屠宰核算统计报表", QueryDataTable, header, bottomStr);
             PrintPreviewDialog p = dr.PrintReport();
             this.groupReport.Controls.Clear();
@@ -145,7 +146,7 @@ namespace XmWeightForm.SystemManage
                 using (var db = DapperDao.GetInstance())
                 {
                     string batchsql = @"select b.hostName Name,b.PIN IdNum,b.animalTypeName ProductName,
-                                        w.grossWeights Weights,w.hooksCount ProductNum from Batches b
+                                        w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum from Batches b
                                         join  WeighingsRaw w on b.batchId=w.batchId
                                         where b.flag=@flag and 1=1";
                     batchsql += wheresql;
@@ -228,7 +229,7 @@ namespace XmWeightForm.SystemManage
                 //var animalList = new List<AnimalTypes>();
                 using (var db = DapperDao.GetInstance())
                 {
-                    string batchsql = @"select b.hostName,b.PIN,b.animalTypeName,pr.hookId,pr.grossWeight pgrossWeight,po.grossWeight pogrossWeight from Batches b
+                    string batchsql = @"select b.hostName,b.PIN,b.animalTypeName,pr.hookId,pr.hookWeight,pr.grossWeight pgrossWeight,po.grossWeight pogrossWeight from Batches b
                                          join Weighings w on b.batchId=w.batchId
                                          join PreDeAcid pr on w.hookId=pr.hookId and w.attachTime=pr.attachTime
                                         left join PostDeAcid po on w.hookId=po.hookId and w.attachTime=po.attachTime
@@ -253,7 +254,9 @@ namespace XmWeightForm.SystemManage
                        //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
                        string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
                        //, "单价", "金额", "称重起止时间"
-                       string[] header = { "姓名", "身份证", "品名", "勾号","排酸前毛重", "排酸后毛重" };
+
+                       string[] header = { "姓名", "身份证", "品名", "勾号","毛重","排酸前毛重", "排酸后毛重" };
+                       int[] rowWidth = { 50, 100, 50, 50, 50, 50, 50, 50, 50 };
                        DataReprot dr = new DataReprot("排酸核算统计报表", QueryDataTable, header, bottomStr);
                        PrintPreviewDialog p = dr.PrintReport();
 
@@ -302,16 +305,16 @@ namespace XmWeightForm.SystemManage
             var stream = new MemoryStream();
             if (NodeType == 1)
             {
-                string[] headers = { "姓名", "身份证", "品名","毛重", "数量" };
+                string[] headers = { "姓名", "身份证", "品名","毛重","皮重","净重", "数量" };
                 string fileName = "酮体称重统计";
-                string[] colNames = { "Name", "IdNum", "ProductName", "ProductNum", "Weights"};
+                string[] colNames = { "Name", "IdNum", "ProductName", "Weights","hookWeights", "JWeight", "ProductNum"};
                 stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
             }
             else if (NodeType == 2)
             {
-                string[] headers = { "姓名", "身份证", "品名", "勾号", "排酸前毛重", "排酸后毛重" };
+                string[] headers = { "姓名", "身份证", "品名", "勾号","皮重", "排酸前毛重", "排酸后毛重" };
                 string fileName = "排酸称重统计";
-                string[] colNames = { "hostName", "PIN", "animalTypeName", "hookId", "pgrossWeight", "pogrossWeight" };
+                string[] colNames = { "hostName", "PIN", "animalTypeName", "hookId", "hookWeight", "pgrossWeight", "pogrossWeight" };
                 stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
             }
 

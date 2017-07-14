@@ -100,14 +100,13 @@
             // chkStart
             // 
             this.chkStart.AutoSize = true;
-            this.chkStart.Checked = true;
-            this.chkStart.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkStart.Location = new System.Drawing.Point(178, 154);
             this.chkStart.Name = "chkStart";
             this.chkStart.Size = new System.Drawing.Size(86, 19);
             this.chkStart.TabIndex = 6;
             this.chkStart.Text = "开机启动";
             this.chkStart.UseVisualStyleBackColor = true;
+            this.chkStart.CheckedChanged += new System.EventHandler(this.chkStart_CheckedChanged);
             // 
             // LoginForm
             // 

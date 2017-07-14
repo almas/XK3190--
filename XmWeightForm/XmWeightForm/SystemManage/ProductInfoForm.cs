@@ -125,6 +125,7 @@ namespace XmWeightForm.SystemManage
                 if (resultNum > 0)
                 {
                     MessageBox.Show("保存成功");
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
@@ -132,7 +133,7 @@ namespace XmWeightForm.SystemManage
                     MessageBox.Show("保存失败");
                 }
 
-                this.DialogResult = DialogResult.OK;
+              
             }
             catch (Exception ex)
             {
@@ -165,6 +166,7 @@ namespace XmWeightForm.SystemManage
                 txtExpirate.Text = model.expiration;
                 txtpl.Text = model.ingredients;
                 txtStorage.Text = model.storageCondition;
+                chkBoned.Checked = model.isBoned;
             }
             else
             {

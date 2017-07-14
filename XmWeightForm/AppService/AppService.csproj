@@ -44,6 +44,7 @@
     <Compile Include="Comm\DapperDao.cs" />
     <Compile Include="Model\AnimalBatchModel.cs" />
     <Compile Include="Model\AnimalTypes.cs" />
+    <Compile Include="Model\BatchCard.cs" />
     <Compile Include="Model\BatchInput.cs" />
     <Compile Include="Model\Cuttings.cs" />
     <Compile Include="Model\Headsoff.cs" />

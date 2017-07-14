@@ -31,11 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.priceGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             this.animalTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animalTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +48,7 @@
             this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "酮体价格";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // priceGrid
             // 
@@ -73,19 +74,8 @@
             this.priceGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.priceGrid.Size = new System.Drawing.Size(945, 456);
             this.priceGrid.TabIndex = 3;
+            this.priceGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellContentClick);
             this.priceGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellDoubleClick);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAdd.Location = new System.Drawing.Point(23, 54);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Text = "新增";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // animalTypeId
             // 
@@ -111,6 +101,18 @@
             this.traceCode.DataPropertyName = "traceCode";
             this.traceCode.HeaderText = "溯源编号";
             this.traceCode.Name = "traceCode";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnAdd.Location = new System.Drawing.Point(23, 54);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // AnimalPriceForm
             // 

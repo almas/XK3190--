@@ -237,7 +237,7 @@ namespace XmWeightForm.SystemManage
 
             System.Data.DataTable dt = new System.Data.DataTable();
             DataRow dr;
-            //设置列表头 
+            //设置列表头
             foreach (DataGridViewColumn headerCell in reportGrid1.Columns)
             {
                 dt.Columns.Add(headerCell.HeaderText);
