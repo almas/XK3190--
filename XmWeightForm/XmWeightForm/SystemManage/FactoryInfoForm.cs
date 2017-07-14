@@ -46,6 +46,7 @@ namespace XmWeightForm.SystemManage
                 txtFactoryNum.Text = model.factoryId;
                 txtHook.Text = model.hookWeight.ToString();
                 txtmeatRate.Text = model.meatRate.ToString();
+                txtBone.Text = model.bonedRate.ToString();
                 txtTraceUrl.Text = model.traceURL;
                 txtServerIp.Text = model.serverUrl;
             }
@@ -144,6 +145,11 @@ namespace XmWeightForm.SystemManage
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FactoryInfoForm_Load(object sender, EventArgs e)
+        {
+
         }
 
 

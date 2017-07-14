@@ -241,6 +241,7 @@
             this.DoubleBuffered = true;
             this.Name = "FactoryInfoForm";
             this.Text = "加工厂信息";
+            this.Load += new System.EventHandler(this.FactoryInfoForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
