@@ -41,6 +41,7 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.groupReport = new System.Windows.Forms.GroupBox();
+            this.lblCount = new DevComponents.DotNetBar.LabelX();
             this.gridBatch = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.batchId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hostName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +50,6 @@
             this.weighingBeginTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPrint = new System.Windows.Forms.DataGridViewButtonColumn();
             this.axGRDisplayViewer1 = new Axgregn6Lib.AxGRDisplayViewer();
-            this.lblCount = new DevComponents.DotNetBar.LabelX();
             this.groupReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axGRDisplayViewer1)).BeginInit();
@@ -150,6 +150,7 @@
             this.btnExport.TabIndex = 15;
             this.btnExport.Text = "导出";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Visible = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnQuery
@@ -179,6 +180,17 @@
             this.groupReport.TabIndex = 13;
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
+            // 
+            // lblCount
+            // 
+            // 
+            // 
+            // 
+            this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblCount.Location = new System.Drawing.Point(704, 413);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(238, 23);
+            this.lblCount.TabIndex = 2;
             // 
             // gridBatch
             // 
@@ -249,22 +261,11 @@
             // axGRDisplayViewer1
             // 
             this.axGRDisplayViewer1.Enabled = true;
-            this.axGRDisplayViewer1.Location = new System.Drawing.Point(81, 413);
+            this.axGRDisplayViewer1.Location = new System.Drawing.Point(81, 407);
             this.axGRDisplayViewer1.Name = "axGRDisplayViewer1";
             this.axGRDisplayViewer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGRDisplayViewer1.OcxState")));
             this.axGRDisplayViewer1.Size = new System.Drawing.Size(192, 192);
             this.axGRDisplayViewer1.TabIndex = 0;
-            // 
-            // lblCount
-            // 
-            // 
-            // 
-            // 
-            this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblCount.Location = new System.Drawing.Point(704, 413);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(238, 23);
-            this.lblCount.TabIndex = 2;
             // 
             // ReportForm
             // 

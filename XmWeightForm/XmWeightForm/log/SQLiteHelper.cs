@@ -4,6 +4,8 @@ using System.Text;
 using System.Data.SQLite;
 using System.Data;
 using System.Windows.Forms;
+using AppService.Model;
+
 namespace XmWeightForm.log
 {
     public class SQLiteHelper
@@ -41,7 +43,7 @@ namespace XmWeightForm.log
                 cn.Close();
             }
             return result;
-         
+
         }
 
         public static object ExecuteScalar(string sql, SQLiteParameter[] parameters)
@@ -156,6 +158,103 @@ namespace XmWeightForm.log
                 cn.Close();
             }
             return hooks;
+        }
+        public static tempWeight ExcuteTempWeightModel(string sql, SQLiteParameter[] parameters)
+        {
+            var model = new tempWeight();
+            SQLiteConnection cn = new SQLiteConnection(dbPath);
+            SQLiteCommand cmd = cn.CreateCommand();
+            try
+            {
+                cmd.CommandText = sql;
+
+                if (cn.State == ConnectionState.Closed)
+                    cn.Open();
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                if (ds.Tables.Count > 0)
+                {
+                    var tb = ds.Tables[0];
+                    int rowCount = ds.Tables[0].Rows.Count;
+                    if (rowCount > 0)
+                    {
+                        model.Id =tb.Rows[0]["Id"].ToString();
+                        model.batchId = tb.Rows[0]["batchId"].ToString();
+                        model.weight = tb.Rows[0]["weight"].ToString();
+                        model.productName = tb.Rows[0]["productName"].ToString();
+                        model.productPrice = tb.Rows[0]["productPrice"].ToString();
+                        model.hookCount = int.Parse(tb.Rows[0]["hookCount"].ToString());
+                        model.timespan = int.Parse(tb.Rows[0]["timespan"].ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                cmd.Dispose();
+                cn.Close();
+            }
+            return model;
+        }
+        public static List<tempWeight> ExcuteTempWeightList(string sql, SQLiteParameter[] parameters)
+        {
+            List<tempWeight> tempWeight = new List<tempWeight>();
+            SQLiteConnection cn = new SQLiteConnection(dbPath);
+            SQLiteCommand cmd = cn.CreateCommand();
+            try
+            {
+                cmd.CommandText = sql;
+
+                if (cn.State == ConnectionState.Closed)
+                    cn.Open();
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                if (ds.Tables.Count > 0)
+                {
+                    var tb = ds.Tables[0];
+                    int rowCount = ds.Tables[0].Rows.Count;
+                    if (rowCount > 0)
+                    {
+                        for (int i = 0; i < rowCount; i++)
+                        {
+                            var model=new tempWeight();
+                            model.Id = tb.Rows[0]["Id"].ToString();
+                            model.batchId= tb.Rows[i]["batchId"].ToString();
+                            model.weight=tb.Rows[i]["weight"].ToString();
+                            model.productName = tb.Rows[i]["productName"].ToString();
+                            model.productPrice = tb.Rows[i]["productPrice"].ToString();
+                            model.hookCount = int.Parse(tb.Rows[i]["hookCount"].ToString());
+                            model.timespan = int.Parse(tb.Rows[i]["timespan"].ToString());
+                            tempWeight.Add(model);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                cmd.Dispose();
+                cn.Close();
+            }
+            return tempWeight;
         }
     }
 }

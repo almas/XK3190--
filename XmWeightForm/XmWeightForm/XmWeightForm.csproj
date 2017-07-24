@@ -122,12 +122,6 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="rvtest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="rvtest.Designer.cs">
-      <DependentUpon>rvtest.cs</DependentUpon>
-    </Compile>
     <Compile Include="SystemManage\AnimalPriceForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,23 +182,11 @@
     <Compile Include="SystemManage\ProductInfoNew.Designer.cs">
       <DependentUpon>ProductInfoNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ReportGridForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SystemManage\ReportGridForm.Designer.cs">
-      <DependentUpon>ReportGridForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="SystemManage\ReportUForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SystemManage\ReportUForm.Designer.cs">
       <DependentUpon>ReportUForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SystemManage\SysManageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SystemManage\SysManageForm.Designer.cs">
-      <DependentUpon>SysManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemManage\SysPersonInfo.cs">
       <SubType>UserControl</SubType>
@@ -212,18 +194,16 @@
     <Compile Include="SystemManage\SysPersonInfo.Designer.cs">
       <DependentUpon>SysPersonInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SysPersonInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SystemManage\SysPersonInfoForm.Designer.cs">
-      <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="SysManageNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SysManageNewForm.Designer.cs">
       <DependentUpon>SysManageNewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\SysPersonInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SysPersonInfoForm.Designer.cs" />
     <Compile Include="Weights\BeepWarnHelper.cs" />
     <Compile Include="Weights\ElectronicScale.cs" />
     <Compile Include="Weights\SerialPortUtil.cs" />
@@ -245,9 +225,6 @@
     </Compile>
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rvtest.resx">
-      <DependentUpon>rvtest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\AnimalPriceForm.resx">
       <DependentUpon>AnimalPriceForm.cs</DependentUpon>
@@ -279,24 +256,16 @@
     <EmbeddedResource Include="SystemManage\ProductInfoNew.resx">
       <DependentUpon>ProductInfoNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SystemManage\ReportGridForm.resx">
-      <DependentUpon>ReportGridForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\ReportUForm.resx">
       <DependentUpon>ReportUForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SystemManage\SysManageForm.resx">
-      <DependentUpon>SysManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\SysPersonInfo.resx">
       <DependentUpon>SysPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SystemManage\SysPersonInfoForm.resx">
-      <DependentUpon>SysPersonInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SysManageNewForm.resx">
       <DependentUpon>SysManageNewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\SysPersonInfoForm.resx" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -313,6 +282,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="report\psreport.grf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="report\report.grf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

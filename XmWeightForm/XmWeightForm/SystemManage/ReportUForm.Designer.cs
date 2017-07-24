@@ -2,12 +2,12 @@
 {
     partial class ReportUForm
     {
-        /// <summary> 
+        /// <summary>
         /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
@@ -22,12 +22,14 @@
 
         #region 组件设计器生成的代码
 
-        /// <summary> 
+        /// <summary>
         /// 设计器支持所需的方法 - 不要
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUForm));
             this.endTime = new CCWin.SkinControl.SkinDateTimePicker();
             this.startTime = new CCWin.SkinControl.SkinDateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -36,13 +38,23 @@
             this.txtname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.groupReport = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nodepsq = new System.Windows.Forms.RadioButton();
-            this.nodeptt = new System.Windows.Forms.RadioButton();
-            this.groupBox1.SuspendLayout();
+            this.lblCount = new DevComponents.DotNetBar.LabelX();
+            this.gridBatch = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.axGRDisplayViewer1 = new Axgregn6Lib.AxGRDisplayViewer();
+            this.btnPrintReport = new System.Windows.Forms.Button();
+            this.batchId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hostName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hookId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InWeights = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutWeights = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridBatch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGRDisplayViewer1)).BeginInit();
             this.SuspendLayout();
             // 
             // endTime
@@ -53,7 +65,7 @@
             this.endTime.DropDownWidth = 120;
             this.endTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.endTime.Items = null;
-            this.endTime.Location = new System.Drawing.Point(384, 39);
+            this.endTime.Location = new System.Drawing.Point(384, 43);
             this.endTime.Margin = new System.Windows.Forms.Padding(4);
             this.endTime.Name = "endTime";
             this.endTime.Size = new System.Drawing.Size(183, 28);
@@ -68,7 +80,7 @@
             this.startTime.DropDownWidth = 120;
             this.startTime.font = new System.Drawing.Font("微软雅黑", 9F);
             this.startTime.Items = null;
-            this.startTime.Location = new System.Drawing.Point(99, 40);
+            this.startTime.Location = new System.Drawing.Point(99, 44);
             this.startTime.Margin = new System.Windows.Forms.Padding(4);
             this.startTime.Name = "startTime";
             this.startTime.Size = new System.Drawing.Size(183, 27);
@@ -78,7 +90,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(306, 46);
+            this.label4.Location = new System.Drawing.Point(306, 50);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
@@ -88,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 47);
+            this.label3.Location = new System.Drawing.Point(23, 51);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
@@ -131,20 +143,9 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "姓名";
             // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(724, 50);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 29);
-            this.btnExport.TabIndex = 26;
-            this.btnExport.Text = "导出";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(600, 50);
+            this.btnQuery.Location = new System.Drawing.Point(612, 33);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 29);
@@ -155,6 +156,9 @@
             // 
             // groupReport
             // 
+            this.groupReport.Controls.Add(this.lblCount);
+            this.groupReport.Controls.Add(this.axGRDisplayViewer1);
+            this.groupReport.Controls.Add(this.gridBatch);
             this.groupReport.Location = new System.Drawing.Point(14, 104);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
@@ -164,45 +168,120 @@
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
             // 
-            // groupBox1
+            // lblCount
             // 
-            this.groupBox1.Controls.Add(this.nodepsq);
-            this.groupBox1.Controls.Add(this.nodeptt);
-            this.groupBox1.Location = new System.Drawing.Point(600, 10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 33);
-            this.groupBox1.TabIndex = 35;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "节点";
             // 
-            // nodepsq
             // 
-            this.nodepsq.AutoSize = true;
-            this.nodepsq.Location = new System.Drawing.Point(114, 11);
-            this.nodepsq.Name = "nodepsq";
-            this.nodepsq.Size = new System.Drawing.Size(47, 16);
-            this.nodepsq.TabIndex = 1;
-            this.nodepsq.TabStop = true;
-            this.nodepsq.Text = "排酸";
-            this.nodepsq.UseVisualStyleBackColor = true;
             // 
-            // nodeptt
+            this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblCount.Location = new System.Drawing.Point(607, 414);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(380, 23);
+            this.lblCount.TabIndex = 4;
             // 
-            this.nodeptt.AutoSize = true;
-            this.nodeptt.Location = new System.Drawing.Point(7, 11);
-            this.nodeptt.Name = "nodeptt";
-            this.nodeptt.Size = new System.Drawing.Size(47, 16);
-            this.nodeptt.TabIndex = 0;
-            this.nodeptt.TabStop = true;
-            this.nodeptt.Text = "酮体";
-            this.nodeptt.UseVisualStyleBackColor = true;
+            // gridBatch
+            // 
+            this.gridBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridBatch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.batchId,
+            this.hostName,
+            this.PIN,
+            this.hookId,
+            this.InWeights,
+            this.InTime,
+            this.OutWeights,
+            this.OutTime});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridBatch.DefaultCellStyle = dataGridViewCellStyle1;
+            this.gridBatch.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.gridBatch.Location = new System.Drawing.Point(11, 21);
+            this.gridBatch.Name = "gridBatch";
+            this.gridBatch.RowTemplate.Height = 23;
+            this.gridBatch.Size = new System.Drawing.Size(976, 387);
+            this.gridBatch.TabIndex = 2;
+            // 
+            // axGRDisplayViewer1
+            // 
+            this.axGRDisplayViewer1.Enabled = true;
+            this.axGRDisplayViewer1.Location = new System.Drawing.Point(257, 431);
+            this.axGRDisplayViewer1.Name = "axGRDisplayViewer1";
+            this.axGRDisplayViewer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGRDisplayViewer1.OcxState")));
+            this.axGRDisplayViewer1.Size = new System.Drawing.Size(192, 53);
+            this.axGRDisplayViewer1.TabIndex = 3;
+            // 
+            // btnPrintReport
+            // 
+            this.btnPrintReport.Location = new System.Drawing.Point(744, 33);
+            this.btnPrintReport.Name = "btnPrintReport";
+            this.btnPrintReport.Size = new System.Drawing.Size(84, 29);
+            this.btnPrintReport.TabIndex = 35;
+            this.btnPrintReport.Text = "打印";
+            this.btnPrintReport.UseVisualStyleBackColor = true;
+            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
+            // 
+            // batchId
+            // 
+            this.batchId.DataPropertyName = "batchId";
+            this.batchId.HeaderText = "批次号";
+            this.batchId.Name = "batchId";
+            // 
+            // hostName
+            // 
+            this.hostName.DataPropertyName = "hostName";
+            this.hostName.HeaderText = "姓名";
+            this.hostName.Name = "hostName";
+            this.hostName.Width = 150;
+            // 
+            // PIN
+            // 
+            this.PIN.DataPropertyName = "PIN";
+            this.PIN.HeaderText = "身份证";
+            this.PIN.Name = "PIN";
+            this.PIN.Width = 200;
+            // 
+            // hookId
+            // 
+            this.hookId.DataPropertyName = "hookId";
+            this.hookId.HeaderText = "勾号";
+            this.hookId.Name = "hookId";
+            // 
+            // InWeights
+            // 
+            this.InWeights.DataPropertyName = "InWeights";
+            this.InWeights.HeaderText = "进库毛重";
+            this.InWeights.Name = "InWeights";
+            // 
+            // InTime
+            // 
+            this.InTime.DataPropertyName = "InTime";
+            this.InTime.HeaderText = "进库时间";
+            this.InTime.Name = "InTime";
+            this.InTime.Width = 150;
+            // 
+            // OutWeights
+            // 
+            this.OutWeights.DataPropertyName = "OutWeights";
+            this.OutWeights.HeaderText = "出库毛重";
+            this.OutWeights.Name = "OutWeights";
+            // 
+            // OutTime
+            // 
+            this.OutTime.DataPropertyName = "OutTime";
+            this.OutTime.HeaderText = "出库时间";
+            this.OutTime.Name = "OutTime";
             // 
             // ReportUForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnPrintReport);
             this.Controls.Add(this.endTime);
             this.Controls.Add(this.startTime);
             this.Controls.Add(this.label4);
@@ -211,14 +290,14 @@
             this.Controls.Add(this.txtname);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.groupReport);
             this.Name = "ReportUForm";
             this.Size = new System.Drawing.Size(1025, 599);
             this.Load += new System.EventHandler(this.ReportUForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupReport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridBatch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGRDisplayViewer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,11 +313,19 @@
         private System.Windows.Forms.TextBox txtname;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.GroupBox groupReport;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton nodepsq;
-        private System.Windows.Forms.RadioButton nodeptt;
+        private DevComponents.DotNetBar.Controls.DataGridViewX gridBatch;
+        private Axgregn6Lib.AxGRDisplayViewer axGRDisplayViewer1;
+        private DevComponents.DotNetBar.LabelX lblCount;
+        private System.Windows.Forms.Button btnPrintReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn batchId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hostName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hookId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InWeights;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutWeights;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutTime;
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using AppService;
 using AppService.Model;
 using Dapper_NET20;
+using gregn6Lib;
 
 namespace XmWeightForm.SystemManage
 {
@@ -21,7 +22,8 @@ namespace XmWeightForm.SystemManage
             InitializeComponent();
         }
         public DataTable QueryDataTable = null;
-        public int NodeType = 1;
+
+        private string subTime = string.Empty;
         private void btnQuery_Click(object sender, EventArgs e)
         {
             var startTime = this.startTime.Text;
@@ -30,186 +32,64 @@ namespace XmWeightForm.SystemManage
             var name = txtname.Text.Trim();
             var idNum = txtIdNum.Text.Trim();
 
-           // int nodeType = 1;
-            if (nodeptt.Checked)
-            {
-                NodeType = 1;
-            }
-            if (nodepsq.Checked)
-            {
-                NodeType = 2;
-            }
 
+            subTime = string.Empty;
             var whereSql = string.Empty;
 
-              if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
+            {
+                whereSql += " and b.hostName like '%" + name + "%'";
+            }
+            if (!string.IsNullOrEmpty(idNum))
+            {
+                whereSql += " and b.PIN like '%" + idNum + "%'";
+            }
+            if (!string.IsNullOrEmpty(startTime))
+            {
+                if (ValidaterHelper.IsStringDate(startTime))
                 {
-                    whereSql += " and b.hostName like '%" + name + "%'";
+                    var tempStime = DateTime.Parse(startTime).ToString("yyyyMMdd");
+                    int tempStimeInt = int.Parse(tempStime);
+                    whereSql += " and b.yearNum >=" + tempStimeInt;
+
+                    subTime = tempStime;
                 }
-                if (!string.IsNullOrEmpty(idNum))
+
+            }
+            if (!string.IsNullOrEmpty(endTime))
+            {
+                if (ValidaterHelper.IsStringDate(endTime))
                 {
-                    whereSql += " and b.PIN like '%" + idNum + "%'";
-                }
-                if (!string.IsNullOrEmpty(startTime))
-                {
-                    if (ValidaterHelper.IsStringDate(startTime))
+                    var tempetime = DateTime.Parse(endTime).ToString("yyyyMMdd");
+                    int tempetimeInt = int.Parse(tempetime);
+                    whereSql += " and b.yearNum <=" + tempetimeInt;
+
+                    if (string.IsNullOrEmpty(startTime))
                     {
-                        var tempStime = DateTime.Parse(startTime).ToString("yyyyMMdd");
-                        int tempStimeInt = int.Parse(tempStime);
-                        whereSql += " and b.yearNum >=" + tempStimeInt;
+                        subTime = "至" + tempetime;
                     }
-
-                }
-                if (!string.IsNullOrEmpty(endTime))
-                {
-                    if (ValidaterHelper.IsStringDate(endTime))
+                    else
                     {
-                        var tempetime = DateTime.Parse(endTime).ToString("yyyyMMdd");
-                        int tempetimeInt = int.Parse(tempetime);
-                        whereSql += " and b.yearNum <=" + tempetimeInt;
+                        subTime = tempetime;
                     }
-
                 }
-            if (NodeType == 1)
-            {
-                ShowTTReport(whereSql);
-            }
-            else if (NodeType == 2)
-            {
-                GetPsData(whereSql);
-            }
-
-        }
-
-
-        #region 酮体
-        /// <summary>
-        /// 酮体
-        /// </summary>
-        /// <param name="wheresql"></param>
-        private void ShowTTReport(string wheresql)
-        {
-            QueryDataTable = GetTTData(wheresql);
-            if (QueryDataTable.Rows.Count == 0)
-            {
-                MessageBox.Show("未查询到数据");
-                return;
 
             }
 
-            // var tempDt = QueryDataTable.Copy();
-
-            //tempDt.Columns.Remove("Sort");
-            //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
-            string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
-            //, "单价", "金额", "称重起止时间"
-            string[] header = { "姓名", "身份证", "品名", "毛重","皮重","净重", "数量" };
-            int[] rowWidth = { 50, 100, 50, 50, 50, 50, 50, 50, 50 };
-            DataReprot dr = new DataReprot("屠宰核算统计报表", QueryDataTable, header, bottomStr);
-            PrintPreviewDialog p = dr.PrintReport();
-            this.groupReport.Controls.Clear();
-            this.groupReport.Controls.Add(p);
-            p.Show();
-            groupReport.Width += 1;
-            this.Refresh();
-            //tempDt = null;
-        }
-        /// <summary>
-        /// 获取数据
-        /// </summary>
-        /// <param name="wheresql"></param>
-        /// <returns></returns>
-        private DataTable GetTTData(string wheresql)
-        {
-            if (string.IsNullOrEmpty(wheresql))
+            if (string.IsNullOrEmpty(subTime))
             {
+                subTime = DateTime.Now.ToString("yyyyMMdd");
+
                 var dtnow = DateTime.Now.ToString("yyyyMMdd");
                 int dtint = int.Parse(dtnow);
-                wheresql = " and b.yearNum=" + dtint;
+                whereSql += " and b.yearNum=" + dtint;
             }
 
-            //var dt = new DataTable("WeightReport");
-            //dt.Columns.Add("Sort", typeof(int));
-            //dt.Columns.Add("Name", typeof(string));
-            //dt.Columns.Add("IdNum", typeof(string));
-            //dt.Columns.Add("ProductName", typeof(string));
-            //dt.Columns.Add("ProductNum", typeof(int));
-            //dt.Columns.Add("Weights", typeof(decimal));
-            //dt.Columns.Add("Price", typeof(decimal));
-            //dt.Columns.Add("TotalPrice", typeof(decimal));
-            //dt.Columns.Add("WeightTime", typeof(string));
-            try
-            {
-                //var batchlist = new List<BatchInput>();
-                //var weightList = new List<WeighingsRaw>();
-                //var animalList = new List<AnimalTypes>();
-                using (var db = DapperDao.GetInstance())
-                {
-                    string batchsql = @"select b.hostName Name,b.PIN IdNum,b.animalTypeName ProductName,
-                                        w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum from Batches b
-                                        join  WeighingsRaw w on b.batchId=w.batchId
-                                        where b.flag=@flag and 1=1";
-                    batchsql += wheresql;
-                    //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
-                    var ds = db.ExecuteDataSet(batchsql, new {flag = true},null,null,null);
-                    if (ds.Tables.Count == 1)
-                    {
-                        return ds.Tables[0];
-                    }
+            GetPsData(whereSql);
 
-                    //if (batchlist.Any())
-                    //{
-                    //    //var animalType = batchlist.Select(s => s.animalTypeId).Distinct().ToArray();
-                    //    //animalList = db.Query<AnimalTypes>("select * from AnimalTypes where animalTypeId in @ids",
-                    //    //        new { ids = animalType }).ToList();
-
-
-                    //    //var bids = batchlist.Select(s => s.batchId).ToArray();
-                    //    //weightList =
-                    //    //    db.Query<WeighingsRaw>("select * from WeighingsRaw where batchId in @ids", new { ids = bids })
-                    //    //        .ToList();
-
-                    //}
-                }
-
-
-                //if (batchlist.Any() && weightList.Any())
-                //{
-                //    int count = 1;
-                //    foreach (var bItem in batchlist)
-                //    {
-                //        //var num = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.hooksCount);
-                //        //var grossweight = weightList.Where(s => s.batchId == bItem.batchId).Sum(s => s.grossWeights);
-                //        //var price = animalList.Where(s => s.animalTypeId == bItem.animalTypeId).Select(s => s.price).First();
-                //        var row = dt.NewRow();
-                //        row["Sort"] = count;
-                //        row["Name"] = bItem.hostName;
-                //        row["IdNum"] = bItem.PIN;
-                //        row["ProductName"] = bItem.animalTypeName;
-                //        row["ProductNum"] = num;
-                //        row["Weights"] = grossweight;
-                //        row["Price"] = price;
-                //        row["TotalPrice"] = grossweight * price;
-                //        if (bItem.weighingBeginTime != null && bItem.weighingFinishedTime != null)
-                //        {
-                //            row["WeightTime"] = bItem.weighingBeginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "至" + bItem.weighingFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                //        }
-
-                //        dt.Rows.Add(row);
-
-                //        count++;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                log4netHelper.Exception(ex);
-            }
-
-            return null;
         }
 
-        #endregion
+
 
       #region 排酸
 
@@ -229,12 +109,11 @@ namespace XmWeightForm.SystemManage
                 //var animalList = new List<AnimalTypes>();
                 using (var db = DapperDao.GetInstance())
                 {
-                    string batchsql = @"select b.hostName,b.PIN,b.animalTypeName,pr.hookId,pr.hookWeight,pr.grossWeight pgrossWeight,po.grossWeight pogrossWeight from Batches b
-                                         join Weighings w on b.batchId=w.batchId
-                                         join PreDeAcid pr on w.hookId=pr.hookId and w.attachTime=pr.attachTime
+                    string batchsql = @"select 1 Sort,b.batchId,b.hostName,b.PIN,pr.hookId,pr.grossWeight InWeights,pr.weighingTime InTime,po.grossWeight OutWeights ,po.weighingTime OutTime
+                                        from Batches b join Weighings w on b.batchId=w.batchId join PreDeAcid pr on w.hookId=pr.hookId and w.attachTime=pr.attachTime
                                         left join PostDeAcid po on w.hookId=po.hookId and w.attachTime=po.attachTime
                                         where b.flag=@flag and 1=1";
-                    batchsql += wheresql;
+                    batchsql += wheresql + " order by pr.weighingTime";
                     //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
                     var ds = db.ExecuteDataSet(batchsql, new { flag = true }, null, null, null);
                     if (ds.Tables.Count == 1)
@@ -248,25 +127,14 @@ namespace XmWeightForm.SystemManage
 
                        }
                        QueryDataTable = ds.Tables[0];
-                       // var tempDt = QueryDataTable.Copy();
-
-                       //tempDt.Columns.Remove("Sort");
-                       //string[] bottomStr = { "操作人员：Ryan", "打印日期：" + DateTime.Now.ToShortDateString(), "审核人员：", "财务人员：" };
-                       string[] bottomStr = { "打印日期：" + DateTime.Now.ToShortDateString() };
-                       //, "单价", "金额", "称重起止时间"
-
-                       string[] header = { "姓名", "身份证", "品名", "勾号","毛重","排酸前毛重", "排酸后毛重" };
-                       int[] rowWidth = { 50, 100, 50, 50, 50, 50, 50, 50, 50 };
-                       DataReprot dr = new DataReprot("排酸核算统计报表", QueryDataTable, header, bottomStr);
-                       PrintPreviewDialog p = dr.PrintReport();
-
-                        this.groupReport.Controls.Clear();
-                       this.groupReport.Controls.Add(p);
-                       p.Show();
-                       groupReport.Width += 1;
-                       this.Refresh();
                     }
 
+                }
+
+
+                if (QueryDataTable != null || QueryDataTable.Rows.Count > 0)
+                {
+                    gridBatch.DataSource = QueryDataTable;
                 }
             }
             catch (Exception ex)
@@ -274,62 +142,85 @@ namespace XmWeightForm.SystemManage
                 log4netHelper.Exception(ex);
             }
         }
-      #endregion
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            if (QueryDataTable == null)
-            {
-                MessageBox.Show("请先查询数据");
-                return;
 
-            }
-            if (QueryDataTable.Rows.Count == 0)
-            {
-                MessageBox.Show("未查询到数据");
-                return;
-            }
 
-            SaveFileDialog f = new SaveFileDialog();
-            f.Filter = "excel(*.xls)|*.xls";
-            // f.DefaultExt = "xml";
-            //获取或设置一个值，该值指示如果用户省略扩展名，文件对话框是否自动在文件名中添加扩展名。（可以不设置）
-            f.AddExtension = true;
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-                SaveAsExcel(f.FileName);
-            }
-        }
-
-        private void SaveAsExcel(string filePath)
-        {
-            var stream = new MemoryStream();
-            if (NodeType == 1)
-            {
-                string[] headers = { "姓名", "身份证", "品名","毛重","皮重","净重", "数量" };
-                string fileName = "酮体称重统计";
-                string[] colNames = { "Name", "IdNum", "ProductName", "Weights","hookWeights", "JWeight", "ProductNum"};
-                stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
-            }
-            else if (NodeType == 2)
-            {
-                string[] headers = { "姓名", "身份证", "品名", "勾号","皮重", "排酸前毛重", "排酸后毛重" };
-                string fileName = "排酸称重统计";
-                string[] colNames = { "hostName", "PIN", "animalTypeName", "hookId", "hookWeight", "pgrossWeight", "pogrossWeight" };
-                stream = WorkBookTemplates.WorkBookTemplateDetailInfo(QueryDataTable, fileName, headers, colNames);
-            }
-
-            FileStream file = new FileStream(filePath, FileMode.Create, System.IO.FileAccess.Write);
-            byte[] bytes = new byte[stream.Length];
-            stream.Read(bytes, 0, (int)stream.Length);
-            file.Write(bytes, 0, bytes.Length);
-            file.Close();
-            stream.Close();
-
-        }
+        #region grid++ report
+        protected GridppReport Report = new GridppReport();
+        IGRField field1;
+        IGRField field2;
+        IGRField field3;
+        IGRField field4;
+        IGRField field5;
+        IGRField field6;
+        IGRField field7;
 
         private void ReportUForm_Load(object sender, EventArgs e)
         {
-            nodeptt.Checked = true;
+            gridBatch.AutoGenerateColumns = false;
+
+            var reportfile = Application.StartupPath + @"\report\psreport.grf";
+            Report.LoadFromFile(reportfile);
+            Report.FetchRecord += new _IGridppReportEvents_FetchRecordEventHandler(report_FetchRecord);
+
+            field1 = Report.FieldByName("Sort");
+            field2 = Report.FieldByName("Name");
+            field3 = Report.FieldByName("hookId");
+            field4 = Report.FieldByName("InWeights");
+            field5 = Report.FieldByName("InTime");
+            field6 = Report.FieldByName("OutWeights");
+            field7 = Report.FieldByName("OutTime");
         }
+
+
+        private void report_FetchRecord()
+        {
+            if (QueryDataTable == null || QueryDataTable.Rows.Count == 0)
+            {
+                return;
+            }
+            try
+            {
+                var dt = QueryDataTable;
+                var title = Report.ControlByName("SubTitleBox");
+                title.AsStaticBox.Text = "统计时间:" + subTime;
+                int tempsort = 1;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Report.DetailGrid.Recordset.Append();
+                    field1.Value = tempsort;
+                    field2.Value = dt.Rows[i][2].ToString() + "-" + dt.Rows[i][3].ToString();
+                    field3.Value = dt.Rows[i][4].ToString();
+                    field4.Value = dt.Rows[i][5].ToString();
+                    field5.Value = dt.Rows[i][6].ToString();
+                    field6.Value = dt.Rows[i][7].ToString();
+                    field7.Value = dt.Rows[i][8].ToString();
+                    Report.DetailGrid.Recordset.Post();
+                    tempsort++;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+
+        }
+        #endregion
+
+      #endregion
+
+        private void btnPrintReport_Click(object sender, EventArgs e)
+        {
+            if (QueryDataTable == null || QueryDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("未查询到数据");
+                return;
+
+            }
+
+            Report.PrintPreview(true);
+        }
+
     }
 }

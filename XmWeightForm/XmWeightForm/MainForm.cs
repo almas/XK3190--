@@ -282,7 +282,7 @@ namespace XmWeightForm
         {
             var weightCom = ConfigurationManager.AppSettings["weightCom"];
             var hookCom = ConfigurationManager.AppSettings["hookCom"];
-           // var beepCom = ConfigurationManager.AppSettings["beepCom"];
+            // var beepCom = ConfigurationManager.AppSettings["beepCom"];
             var earCom = ConfigurationManager.AppSettings["earCom"];
             try
             {
@@ -456,45 +456,79 @@ namespace XmWeightForm
             }
             try
             {
-
+                var animaltypeName = animalSel.Text;
+                var price = txtPrice.Text;
+                //先保存本地
                 DateTime nowtime = DateTime.Now;
                 DateTime beginTime = new DateTime(nowtime.Year, nowtime.Month, nowtime.Day, 0, 0, 0);
                 int sTime = UnixTimSpanHelper.ConvertDateTimeToTimeSpan(beginTime);
-
                 int isheepCount = int.Parse(sheepCount);
 
-                string sql = "select hookId from hook where timeSpan>@sTime order by timeSpan limit @count";
-                SQLiteParameter[] parameters = new SQLiteParameter[]{
+                //先查询上一次保存的记录
+                string lastsql = "select * from tempWeight where batchId=@bid and timeSpan>@sTime order by timeSpan limit 1";
+                SQLiteParameter[] lastparams = new SQLiteParameter[]{
+                                                 new SQLiteParameter("@bid",DbType.String),
+                                                 new SQLiteParameter("@sTime",DbType.Int32)
+                                         };
+                lastparams[0].Value = BatchId;
+                lastparams[1].Value = sTime;
+                var lastWeigt = SQLiteHelper.ExcuteTempWeightModel(lastsql, lastparams);
+
+                string tempweightId = Guid.NewGuid().ToString("N");
+                //然后插入本地
+                int result = SaveTempWeight(tempweightId, BatchId, sheepWeigth, animaltypeName, price, isheepCount);
+
+                if (result > 0)
+                {
+                    decimal dprice = decimal.Parse(price);
+                    UpdateWeightGrid(tempweightId, dprice, weightDecimal, isheepCount);
+
+                }
+                else
+                {
+                    MessageBox.Show("保存失败");
+                    return;
+                }
+                //提交上一次保存的数据
+                if (!string.IsNullOrEmpty(lastWeigt.Id))
+                {
+                    int lastSheepCount = lastWeigt.hookCount;
+                    string sql = "select hookId from hook where timeSpan>@sTime order by timeSpan limit @count";
+                    SQLiteParameter[] parameters = new SQLiteParameter[]{
                                                  new SQLiteParameter("@sTime",DbType.Int32),
                                                  new SQLiteParameter("@count",DbType.Int32)
                                          };
-                parameters[0].Value = sTime;
-                parameters[1].Value = isheepCount;
-                var hooks = SQLiteHelper.ExcuteHookList(sql, parameters);
-                if (hooks.Any())
-                {
-                    if (hooks.Count < isheepCount)
+                    parameters[0].Value = sTime;
+                    parameters[1].Value = lastSheepCount;
+                    var hooks = SQLiteHelper.ExcuteHookList(sql, parameters);
+                    if (hooks.Any())
                     {
-                        int diffCount = isheepCount - hooks.Count;
+                        if (hooks.Count < lastSheepCount)
+                        {
+                            int diffCount = lastSheepCount - hooks.Count;
+                            var nowTime = DateTime.Now;
+                            for (int i = 0; i < diffCount; i++)
+                            {
+                                var tempTime = nowTime.AddSeconds(i);
+                                hooks.Add(tempTime.ToString("yyMMddHHmmssff"));
+                            }
+                        }
+
+                    }
+                    else
+                    {
                         var nowTime = DateTime.Now;
-                        for (int i = 0; i < diffCount; i++)
+                        for (int i = 0; i < lastSheepCount; i++)
                         {
                             var tempTime = nowTime.AddSeconds(i);
                             hooks.Add(tempTime.ToString("yyMMddHHmmssff"));
                         }
                     }
 
+                    decimal dweight = decimal.Parse(lastWeigt.weight);
+                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt.Id);
+
                 }
-                else
-                {
-                    var nowTime = DateTime.Now;
-                    for (int i = 0; i < isheepCount; i++)
-                    {
-                        var tempTime = nowTime.AddSeconds(i);
-                        hooks.Add(tempTime.ToString("yyMMddHHmmssff"));
-                    }
-                }
-                InsertWeightData(hooks, weightDecimal, hooks.Count);
 
             }
             catch (Exception ex)
@@ -506,7 +540,7 @@ namespace XmWeightForm
             UpdateWeightStableSingle(false);
         }
 
-        private void InsertWeightData(List<string> hooks, decimal weights, int count)
+        private void InsertWeightData(List<string> hooks, decimal weights, int count, string lastWeightId)
         {
             try
             {
@@ -514,7 +548,7 @@ namespace XmWeightForm
                 {
                     var animaltypeName = animalSel.Text;
                     var price = txtPrice.Text;
-                    decimal dprice=decimal.Parse(price);
+                    decimal dprice = decimal.Parse(price);
 
                     var hookDt = new DataTable("Hooks");
                     hookDt.Columns.Add("hookId", typeof(string));
@@ -592,19 +626,31 @@ namespace XmWeightForm
                             UpdateAnimalIdsStatus();
                         }
 
-                        //string msg = "入库成功：数量" + count + ";毛重：" + weights + "kg";
-                        //AppNetInfo(msg);
-                        //UpdateWeightText("0.00");
+                        //更新羊只数量
                         UpdateSheepCountText("4");
+                        //删除本地勾号
+                        if (hooks.Any())
+                        {
+                            string sql = "delete from hook where hookId in(";
+                            for (int i = 0; i < count; i++)
+                            {
+                                if (i + 1 == count)
+                                {
+                                    sql += "'" + hooks[i] + "'";
+                                }
+                                else
+                                {
+                                    sql += "'" + hooks[i] + "',";
+                                }
 
-                        UpdateWeightGrid(dprice, weights, count, hooks);
-                        //BeepWarnHelper.OpenGreenLed(BeepPort);
-                        //Thread.Sleep(50);
-                        //BeepWarnHelper.OpenWarnBeep(BeepPort);
-                        //Thread.Sleep(500);
-                        //BeepWarnHelper.CloseGreedLed(BeepPort);
-                        //Thread.Sleep(50);
-                        //BeepWarnHelper.CloseWarnBeep(BeepPort);
+                            }
+                            sql += ")";
+                            SQLiteHelper.ExecuteNonQuery(sql, null);
+                        }
+
+                        //删除上一条记录
+                        string delSql = "delete from tempWeight where Id='" + lastWeightId + "'";
+                        SQLiteHelper.ExecuteNonQuery(delSql, null);
                     }
                     else
                     {
@@ -801,6 +847,32 @@ namespace XmWeightForm
             }
         }
 
+        private int SaveTempWeight(string id, string batchId, string weight, string productName, string price, int hookCount)
+        {
+            int result = 0;
+            try
+            {
+                DateTime nowtime = DateTime.Now;
+                int intTime = UnixTimSpanHelper.ConvertDateTimeToTimeSpan(nowtime);
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat("insert into tempWeight(Id,batchId,weight,productName,productPrice,hookCount,timespan)values('{0}','{1}','{2}','{3}','{4}',{5},{6})", id, batchId, weight, productName, price, hookCount, intTime);
+                    //log4netHelper.Info(sb.ToString());
+                    result = SQLiteHelper.ExecuteNonQuery(sb.ToString(), null);
+
+                }
+                catch
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
+            return result;
+        }
         private void SaveEarNumData(string earNum)
         {
             try
@@ -835,7 +907,7 @@ namespace XmWeightForm
         /// <summary>
         /// 更新界面表格
         /// </summary>
-        private void UpdateWeightGrid(decimal price,decimal GrossWeight,int hookCount,List<string> hooks)
+        private void UpdateWeightGrid(string tempweightId, decimal price, decimal GrossWeight, int hookCount)
         {
 
             try
@@ -845,11 +917,11 @@ namespace XmWeightForm
                 //string price = txtPrice.Text;
                 string name = txtName.Text.Trim();
                 string idcardNum = txtIdNumber.Text.Trim();
-                string idNum = name+ "-" + idcardNum;
+                string idNum = name + "-" + idcardNum;
                 decimal TareWeight = _hookWeight;
                 decimal NetWeight = GrossWeight - TareWeight;
                 decimal totalPrice = price * NetWeight;
-                int hooksCount = hooks.Count;
+                //int hooksCount = hooks.Count;
 
                 _WeightGridGrossWeight += GrossWeight;
                 _WeightGridTareWeight += TareWeight;
@@ -861,57 +933,16 @@ namespace XmWeightForm
                 this.datagridWeight.Rows[0].Cells[1].Value = idNum;
                 this.datagridWeight.Rows[0].Cells[2].Value = ProductName;
                 this.datagridWeight.Rows[0].Cells[3].Value = price;
-                this.datagridWeight.Rows[0].Cells[4].Value = hooksCount;
+                this.datagridWeight.Rows[0].Cells[4].Value = hookCount;
                 this.datagridWeight.Rows[0].Cells[5].Value = GrossWeight;
                 this.datagridWeight.Rows[0].Cells[6].Value = TareWeight;
                 this.datagridWeight.Rows[0].Cells[7].Value = NetWeight;
                 this.datagridWeight.Rows[0].Cells[8].Value = totalPrice;
                 this.datagridWeight.Rows[0].Cells[9].Value = weightyime;
-                if (hooks.Any())
-                {
-                    string sql = "delete from hook where hookId in(";
+                this.datagridWeight.Rows[0].Cells[10].Value = tempweightId;
 
 
-                    for (int i = 0; i < hookCount; i++)
-                    {
-                        if (i + 1 == hookCount)
-                        {
-                            sql += "'" + hooks[i] + "'";
-                        }
-                        else
-                        {
-                            sql += "'" + hooks[i] + "',";
-                        }
 
-                    }
-
-                    sql += ")";
-
-                    SQLiteHelper.ExecuteNonQuery(sql, null);
-
-                    //using (var db = DapperDao.GetInstance())
-                    //{
-                    //    string insertSql = "insert into WeightReport values(@SerialNum,@Name,@idNum,@ProductName,@price,@GrossWeight,@TareWeight,@NetWeight,@totalPrice,@time,@count)";
-
-                    //    db.Execute(insertSql, new
-                    //    {
-                    //        SerialNum = SerialNum,
-                    //        Name=name,
-                    //        idNum = idcardNum,
-                    //        ProductName = ProductName,
-                    //        price = price,
-                    //        GrossWeight = GrossWeight,
-                    //        TareWeight = TareWeight,
-                    //        NetWeight = NetWeight,
-                    //        totalPrice = totalPrice,
-                    //        time=DateTime.Now,
-                    //        count = hookCount
-                    //    });
-                    //}
-                }
-
-
-               
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat("次数：{0},总毛重：{1},总皮重：{2},总净重：{3},总价格：{4}",
                     _WeightGridCount, _WeightGridGrossWeight, _WeightGridTareWeight, _WeightGridNetWeight, _WeightGridTotalPrice);
@@ -954,7 +985,7 @@ namespace XmWeightForm
                     _WeightGridNetWeight = 0;
                     _WeightGridTotalPrice = 0;
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -1010,7 +1041,7 @@ namespace XmWeightForm
             {
                 SheepOriginalList.Insert(0, "锡林郭勒盟");
             }
-           
+
             txtOriginalPlace.DataSource = SheepOriginalList;
 
             if (data != null && !string.IsNullOrEmpty(data.batchId))
@@ -1059,9 +1090,10 @@ namespace XmWeightForm
 
             if (!string.IsNullOrEmpty(idNum))
             {
-                if(!ValidaterHelper.IsIDCard(idNum)){
-                     MessageBox.Show("身份证号码有误");
-                return;
+                if (!ValidaterHelper.IsIDCard(idNum))
+                {
+                    MessageBox.Show("身份证号码有误");
+                    return;
                 }
             }
 
@@ -1113,7 +1145,7 @@ namespace XmWeightForm
                     GetCurrentTraceAnimal();
                 }
 
-                
+
                 ClearWeightGrid(true);
                 SwitchButtonStatus(0);
                 //InitDataDealQueue();
@@ -1139,6 +1171,9 @@ namespace XmWeightForm
             {
                 if (!string.IsNullOrEmpty(BatchId))
                 {
+                    //上传当前批次剩余称重的数据
+                    UploadLastWeight();
+
                     var sql = "update Batches set flag=1,weighingFinishedTime=@endtime where batchId=@batchId;";
 
                     if (currentTraceStatus && !string.IsNullOrEmpty(AnimalBatchModel.animalId))
@@ -1337,7 +1372,7 @@ namespace XmWeightForm
         private void buttonX1_Click_1(object sender, EventArgs e)
         {
             var list = new List<string>();
-            UpdateWeightGrid(20M, 61.2M, 2, list);
+            UpdateWeightGrid("1", 20M, 61.2M, 2);
         }
 
         private void btnQupi_Click(object sender, EventArgs e)
@@ -1373,7 +1408,7 @@ namespace XmWeightForm
                 return;
             }
             int hookCount = int.Parse(sheepCount);
-            decimal TareWeight =_hookWeight;
+            decimal TareWeight = _hookWeight;
             decimal NetWeight = weightDecimal - TareWeight;
             txtQupi.Text = NetWeight.ToString();
         }
@@ -1398,13 +1433,13 @@ namespace XmWeightForm
 
         private void btnGrossWeight_Click(object sender, EventArgs e)
         {
-            var weightForm=new GrossWeightForm();
-           weightForm.ShowDialog();
-           if (weightForm.DialogResult == DialogResult.OK)
-           {
-               _hookWeight = weightForm.HookWeight;
-               txtmaoWeight.Text = _hookWeight.ToString();
-           }
+            var weightForm = new GrossWeightForm();
+            weightForm.ShowDialog();
+            if (weightForm.DialogResult == DialogResult.OK)
+            {
+                _hookWeight = weightForm.HookWeight;
+                txtmaoWeight.Text = _hookWeight.ToString();
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1429,12 +1464,6 @@ namespace XmWeightForm
                 }
 
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var test = new rvtestForm();
-            test.Show();
         }
 
 
@@ -1568,22 +1597,23 @@ namespace XmWeightForm
             {
                 Action<bool> actionDelegate = (x) =>
                 {
-                    if (status) {
+                    if (status)
+                    {
                         lblWeightStable.BackColor = Color.Lime;
                     }
                     else
                     {
                         lblWeightStable.BackColor = Color.Crimson;
                     }
-                    
-                   // txtSheepWeight.Text = weight;
+
+                    // txtSheepWeight.Text = weight;
                 };
 
                 lblWeightStable.Invoke(actionDelegate, status);
             }
             else
             {
-               // txtSheepWeight.Text = weight;
+                // txtSheepWeight.Text = weight;
                 if (status)
                 {
                     lblWeightStable.BackColor = Color.Lime;
@@ -1596,5 +1626,105 @@ namespace XmWeightForm
         }
         #endregion
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var rows = datagridWeight.SelectedRows;
+            if (rows.Count == 1)
+            {
+                string rowId = rows[0].Cells[10].Value.ToString();
+
+                string msg = "确认删除撤销当前选中的称重数据吗？";
+                DialogResult dr = MessageBox.Show(msg, "确认删除", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)//如果点击“确定”按钮
+                {
+                    var affectCount = 0;
+                    var sql = "delete from tempWeight where Id=@id";
+                    SQLiteParameter[] lastparams = new SQLiteParameter[]{
+                                                 new SQLiteParameter("@id",DbType.String)
+                                         };
+                    lastparams[0].Value = rowId;
+                    affectCount = SQLiteHelper.ExecuteNonQuery(sql, lastparams);
+                    if (affectCount > 0)
+                    {
+                        datagridWeight.Rows.Remove(rows[0]);
+                        MessageBox.Show("撤销完成，请重新称重");
+                    }
+                }
+                else//如果点击“取消”按钮
+                {
+                    //e.Cancel = true;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选择需要删除的数据行");
+            }
+        }
+
+
+        /// <summary>
+        /// 处理当前批次剩余的没有上传的称重数据
+        /// </summary>
+        private void UploadLastWeight()
+        {
+            DateTime nowtime = DateTime.Now;
+            DateTime beginTime = new DateTime(nowtime.Year, nowtime.Month, nowtime.Day, 0, 0, 0);
+            int sTime = UnixTimSpanHelper.ConvertDateTimeToTimeSpan(beginTime);
+
+            //查询当前批次剩余的记录
+            string lastsql = "select * from tempWeight where batchId=@bid and timeSpan>@sTime order by timeSpan";
+            SQLiteParameter[] lastparams = new SQLiteParameter[]{
+                                                 new SQLiteParameter("@bid",DbType.String),
+                                                 new SQLiteParameter("@sTime",DbType.Int32)
+                                         };
+            lastparams[0].Value = BatchId;
+            lastparams[1].Value = sTime;
+            var lastWeigtList = SQLiteHelper.ExcuteTempWeightList(lastsql, lastparams);
+
+            //提交上一次保存的数据
+            if (lastWeigtList.Any())
+            {
+                foreach (var lastWeigt in lastWeigtList)
+                {
+                    int lastSheepCount = lastWeigt.hookCount;
+                    string sql = "select hookId from hook where timeSpan>@sTime order by timeSpan limit @count";
+                    SQLiteParameter[] parameters = new SQLiteParameter[]{
+                                                 new SQLiteParameter("@sTime",DbType.Int32),
+                                                 new SQLiteParameter("@count",DbType.Int32)
+                                         };
+                    parameters[0].Value = sTime;
+                    parameters[1].Value = lastSheepCount;
+                    var hooks = SQLiteHelper.ExcuteHookList(sql, parameters);
+                    if (hooks.Any())
+                    {
+                        if (hooks.Count < lastSheepCount)
+                        {
+                            int diffCount = lastSheepCount - hooks.Count;
+                            var nowTime = DateTime.Now;
+                            for (int i = 0; i < diffCount; i++)
+                            {
+                                var tempTime = nowTime.AddSeconds(i);
+                                hooks.Add(tempTime.ToString("yyMMddHHmmssff"));
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        var nowTime = DateTime.Now;
+                        for (int i = 0; i < lastSheepCount; i++)
+                        {
+                            var tempTime = nowTime.AddSeconds(i);
+                            hooks.Add(tempTime.ToString("yyMMddHHmmssff"));
+                        }
+                    }
+
+                    decimal dweight = decimal.Parse(lastWeigt.weight);
+                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt.Id);
+
+                }
+            }
+        }
     }
 }
