@@ -28,13 +28,13 @@ namespace XmWeightForm.SystemManage
             {
                 using (var db = DapperDao.GetInstance())
                 {
-                    var qeury = db.Query<ParamsModel>("select top 1 factoryId, hookWeight from Params", null).FirstOrDefault();
+                    var qeury = db.Query<ParamsModel>("select top 1 factoryId, hooksWeight from Params", null).FirstOrDefault();
 
                     if (qeury != null)
                     {
                         facId = qeury.factoryId;
-                        txtWeight.Text = qeury.hookWeight.ToString();
-                        HookWeight = qeury.hookWeight;
+                        txtWeight.Text = qeury.hooksWeight.ToString();
+                        HookWeight = qeury.hooksWeight;
                     }
                 }
             }
@@ -62,11 +62,13 @@ namespace XmWeightForm.SystemManage
             try
             {
                 int refResult = 0;
+                //总毛重
                 decimal dweight = decimal.Parse(weight);
-
+                //单只毛重
+                decimal hookWeight = Math.Round(dweight / 4, 2);
                 using (var db = DapperDao.GetInstance())
                 {
-                    refResult = db.Execute("update Params set hookWeight=@dweight where factoryId=@facid", new { dweight = dweight, facid=facId });
+                    refResult = db.Execute("update Params set hookWeight=@hookWeight,hooksWeight=@dweight where factoryId=@facid", new { dweight = dweight, hookWeight = hookWeight, facid = facId });
                 }
 
 

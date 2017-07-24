@@ -26,7 +26,7 @@ namespace XmWeightForm.SystemManage
         {
             var factoryFrm = new FactoryInfoForm();
 
-            factoryFrm.ShowDialog();
+            factoryFrm.Show();
             if (factoryFrm.DialogResult == DialogResult.OK)
             {
                 InitData();
@@ -75,7 +75,7 @@ namespace XmWeightForm.SystemManage
 
             var factoryFrm = new FactoryInfoForm(id);
 
-            factoryFrm.ShowDialog();
+            factoryFrm.Show();
             if (factoryFrm.DialogResult == DialogResult.OK)
             {
                 InitData();

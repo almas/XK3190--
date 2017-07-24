@@ -55,6 +55,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnInsertWeight = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtmaoWeight = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnQupi = new System.Windows.Forms.Button();
             this.txtQupi = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -67,10 +70,12 @@
             this.IdNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SheepNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrossWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TareWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeightTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblWeight = new DevComponents.DotNetBar.LabelX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.lblWeightGridCount = new DevComponents.DotNetBar.LabelX();
@@ -79,6 +84,9 @@
             this.btnProductPriceItem = new DevComponents.DotNetBar.ButtonItem();
             this.btnGrossWeight = new DevComponents.DotNetBar.ButtonItem();
             this.btnReportItem = new DevComponents.DotNetBar.ButtonItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lblWeightStable = new DevComponents.DotNetBar.LabelX();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
@@ -92,9 +100,8 @@
             // 
             // mainGroup
             // 
-            this.mainGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.mainGroup.Controls.Add(this.txtPrice);
             this.mainGroup.Controls.Add(this.label9);
             this.mainGroup.Controls.Add(this.txtOriginalPlace);
@@ -286,9 +293,7 @@
             // 
             // txtInfo
             // 
-            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInfo.Location = new System.Drawing.Point(10, 234);
+            this.txtInfo.Location = new System.Drawing.Point(10, 247);
             this.txtInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.Size = new System.Drawing.Size(317, 130);
@@ -298,7 +303,7 @@
             // txtSheepWeight
             // 
             this.txtSheepWeight.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtSheepWeight.Location = new System.Drawing.Point(103, 65);
+            this.txtSheepWeight.Location = new System.Drawing.Point(103, 93);
             this.txtSheepWeight.Margin = new System.Windows.Forms.Padding(4);
             this.txtSheepWeight.Name = "txtSheepWeight";
             this.txtSheepWeight.Size = new System.Drawing.Size(139, 30);
@@ -309,7 +314,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(33, 70);
+            this.label1.Location = new System.Drawing.Point(33, 98);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 15);
@@ -320,7 +325,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(7, 32);
+            this.label2.Location = new System.Drawing.Point(7, 60);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
@@ -329,10 +334,9 @@
             // 
             // btnInsertWeight
             // 
-            this.btnInsertWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInsertWeight.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnInsertWeight.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnInsertWeight.Location = new System.Drawing.Point(30, 172);
+            this.btnInsertWeight.Location = new System.Drawing.Point(30, 183);
             this.btnInsertWeight.Name = "btnInsertWeight";
             this.btnInsertWeight.Size = new System.Drawing.Size(126, 55);
             this.btnInsertWeight.TabIndex = 16;
@@ -342,8 +346,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.txtmaoWeight);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnQupi);
             this.groupBox1.Controls.Add(this.txtQupi);
@@ -362,11 +370,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "称重信息";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Location = new System.Drawing.Point(258, 24);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 20);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "公斤";
+            // 
+            // txtmaoWeight
+            // 
+            this.txtmaoWeight.Location = new System.Drawing.Point(103, 22);
+            this.txtmaoWeight.Name = "txtmaoWeight";
+            this.txtmaoWeight.ReadOnly = true;
+            this.txtmaoWeight.Size = new System.Drawing.Size(139, 24);
+            this.txtmaoWeight.TabIndex = 24;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(33, 31);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "皮重:";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(258, 113);
+            this.label10.Location = new System.Drawing.Point(258, 136);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 20);
             this.label10.TabIndex = 22;
@@ -374,10 +409,9 @@
             // 
             // btnQupi
             // 
-            this.btnQupi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQupi.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnQupi.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQupi.Location = new System.Drawing.Point(181, 172);
+            this.btnQupi.Location = new System.Drawing.Point(181, 183);
             this.btnQupi.Name = "btnQupi";
             this.btnQupi.Size = new System.Drawing.Size(126, 55);
             this.btnQupi.TabIndex = 21;
@@ -393,7 +427,7 @@
             this.txtQupi.Border.Class = "TextBoxBorder";
             this.txtQupi.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtQupi.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtQupi.Location = new System.Drawing.Point(103, 111);
+            this.txtQupi.Location = new System.Drawing.Point(103, 134);
             this.txtQupi.Name = "txtQupi";
             this.txtQupi.PreventEnterBeep = true;
             this.txtQupi.ReadOnly = true;
@@ -409,7 +443,7 @@
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelX1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelX1.Location = new System.Drawing.Point(21, 114);
+            this.labelX1.Location = new System.Drawing.Point(21, 137);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(68, 23);
             this.labelX1.TabIndex = 19;
@@ -425,7 +459,7 @@
             this.txtSheepNum.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.txtSheepNum.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSheepNum.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left;
-            this.txtSheepNum.Location = new System.Drawing.Point(103, 26);
+            this.txtSheepNum.Location = new System.Drawing.Point(103, 54);
             this.txtSheepNum.MaxValue = 4;
             this.txtSheepNum.MinValue = 1;
             this.txtSheepNum.Name = "txtSheepNum";
@@ -438,7 +472,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(258, 68);
+            this.label11.Location = new System.Drawing.Point(258, 96);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(49, 20);
             this.label11.TabIndex = 17;
@@ -468,10 +502,12 @@
             this.IdNum,
             this.ProductName,
             this.Price,
+            this.SheepNum,
             this.GrossWeight,
             this.TareWeight,
             this.NetWeight,
-            this.TotalPrice});
+            this.TotalPrice,
+            this.WeightTime});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -492,7 +528,7 @@
             this.SerialNum.DataPropertyName = "SerialNum";
             this.SerialNum.HeaderText = "编号";
             this.SerialNum.Name = "SerialNum";
-            this.SerialNum.Width = 150;
+            this.SerialNum.Width = 80;
             // 
             // IdNum
             // 
@@ -513,6 +549,12 @@
             this.Price.DataPropertyName = "Price";
             this.Price.HeaderText = "单价";
             this.Price.Name = "Price";
+            // 
+            // SheepNum
+            // 
+            this.SheepNum.DataPropertyName = "SheepNum";
+            this.SheepNum.HeaderText = "数量";
+            this.SheepNum.Name = "SheepNum";
             // 
             // GrossWeight
             // 
@@ -539,6 +581,12 @@
             this.TotalPrice.Name = "TotalPrice";
             this.TotalPrice.Width = 200;
             // 
+            // WeightTime
+            // 
+            this.WeightTime.DataPropertyName = "WeightTime";
+            this.WeightTime.HeaderText = "时间";
+            this.WeightTime.Name = "WeightTime";
+            // 
             // lblWeight
             // 
             this.lblWeight.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -550,9 +598,9 @@
             this.lblWeight.Font = new System.Drawing.Font("宋体", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblWeight.FontBold = true;
             this.lblWeight.ForeColor = System.Drawing.Color.Crimson;
-            this.lblWeight.Location = new System.Drawing.Point(333, 28);
+            this.lblWeight.Location = new System.Drawing.Point(318, 28);
             this.lblWeight.Name = "lblWeight";
-            this.lblWeight.Size = new System.Drawing.Size(307, 74);
+            this.lblWeight.Size = new System.Drawing.Size(320, 74);
             this.lblWeight.TabIndex = 31;
             this.lblWeight.Text = "0.0";
             this.lblWeight.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -561,12 +609,13 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(95, 70);
+            this.buttonX1.Location = new System.Drawing.Point(6, 28);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 32;
             this.buttonX1.Text = "buttonX1";
+            this.buttonX1.Visible = false;
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click_1);
             // 
             // lblWeightGridCount
@@ -629,11 +678,49 @@
             this.btnReportItem.Text = "报表统计";
             this.btnReportItem.Click += new System.EventHandler(this.btnReportItem_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(87, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(29, 57);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(89, 23);
+            this.labelX2.TabIndex = 37;
+            this.labelX2.Text = "稳定信号：";
+            // 
+            // lblWeightStable
+            // 
+            this.lblWeightStable.BackColor = System.Drawing.Color.Crimson;
+            // 
+            // 
+            // 
+            this.lblWeightStable.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeightStable.Location = new System.Drawing.Point(117, 57);
+            this.lblWeightStable.Name = "lblWeightStable";
+            this.lblWeightStable.Size = new System.Drawing.Size(34, 23);
+            this.lblWeightStable.TabIndex = 38;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 730);
+            this.Controls.Add(this.lblWeightStable);
+            this.Controls.Add(this.labelX2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.bar1);
             this.Controls.Add(this.lblWeightGridCount);
             this.Controls.Add(this.buttonX1);
@@ -695,14 +782,6 @@
         private DevComponents.DotNetBar.LabelX lblWeight;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.LabelX lblWeightGridCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GrossWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TareWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NetWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.Button btnQupi;
         private DevComponents.DotNetBar.Controls.TextBoxX txtQupi;
         private DevComponents.DotNetBar.LabelX labelX1;
@@ -712,6 +791,22 @@
         private DevComponents.DotNetBar.ButtonItem btnSystem;
         private DevComponents.DotNetBar.ButtonItem btnProductPriceItem;
         private DevComponents.DotNetBar.ButtonItem btnGrossWeight;
+        private System.Windows.Forms.Button button1;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX lblWeightStable;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtmaoWeight;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SheepNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GrossWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TareWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NetWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WeightTime;
     }
 }
 

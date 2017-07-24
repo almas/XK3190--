@@ -68,7 +68,6 @@ namespace UploadTraceData
                     using (var db = SugarDao.GetInstance())
                     {
                         url = db.Queryable<Params>()
-                                .Where(s => s.factoryId == "1001")
                                 .Select(s => s.serverUrl)
                                 .SingleOrDefault();
                     }
@@ -83,20 +82,20 @@ namespace UploadTraceData
                 }
                 //LogNHelper.Info(url);
                // string url = ConfigurationManager.AppSettings["serverIp"];
-                //LogNHelper.Info("现在url:" + url);
-
+                LogNHelper.Info("现在url:" + url);
+                string testUrl = url + "/account";
                 RestClient _apiClient = new RestClient();
-                _apiClient.BaseUrl = new Uri(url);
+                _apiClient.BaseUrl = new Uri(testUrl);
                 var testReq = new RestRequest();
                 IRestResponse response = _apiClient.Execute(testReq);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var uploadApp = new UploadAppService(url);
-
-                    uploadApp.UploadBatchs();
+                    
                     uploadApp.UploadHeadsoff();
-                    uploadApp.UploadPostDeAcid();
+                    uploadApp.UploadBatchs();
                     uploadApp.UploadPreDeAcid();
+                    uploadApp.UploadPostDeAcid();
                     uploadApp.UploadWeighings();
                     uploadApp.UploadCuttings();
                     LogNHelper.Info("上传完成");

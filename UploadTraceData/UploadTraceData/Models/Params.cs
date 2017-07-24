@@ -20,22 +20,7 @@ namespace UploadTraceData.Models
         public string factoryName { get; set; }
         /// <summary>
         /// autoWeighing1
-        /// </summary>		
-
-        public bool autoWeighing1 { get; set; }
-        /// <summary>
-        /// autoWeighing2
-        /// </summary>		
-
-        public bool autoWeighing2 { get; set; }
-        /// <summary>
-        /// autoWeighing3
-        /// </summary>		
-
-        public bool autoWeighing3 { get; set; }
-        /// <summary>
-        /// hookWeight
-        /// </summary>		
+        /// </summary>			
 
         public decimal hookWeight { get; set; }
         /// <summary>
@@ -44,11 +29,6 @@ namespace UploadTraceData.Models
 
         public decimal meatRate { get; set; }
         /// <summary>
-        /// extraRate
-        /// </summary>		
-
-        public decimal extraRate { get; set; }
-        /// <summary>
         /// traceURL
         /// </summary>		
 
@@ -56,5 +36,6 @@ namespace UploadTraceData.Models
 
         public string serverUrl { get; set; }
 
+        public decimal bonedRate { get; set; }
     }
 }

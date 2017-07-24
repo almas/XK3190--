@@ -44,11 +44,11 @@ namespace XmWeightForm.SystemManage
             {
                 txtFactoryName.Text = model.factoryName;
                 txtFactoryNum.Text = model.factoryId;
-                txtHook.Text = model.hookWeight.ToString();
+                txtHook.Text = model.hooksWeight.ToString();
                 txtmeatRate.Text = model.meatRate.ToString();
-                txtBone.Text = model.bonedRate.ToString();
                 txtTraceUrl.Text = model.traceURL;
                 txtServerIp.Text = model.serverUrl;
+                txtBone.Text = model.bonedRate.ToString();
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -95,16 +95,26 @@ namespace XmWeightForm.SystemManage
                 MessageBox.Show("服务器地址不能为空");
                 return;
             }
+            if (!ValidaterHelper.IsNumberOrFloat(hook))
+            {
+                MessageBox.Show("毛重格式不正确");
+                return;
+
+            }
+            //总毛重
+            decimal dweight = decimal.Parse(hook);
+            //单只毛重
+            decimal hookWeight = Math.Round(dweight / 4, 2);
             try
             {
                 var affectRow = 0;
                 if (string.IsNullOrEmpty(DataId))
                 {
                     string sql =
-                        @"insert into Params values(@factoryId,@factoryName,@meatRate,@hookWeight,@traceURL,@serverUrl,@bonedRate)";
+                        @"insert into Params values(@factoryId,@factoryName,@meatRate,@hookWeight,@traceURL,@serverUrl,@bonedRate,@hooksWeight)";
                     using (var db = DapperDao.GetInstance())
                     {
-                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, hookWeight = hook, traceURL = traceUrl, serverUrl = serverIp, bonedRate = boneRated });
+                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, hookWeight = hookWeight, traceURL = traceUrl, serverUrl = serverIp, bonedRate = boneRated, hooksWeight = dweight });
                     }
 
 
@@ -113,11 +123,11 @@ namespace XmWeightForm.SystemManage
                 {
                     string sql =
                         @"update Params set factoryId =@factoryId, factoryName = @factoryName, meatRate = @meatRate,
-                      hookWeight =@hookWeight,traceURL=@traceUrl,serverUrl=@serverIp,bonedRate=@bonedRate where factoryId=@id";
+                      hookWeight =@hookWeight,traceURL=@traceUrl,serverUrl=@serverIp,bonedRate=@bonedRate,hooksWeight=@hooksWeight where factoryId=@id";
 
                     using (var db = DapperDao.GetInstance())
                     {
-                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, hookWeight = hook, traceUrl = traceUrl,serverIp=serverIp,bonedRate=boneRated, id = DataId });
+                        affectRow = db.Execute(sql, new { factoryId = factoryNum, factoryName = factoryName, meatRate = meatRate, hookWeight = hookWeight, traceUrl = traceUrl, serverIp = serverIp, bonedRate = boneRated,hooksWeight = dweight, id = DataId });
                     }
                 }
 

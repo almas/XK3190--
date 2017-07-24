@@ -23,10 +23,10 @@ namespace XmWeightForm
         int _Width = 600;
         int _Height = 420;
         //pager
-        private int _TopMargin = 50;
-        private int _LeftMargin = 60;
-        private int _RightMargin = 50;
-        private int _BottomMargin = 60;
+        private int _TopMargin = 10;
+        private int _LeftMargin = 10;
+        private int _RightMargin = 10;
+        private int _BottomMargin = 10;
         private Font _TitleFont = new Font("宋体", 18, FontStyle.Bold);
         private Font _ColumnsHeaderFont = new Font("宋体", 10, FontStyle.Bold);
         private Font _ContentFont = new Font("宋体", 7, FontStyle.Regular);
@@ -340,7 +340,7 @@ namespace XmWeightForm
                 DrawTitle(e);
                 //DrawImage(e);
                 DrawTableHeader(e, serialNumWidth, colWidth);
-                DrawBottom(e);
+                //DrawBottom(e);
                 DrawTableAndSerialNumAndData(e, serialNumWidth, colWidth);
                 if (_PageCount > 1)
                     e.HasMorePages = true;
@@ -350,7 +350,7 @@ namespace XmWeightForm
             {
                 DrawTableHeader(e, serialNumWidth, colWidth);
                 DrawTableAndSerialNumAndData(e, serialNumWidth, colWidth);
-                DrawBottom(e);
+                //DrawBottom(e);
                 e.HasMorePages = false;
                 e.Cancel = true;
             }
@@ -358,7 +358,7 @@ namespace XmWeightForm
             {
                 DrawTableHeader(e, serialNumWidth, colWidth);
                 DrawTableAndSerialNumAndData(e, serialNumWidth, colWidth);
-                DrawBottom(e);
+                //DrawBottom(e);
                 e.HasMorePages = true;
 
             }

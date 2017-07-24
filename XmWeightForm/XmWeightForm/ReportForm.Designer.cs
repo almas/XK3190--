@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
             this.endTime = new CCWin.SkinControl.SkinDateTimePicker();
             this.startTime = new CCWin.SkinControl.SkinDateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,6 +41,18 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.groupReport = new System.Windows.Forms.GroupBox();
+            this.gridBatch = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.batchId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hostName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weighingBeginTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPrint = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.axGRDisplayViewer1 = new Axgregn6Lib.AxGRDisplayViewer();
+            this.lblCount = new DevComponents.DotNetBar.LabelX();
+            this.groupReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridBatch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGRDisplayViewer1)).BeginInit();
             this.SuspendLayout();
             // 
             // endTime
@@ -154,14 +168,103 @@
             this.groupReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupReport.Location = new System.Drawing.Point(7, 98);
+            this.groupReport.Controls.Add(this.lblCount);
+            this.groupReport.Controls.Add(this.gridBatch);
+            this.groupReport.Controls.Add(this.axGRDisplayViewer1);
+            this.groupReport.Location = new System.Drawing.Point(0, 98);
             this.groupReport.Margin = new System.Windows.Forms.Padding(4);
             this.groupReport.Name = "groupReport";
             this.groupReport.Padding = new System.Windows.Forms.Padding(4);
-            this.groupReport.Size = new System.Drawing.Size(944, 453);
+            this.groupReport.Size = new System.Drawing.Size(961, 473);
             this.groupReport.TabIndex = 13;
             this.groupReport.TabStop = false;
             this.groupReport.Text = "报表统计";
+            // 
+            // gridBatch
+            // 
+            this.gridBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridBatch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.batchId,
+            this.hostName,
+            this.PIN,
+            this.Count,
+            this.weighingBeginTime,
+            this.btnPrint});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridBatch.DefaultCellStyle = dataGridViewCellStyle1;
+            this.gridBatch.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.gridBatch.Location = new System.Drawing.Point(7, 21);
+            this.gridBatch.Name = "gridBatch";
+            this.gridBatch.RowTemplate.Height = 23;
+            this.gridBatch.Size = new System.Drawing.Size(947, 386);
+            this.gridBatch.TabIndex = 1;
+            this.gridBatch.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridBatch_CellContentClick);
+            // 
+            // batchId
+            // 
+            this.batchId.DataPropertyName = "batchId";
+            this.batchId.HeaderText = "批次号";
+            this.batchId.Name = "batchId";
+            // 
+            // hostName
+            // 
+            this.hostName.DataPropertyName = "hostName";
+            this.hostName.HeaderText = "姓名";
+            this.hostName.Name = "hostName";
+            this.hostName.Width = 200;
+            // 
+            // PIN
+            // 
+            this.PIN.DataPropertyName = "PIN";
+            this.PIN.HeaderText = "身份证";
+            this.PIN.Name = "PIN";
+            this.PIN.Width = 200;
+            // 
+            // Count
+            // 
+            this.Count.DataPropertyName = "Count";
+            this.Count.HeaderText = "数量";
+            this.Count.Name = "Count";
+            // 
+            // weighingBeginTime
+            // 
+            this.weighingBeginTime.DataPropertyName = "weighingBeginTime";
+            this.weighingBeginTime.HeaderText = "称重时间";
+            this.weighingBeginTime.Name = "weighingBeginTime";
+            this.weighingBeginTime.Width = 150;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.HeaderText = "操作";
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Text = "打印";
+            this.btnPrint.UseColumnTextForButtonValue = true;
+            // 
+            // axGRDisplayViewer1
+            // 
+            this.axGRDisplayViewer1.Enabled = true;
+            this.axGRDisplayViewer1.Location = new System.Drawing.Point(81, 413);
+            this.axGRDisplayViewer1.Name = "axGRDisplayViewer1";
+            this.axGRDisplayViewer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axGRDisplayViewer1.OcxState")));
+            this.axGRDisplayViewer1.Size = new System.Drawing.Size(192, 192);
+            this.axGRDisplayViewer1.TabIndex = 0;
+            // 
+            // lblCount
+            // 
+            // 
+            // 
+            // 
+            this.lblCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblCount.Location = new System.Drawing.Point(704, 413);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(238, 23);
+            this.lblCount.TabIndex = 2;
             // 
             // ReportForm
             // 
@@ -182,6 +285,10 @@
             this.DoubleBuffered = true;
             this.Name = "ReportForm";
             this.Text = "报表统计";
+            this.Load += new System.EventHandler(this.ReportForm_Load);
+            this.groupReport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridBatch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axGRDisplayViewer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +307,14 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.GroupBox groupReport;
+        private Axgregn6Lib.AxGRDisplayViewer axGRDisplayViewer1;
+        private DevComponents.DotNetBar.Controls.DataGridViewX gridBatch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn batchId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hostName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+        private System.Windows.Forms.DataGridViewTextBoxColumn weighingBeginTime;
+        private System.Windows.Forms.DataGridViewButtonColumn btnPrint;
+        private DevComponents.DotNetBar.LabelX lblCount;
     }
 }

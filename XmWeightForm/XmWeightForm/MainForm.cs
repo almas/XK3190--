@@ -75,7 +75,7 @@ namespace XmWeightForm
                     if (hookCount > 0)
                     {
                         string hook = _hookQueue.Dequeue(); //将数据出队
-                        AppNetInfo(hook);
+                        //AppNetInfo(hook);
                         SaveHookData(hook);
                     }
 
@@ -116,6 +116,12 @@ namespace XmWeightForm
         {
             try
             {
+                if (IsClosePort)
+                {
+                    weightSerialPort.DiscardInBuffer();
+                    return;
+                }
+
                 if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
                 {
                     string strtemp = "";
@@ -141,6 +147,7 @@ namespace XmWeightForm
                     string weightStr = GetWeightOfPort(strtemp);
                     UpdateWeightText(weightStr);
                     UpdateLblWeightText(weightStr);
+                    WeightDataScale(weightStr);
                 }
 
 
@@ -275,7 +282,7 @@ namespace XmWeightForm
         {
             var weightCom = ConfigurationManager.AppSettings["weightCom"];
             var hookCom = ConfigurationManager.AppSettings["hookCom"];
-            var beepCom = ConfigurationManager.AppSettings["beepCom"];
+           // var beepCom = ConfigurationManager.AppSettings["beepCom"];
             var earCom = ConfigurationManager.AppSettings["earCom"];
             try
             {
@@ -331,26 +338,29 @@ namespace XmWeightForm
                 AppNetInfo(ex.Message);
             }
             //蜂鸣器
-            BeepPort.PortName = beepCom;
-            BeepPort.BaudRate = 9600;
-            BeepPort.DataBits = 8;
-            BeepPort.StopBits = StopBits.One;
-            BeepPort.Parity = Parity.None;
-            try
-            {
-                BeepPort.Open();
-            }
-            catch (Exception ex)
-            {
-                AppNetInfo(ex.Message);
-            }
+            //BeepPort.PortName = beepCom;
+            //BeepPort.BaudRate = 9600;
+            //BeepPort.DataBits = 8;
+            //BeepPort.StopBits = StopBits.One;
+            //BeepPort.Parity = Parity.None;
+            //try
+            //{
+            //    BeepPort.Open();
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppNetInfo(ex.Message);
+            //}
             InitDataDealQueue();
         }
         /// <summary>
         /// 关闭串口
         /// </summary>
+        private bool IsClosePort = false;
         private void CloseSerialPort()
         {
+            IsClosePort = true;
+
             //关闭
             this.Cursor = Cursors.WaitCursor;
             try
@@ -377,11 +387,11 @@ namespace XmWeightForm
 
                 }
 
-                //蜂鸣器
-                if (BeepPort.IsOpen)
-                {
-                    BeepPort.Close();
-                }
+                ////蜂鸣器
+                //if (BeepPort.IsOpen)
+                //{
+                //    BeepPort.Close();
+                //}
 
                 //AppNetInfo("com已关闭");
             }
@@ -410,6 +420,11 @@ namespace XmWeightForm
         /// <param name="e"></param>
         private void btnInsertWeight_Click(object sender, EventArgs e)
         {
+            if (WeghtState == 1)
+            {
+                MessageBox.Show("请先输入牧户信息");
+                return;
+            }
             var sheepWeigth = txtSheepWeight.Text.Trim();
             var sheepCount = txtSheepNum.Text.Trim();
             if (!ValidaterHelper.IsInt(sheepCount))
@@ -488,7 +503,7 @@ namespace XmWeightForm
             }
 
 
-
+            UpdateWeightStableSingle(false);
         }
 
         private void InsertWeightData(List<string> hooks, decimal weights, int count)
@@ -745,7 +760,7 @@ namespace XmWeightForm
         }
 
         /// <summary>
-        /// 保存勾标 20分钟内重复的不插入数据库
+        /// 保存勾标 60分钟内重复的不插入数据库
         /// </summary>
         /// <param name="hook"></param>
         private void SaveHookData(string hook)
@@ -754,7 +769,7 @@ namespace XmWeightForm
             {
                 DateTime nowtime = DateTime.Now;
                 int intTime = UnixTimSpanHelper.ConvertDateTimeToTimeSpan(nowtime);
-                int timeRange = intTime - 20 * 60;
+                int timeRange = intTime - 30 * 60;
                 var querysql = "select count(0) from hook where hookId=@hook and timeSpan>=@timeRange";
                 SQLiteParameter[] parameters = new SQLiteParameter[]{
                                                  new SQLiteParameter("@hook",DbType.String),
@@ -825,25 +840,33 @@ namespace XmWeightForm
 
             try
             {
-                string SerialNum = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                string weightyime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string ProductName = animalSel.Text;
                 //string price = txtPrice.Text;
                 string name = txtName.Text.Trim();
                 string idcardNum = txtIdNumber.Text.Trim();
                 string idNum = name+ "-" + idcardNum;
-                decimal TareWeight = hookCount * _hookWeight;
+                decimal TareWeight = _hookWeight;
                 decimal NetWeight = GrossWeight - TareWeight;
                 decimal totalPrice = price * NetWeight;
+                int hooksCount = hooks.Count;
+
+                _WeightGridGrossWeight += GrossWeight;
+                _WeightGridTareWeight += TareWeight;
+                _WeightGridNetWeight += NetWeight;
+                _WeightGridTotalPrice += totalPrice;
+                _WeightGridCount++;
                 this.datagridWeight.Rows.Insert(0, 1);
-                this.datagridWeight.Rows[0].Cells[0].Value = SerialNum;
+                this.datagridWeight.Rows[0].Cells[0].Value = _WeightGridCount;
                 this.datagridWeight.Rows[0].Cells[1].Value = idNum;
                 this.datagridWeight.Rows[0].Cells[2].Value = ProductName;
                 this.datagridWeight.Rows[0].Cells[3].Value = price;
-                this.datagridWeight.Rows[0].Cells[4].Value = GrossWeight;
-                this.datagridWeight.Rows[0].Cells[5].Value = TareWeight;
-                this.datagridWeight.Rows[0].Cells[6].Value = NetWeight;
-                this.datagridWeight.Rows[0].Cells[7].Value = totalPrice;
-
+                this.datagridWeight.Rows[0].Cells[4].Value = hooksCount;
+                this.datagridWeight.Rows[0].Cells[5].Value = GrossWeight;
+                this.datagridWeight.Rows[0].Cells[6].Value = TareWeight;
+                this.datagridWeight.Rows[0].Cells[7].Value = NetWeight;
+                this.datagridWeight.Rows[0].Cells[8].Value = totalPrice;
+                this.datagridWeight.Rows[0].Cells[9].Value = weightyime;
                 if (hooks.Any())
                 {
                     string sql = "delete from hook where hookId in(";
@@ -866,33 +889,29 @@ namespace XmWeightForm
 
                     SQLiteHelper.ExecuteNonQuery(sql, null);
 
-                    using (var db = DapperDao.GetInstance())
-                    {
-                        string insertSql = "insert into WeightReport values(@SerialNum,@Name,@idNum,@ProductName,@price,@GrossWeight,@TareWeight,@NetWeight,@totalPrice,@time,@count)";
+                    //using (var db = DapperDao.GetInstance())
+                    //{
+                    //    string insertSql = "insert into WeightReport values(@SerialNum,@Name,@idNum,@ProductName,@price,@GrossWeight,@TareWeight,@NetWeight,@totalPrice,@time,@count)";
 
-                        db.Execute(insertSql, new
-                        {
-                            SerialNum = SerialNum,
-                            Name=name,
-                            idNum = idcardNum,
-                            ProductName = ProductName,
-                            price = price,
-                            GrossWeight = GrossWeight,
-                            TareWeight = TareWeight,
-                            NetWeight = NetWeight,
-                            totalPrice = totalPrice,
-                            time=DateTime.Now,
-                            count = hookCount
-                        });
-                    }
+                    //    db.Execute(insertSql, new
+                    //    {
+                    //        SerialNum = SerialNum,
+                    //        Name=name,
+                    //        idNum = idcardNum,
+                    //        ProductName = ProductName,
+                    //        price = price,
+                    //        GrossWeight = GrossWeight,
+                    //        TareWeight = TareWeight,
+                    //        NetWeight = NetWeight,
+                    //        totalPrice = totalPrice,
+                    //        time=DateTime.Now,
+                    //        count = hookCount
+                    //    });
+                    //}
                 }
 
 
-                _WeightGridGrossWeight +=GrossWeight;
-                _WeightGridTareWeight +=TareWeight;
-                _WeightGridNetWeight +=NetWeight;
-                _WeightGridTotalPrice +=totalPrice;
-                _WeightGridCount++;
+               
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat("次数：{0},总毛重：{1},总皮重：{2},总净重：{3},总价格：{4}",
                     _WeightGridCount, _WeightGridGrossWeight, _WeightGridTareWeight, _WeightGridNetWeight, _WeightGridTotalPrice);
@@ -907,6 +926,40 @@ namespace XmWeightForm
             }
 
 
+        }
+
+        /// <summary>
+        /// 清除称重显示表格和提示信息
+        /// </summary>
+        /// <param name="cleargrid">true-清除所有，flase-只清除变量</param>
+        private void ClearWeightGrid(bool cleargrid)
+        {
+            try
+            {
+                if (cleargrid)
+                {
+                    lblWeightGridCount.Text = "";
+                    _WeightGridCount = 0;
+                    _WeightGridGrossWeight = 0;
+                    _WeightGridTareWeight = 0;
+                    _WeightGridNetWeight = 0;
+                    _WeightGridTotalPrice = 0;
+                    this.datagridWeight.Rows.Clear();
+                }
+                else
+                {
+                    _WeightGridCount = 0;
+                    _WeightGridGrossWeight = 0;
+                    _WeightGridTareWeight = 0;
+                    _WeightGridNetWeight = 0;
+                    _WeightGridTotalPrice = 0;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+            }
         }
         #region 信息录入
         /// <summary>
@@ -928,7 +981,7 @@ namespace XmWeightForm
                     string multisql = @"select top 1 * from Batches where flag=0;
                                       select * from AnimalTypes;
                                       select distinct PIN,hostName from Batches;
-                                      select top 1 hookWeight from Params;";
+                                      select top 1 hooksWeight from Params;";
                     var gridreader = db.QueryMultiple(multisql, null, CommandType.Text);
                     data = gridreader.Read<BatchInput>().FirstOrDefault();
                     animalPriceList = gridreader.Read<AnimalTypes>().ToList();
@@ -940,6 +993,9 @@ namespace XmWeightForm
             {
                 log4netHelper.Exception(ex);
             }
+
+            //系统毛重
+            txtmaoWeight.Text = _hookWeight.ToString();
             //更新货物价格
             UpdatePriceList();
             //送宰人自动选择
@@ -954,7 +1010,7 @@ namespace XmWeightForm
             {
                 SheepOriginalList.Insert(0, "锡林郭勒盟");
             }
-
+           
             txtOriginalPlace.DataSource = SheepOriginalList;
 
             if (data != null && !string.IsNullOrEmpty(data.batchId))
@@ -1001,11 +1057,12 @@ namespace XmWeightForm
                 return;
             }
 
-            if (!ValidaterHelper.IsIDCard(idNum))
+            if (!string.IsNullOrEmpty(idNum))
             {
-                MessageBox.Show("身份证号码有误");
+                if(!ValidaterHelper.IsIDCard(idNum)){
+                     MessageBox.Show("身份证号码有误");
                 return;
-
+                }
             }
 
             if (!string.IsNullOrEmpty(userTel))
@@ -1055,9 +1112,12 @@ namespace XmWeightForm
                 {
                     GetCurrentTraceAnimal();
                 }
-                SwitchButtonStatus(0);
 
+                
+                ClearWeightGrid(true);
+                SwitchButtonStatus(0);
                 //InitDataDealQueue();
+
             }
             catch (Exception ex)
             {
@@ -1103,6 +1163,8 @@ namespace XmWeightForm
                         InitHookAndWeightData();
                         SwitchButtonStatus(1);
                         ClearNetInfo();
+
+                        ClearWeightGrid(false);
                     }
                 }
 
@@ -1275,7 +1337,7 @@ namespace XmWeightForm
         private void buttonX1_Click_1(object sender, EventArgs e)
         {
             var list = new List<string>();
-            UpdateWeightGrid(20M, 61.2M, 4, list);
+            UpdateWeightGrid(20M, 61.2M, 2, list);
         }
 
         private void btnQupi_Click(object sender, EventArgs e)
@@ -1311,7 +1373,7 @@ namespace XmWeightForm
                 return;
             }
             int hookCount = int.Parse(sheepCount);
-            decimal TareWeight = hookCount * _hookWeight;
+            decimal TareWeight =_hookWeight;
             decimal NetWeight = weightDecimal - TareWeight;
             txtQupi.Text = NetWeight.ToString();
         }
@@ -1341,6 +1403,7 @@ namespace XmWeightForm
            if (weightForm.DialogResult == DialogResult.OK)
            {
                _hookWeight = weightForm.HookWeight;
+               txtmaoWeight.Text = _hookWeight.ToString();
            }
         }
 
@@ -1368,6 +1431,170 @@ namespace XmWeightForm
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var test = new rvtestForm();
+            test.Show();
+        }
+
+
+        #region 称重计算参数
+        /// <summary>
+        /// 连续相同重量次数
+        /// </summary>
+        private int _sameCount = 10;
+        /// <summary>
+        /// 误差范围
+        /// </summary>
+        private decimal _errorLimit = 0.1M;
+        /// <summary>
+        /// 计数
+        /// </summary>
+        private int _readCount = 0;
+        /// <summary>
+        /// 上一次读数
+        /// </summary>
+        private decimal _lastWeight = Decimal.Zero;
+        /// <summary>
+        /// 最小重量起
+        /// </summary>
+        private decimal _minWeight = 2.2M;
+
+        /// <summary>
+        /// 重量队列，先进先出
+        /// </summary>
+        private Queue<decimal> _dataQueue = new Queue<decimal>();
+
+        /// <summary>
+        /// 是否有新的重物
+        /// </summary>
+        private bool _isChanged = true;
+        /// <summary>
+        /// 最小起秤重量
+        /// </summary>
+        public decimal MinWeight
+        {
+            get
+            { return _minWeight; }
+            set
+            { _minWeight = value; }
+        }
+        /// <summary>
+        /// 频率（连续相同重量次数,5--10）
+        /// </summary>
+        public int SameCount
+        {
+            get
+            { return _sameCount; }
+            set
+            {
+                _sameCount = value;
+            }
+        }
+        /// <summary>
+        /// 误差范围（设置为重物的最小重量）
+        /// </summary>
+        public decimal ErrorLimit
+        {
+            get
+            {
+                return _errorLimit;
+            }
+            set
+            {
+                _errorLimit = value;
+            }
+        }
+        /// <summary>
+        /// 接收到的重量队列
+        /// </summary>
+        public Queue<decimal> WeightQueue
+        {
+            get { return _dataQueue; }
+        }
+        private void WeightDataScale(string weight)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(weight))
+                {
+                    return;
+                }
+                decimal newWeight = 0.0M;
+                decimal.TryParse(weight, out newWeight);
+
+
+                //传进来的重量
+                // decimal weight = tempweight;
+                if (newWeight <= _minWeight)
+                {
+                    _readCount = 0;
+                    _isChanged = true;
+                    return;
+                }
+
+                if (Math.Abs(newWeight - _lastWeight) <= _errorLimit)
+                {
+                    _readCount++;
+                }
+
+                _lastWeight = newWeight;
+                if (_readCount >= _sameCount && _isChanged)
+                {
+                    if (newWeight >= _minWeight)
+                    {
+                        _readCount = 0;
+                        _lastWeight = newWeight;
+                        _isChanged = false;
+                        //更新信号灯状态
+                        UpdateWeightStableSingle(true);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
+                //outWeight = 0.000M;
+            }
+
+        }
+
+
+        public void UpdateWeightStableSingle(bool status)
+        {
+
+            if (lblWeightStable.InvokeRequired)
+            {
+                Action<bool> actionDelegate = (x) =>
+                {
+                    if (status) {
+                        lblWeightStable.BackColor = Color.Lime;
+                    }
+                    else
+                    {
+                        lblWeightStable.BackColor = Color.Crimson;
+                    }
+                    
+                   // txtSheepWeight.Text = weight;
+                };
+
+                lblWeightStable.Invoke(actionDelegate, status);
+            }
+            else
+            {
+               // txtSheepWeight.Text = weight;
+                if (status)
+                {
+                    lblWeightStable.BackColor = Color.Lime;
+                }
+                else
+                {
+                    lblWeightStable.BackColor = Color.Crimson;
+                }
+            }
+        }
+        #endregion
 
     }
 }

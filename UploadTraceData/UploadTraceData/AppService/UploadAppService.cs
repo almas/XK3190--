@@ -11,6 +11,7 @@ using UploadTraceData.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using SqlSugar;
+using System.Threading;
 
 
 namespace UploadTraceData.AppService
@@ -21,7 +22,7 @@ namespace UploadTraceData.AppService
         public RestClient _apiClient = new RestClient();
         private string baseUrl = "";
         public int UploadPerSize = 100;
-        public int maxReqSize = 2;
+        public int maxReqSize = 50;
         public UploadAppService()
         {
             //baseUrl =serverIp;
@@ -46,7 +47,7 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadBatchs", Method.POST);
+
                 using (var db = SugarDao.GetInstance())
                 {
                     do
@@ -56,8 +57,9 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-                        request.Parameters.Clear();
-                        var batchs = db.Queryable<Batches>().Where(s => s.upload == false&&s.flag==true).OrderBy(s => s.yearNum).Take(UploadPerSize).ToList();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadBatchs", Method.POST);
+                        //request.Parameters.Clear();
+                        var batchs = db.Queryable<Batches>().Where(s => s.upload == false && s.flag == true).OrderBy(s => s.yearNum).Take(UploadPerSize).ToList();
                         if (batchs.Any())
                         {
                             if (batchs.Count < UploadPerSize)
@@ -82,6 +84,7 @@ namespace UploadTraceData.AppService
                         {
                             flag = false;
                         }
+                        Thread.Sleep(50);
                     } while (flag);
 
                 }
@@ -103,7 +106,7 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadHeadsoff", Method.POST);
+
                 using (var db = SugarDao.GetInstance())
                 {
                     do
@@ -113,7 +116,8 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-                        request.Parameters.Clear();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadHeadsoff", Method.POST);
+                        //request.Parameters.Clear();
                         var headsOff = db.Queryable<Headsoff>().Where(s => s.uploaded == false).OrderBy(s => s.attachTime).Take(UploadPerSize).ToList();
                         if (headsOff.Any())
                         {
@@ -141,6 +145,7 @@ namespace UploadTraceData.AppService
                         }
 
                         reqTime++;
+                        Thread.Sleep(50);
                     } while (flag);
 
                 }
@@ -160,9 +165,9 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadWeighings", Method.POST);
                 using (var db = SugarDao.GetInstance())
                 {
+
                     do
                     {
                         //本次请求超过最大请求次数停止请求
@@ -170,7 +175,9 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-                        request.Parameters.Clear();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadWeighings", Method.POST);
+                        //request.Parameters.Clear();
+
                         var weightings = db.Queryable<Weighings>().Where(s => s.uploaded == false).OrderBy(s => s.weighingTime).Take(UploadPerSize).ToList();
                         if (weightings.Any())
                         {
@@ -210,8 +217,8 @@ namespace UploadTraceData.AppService
                         }
 
                         reqTime++;
+                        Thread.Sleep(50);
                     } while (flag);
-
                 }
             }
             catch (Exception ex)
@@ -228,7 +235,7 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadPreDeAcid", Method.POST);
+
                 using (var db = SugarDao.GetInstance())
                 {
                     do
@@ -238,8 +245,8 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-
-                        request.Parameters.Clear();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadPreDeAcid", Method.POST);
+                        //request.Parameters.Clear();
                         var preDeAcid = db.Queryable<PreDeAcid>().Where(s => s.uploaded == false).OrderBy(s => s.weighingTime).Take(UploadPerSize).ToList();
                         if (preDeAcid.Any())
                         {
@@ -278,6 +285,7 @@ namespace UploadTraceData.AppService
                         }
 
                         reqTime++;
+                        Thread.Sleep(50);
                     } while (flag);
 
                 }
@@ -297,7 +305,7 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadPostDeAcid", Method.POST);
+
                 using (var db = SugarDao.GetInstance())
                 {
                     do
@@ -307,7 +315,8 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-                        request.Parameters.Clear();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadPostDeAcid", Method.POST);
+                        //request.Parameters.Clear();
                         var postDeAcid = db.Queryable<PostDeAcid>().Where(s => s.uploaded == false).OrderBy(s => s.attachTime).Take(UploadPerSize).ToList();
                         if (postDeAcid.Any())
                         {
@@ -346,6 +355,7 @@ namespace UploadTraceData.AppService
                         }
 
                         reqTime++;
+                        Thread.Sleep(50);
                     } while (flag);
                 }
             }
@@ -365,7 +375,7 @@ namespace UploadTraceData.AppService
             int reqTime = 0;
             try
             {
-                var request = new RestRequest("/Api/XmSlaughterUpload/UploadCuttings", Method.POST);
+
                 using (var db = SugarDao.GetInstance())
                 {
                     do
@@ -375,7 +385,8 @@ namespace UploadTraceData.AppService
                         {
                             break;
                         }
-                        request.Parameters.Clear();
+                        var request = new RestRequest("/Api/XmSlaughterUpload/UploadCuttings", Method.POST);
+                        //request.Parameters.Clear();
                         var cuttings = db.Queryable<Cuttings>().Where(s => s.uploaded == false).OrderBy(s => s.producingTime).Take(UploadPerSize).ToList();
                         if (cuttings.Any())
                         {
@@ -405,6 +416,7 @@ namespace UploadTraceData.AppService
                             flag = false;
                         }
                         reqTime++;
+                        Thread.Sleep(50);
                     } while (flag);
 
                 }

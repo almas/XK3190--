@@ -35,9 +35,8 @@
             this.btnRefresh = new DevComponents.DotNetBar.ButtonX();
             this.factoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.factoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hookWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hooksWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.meatRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bonedRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traceURL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serverUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.factoryGrid)).BeginInit();
@@ -74,9 +73,8 @@
             this.factoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.factoryId,
             this.factoryName,
-            this.hookWeight,
+            this.hooksWeight,
             this.meatRate,
-            this.bonedRate,
             this.traceURL,
             this.serverUrl});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -119,25 +117,19 @@
             this.factoryName.DataPropertyName = "factoryName";
             this.factoryName.HeaderText = "加工厂名称";
             this.factoryName.Name = "factoryName";
-            this.factoryName.Width = 250;
+            this.factoryName.Width = 300;
             // 
-            // hookWeight
+            // hooksWeight
             // 
-            this.hookWeight.DataPropertyName = "hookWeight";
-            this.hookWeight.HeaderText = "毛重";
-            this.hookWeight.Name = "hookWeight";
+            this.hooksWeight.DataPropertyName = "hooksWeight";
+            this.hooksWeight.HeaderText = "毛重";
+            this.hooksWeight.Name = "hooksWeight";
             // 
             // meatRate
             // 
             this.meatRate.DataPropertyName = "meatRate";
             this.meatRate.HeaderText = "出肉率";
             this.meatRate.Name = "meatRate";
-            // 
-            // bonedRate
-            // 
-            this.bonedRate.DataPropertyName = "bonedRate";
-            this.bonedRate.HeaderText = "含骨率";
-            this.bonedRate.Name = "bonedRate";
             // 
             // traceURL
             // 
@@ -178,9 +170,8 @@
         private DevComponents.DotNetBar.ButtonX btnRefresh;
         private System.Windows.Forms.DataGridViewTextBoxColumn factoryId;
         private System.Windows.Forms.DataGridViewTextBoxColumn factoryName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hookWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hooksWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn meatRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bonedRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn traceURL;
         private System.Windows.Forms.DataGridViewTextBoxColumn serverUrl;
     }

@@ -13,5 +13,6 @@ namespace AppService.Model
        public string traceURL { get; set; }
        public string serverUrl { get; set; }
        public decimal bonedRate { get; set; }
+       public decimal hooksWeight { get; set; }
     }
 }

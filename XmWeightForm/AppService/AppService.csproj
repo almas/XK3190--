@@ -46,6 +46,7 @@
     <Compile Include="Model\AnimalTypes.cs" />
     <Compile Include="Model\BatchCard.cs" />
     <Compile Include="Model\BatchInput.cs" />
+    <Compile Include="Model\BatchReport.cs" />
     <Compile Include="Model\Cuttings.cs" />
     <Compile Include="Model\Headsoff.cs" />
     <Compile Include="Model\InputUserModel.cs" />

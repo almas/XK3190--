@@ -18,3 +18,9 @@ D:\锡盟——new\XK3190\XmWeightForm\AppService\bin\Release\Newtonsoft.Json.xm
 D:\锡盟——new\XK3190\XmWeightForm\AppService\obj\Release\AppService.dll
 D:\锡盟——new\XK3190\XmWeightForm\AppService\obj\Release\AppService.pdb
 E:\Work\XK3190\XmWeightForm\AppService\obj\Release\AppService.csprojResolveAssemblyReference.cache
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\bin\Release\AppService.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\bin\Release\AppService.pdb
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\bin\Release\Newtonsoft.Json.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\bin\Release\Newtonsoft.Json.xml
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\obj\Release\AppService.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\AppService\obj\Release\AppService.pdb

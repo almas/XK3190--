@@ -7,6 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using AppService.Model;
 using DevComponents.DotNetBar;
+using AppService;
+using Dapper_NET20;
+using System.Linq;
 
 namespace XmWeightForm.SystemManage
 {
@@ -92,6 +95,43 @@ namespace XmWeightForm.SystemManage
         private void priceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            var rows = priceGrid.SelectedRows;
+            if (rows.Count == 1)
+            {
+                string rowId = this.priceGrid.SelectedRows[0].Cells[0].Value.ToString();
+                string productName = priceGrid.SelectedRows[0].Cells[1].Value.ToString();
+                int intId = int.Parse(rowId);
+
+                string msg = "确认删除[" + productName + "]吗？";
+                DialogResult dr = MessageBox.Show(msg, "确认删除", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)//如果点击“确定”按钮
+                {
+                    var affectCount = 0;
+                    using (var db = DapperDao.GetInstance())
+                    {
+                        var sql = "delete from AnimalTypes where animalTypeId=@id";
+                        affectCount = db.Execute(sql, new { id = intId });
+                    }
+
+                    if (affectCount > 0)
+                    {
+                        InitData();
+                    }
+                }
+                else//如果点击“取消”按钮
+                {
+                    //e.Cancel = true;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选择需要删除的数据行");
+            }
         }
 
         

@@ -31,11 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.priceGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
+            this.btnDel = new DevComponents.DotNetBar.ButtonX();
             this.animalTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animalTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.priceGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,8 +57,7 @@
             this.priceGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.animalTypeId,
             this.animalTypeName,
-            this.price,
-            this.traceCode});
+            this.price});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -77,31 +76,6 @@
             this.priceGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellContentClick);
             this.priceGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.priceGrid_CellDoubleClick);
             // 
-            // animalTypeId
-            // 
-            this.animalTypeId.DataPropertyName = "animalTypeId";
-            this.animalTypeId.HeaderText = "animalTypeId";
-            this.animalTypeId.Name = "animalTypeId";
-            this.animalTypeId.Visible = false;
-            // 
-            // animalTypeName
-            // 
-            this.animalTypeName.DataPropertyName = "animalTypeName";
-            this.animalTypeName.HeaderText = "动物类型";
-            this.animalTypeName.Name = "animalTypeName";
-            // 
-            // price
-            // 
-            this.price.DataPropertyName = "price";
-            this.price.HeaderText = "单价(kg)";
-            this.price.Name = "price";
-            // 
-            // traceCode
-            // 
-            this.traceCode.DataPropertyName = "traceCode";
-            this.traceCode.HeaderText = "溯源编号";
-            this.traceCode.Name = "traceCode";
-            // 
             // btnAdd
             // 
             this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -114,11 +88,44 @@
             this.btnAdd.Text = "新增";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnDel
+            // 
+            this.btnDel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnDel.Location = new System.Drawing.Point(105, 54);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnDel.TabIndex = 5;
+            this.btnDel.Text = "删除";
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // animalTypeId
+            // 
+            this.animalTypeId.DataPropertyName = "animalTypeId";
+            this.animalTypeId.HeaderText = "animalTypeId";
+            this.animalTypeId.Name = "animalTypeId";
+            this.animalTypeId.Visible = false;
+            // 
+            // animalTypeName
+            // 
+            this.animalTypeName.DataPropertyName = "animalTypeName";
+            this.animalTypeName.HeaderText = "动物类型";
+            this.animalTypeName.Name = "animalTypeName";
+            this.animalTypeName.Width = 200;
+            // 
+            // price
+            // 
+            this.price.DataPropertyName = "price";
+            this.price.HeaderText = "单价(kg)";
+            this.price.Name = "price";
+            // 
             // AnimalPriceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.priceGrid);
             this.Controls.Add(this.label1);
@@ -139,6 +146,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn traceCode;
+        private DevComponents.DotNetBar.ButtonX btnDel;
     }
 }

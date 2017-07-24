@@ -15,3 +15,8 @@ D:\锡盟——new\XK3190\XmWeightForm\Dapper NET20\bin\Release\LinqBridge.dll
 D:\锡盟——new\XK3190\XmWeightForm\Dapper NET20\obj\Release\Dapper_NET20.dll
 D:\锡盟——new\XK3190\XmWeightForm\Dapper NET20\obj\Release\Dapper_NET20.pdb
 E:\Work\XK3190\XmWeightForm\Dapper NET20\obj\Release\Dapper NET20.csprojResolveAssemblyReference.cache
+E:\锡盟出差20170714\XK3190\XmWeightForm\Dapper NET20\bin\Release\Dapper_NET20.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\Dapper NET20\bin\Release\Dapper_NET20.pdb
+E:\锡盟出差20170714\XK3190\XmWeightForm\Dapper NET20\bin\Release\LinqBridge.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\Dapper NET20\obj\Release\Dapper_NET20.dll
+E:\锡盟出差20170714\XK3190\XmWeightForm\Dapper NET20\obj\Release\Dapper_NET20.pdb
