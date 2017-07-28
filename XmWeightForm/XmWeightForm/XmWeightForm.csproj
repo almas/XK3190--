@@ -158,6 +158,12 @@
     <Compile Include="SystemManage\GrossWeightForm.Designer.cs">
       <DependentUpon>GrossWeightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\HookCountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManage\HookCountForm.Designer.cs">
+      <DependentUpon>HookCountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\PriceInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\GrossWeightForm.resx">
       <DependentUpon>GrossWeightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManage\HookCountForm.resx">
+      <DependentUpon>HookCountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManage\PriceInfoForm.resx">
       <DependentUpon>PriceInfoForm.cs</DependentUpon>

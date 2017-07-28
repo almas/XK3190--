@@ -47,6 +47,7 @@ namespace XmWeightForm
         //货物价格
         private List<AnimalTypes> animalPriceList = new List<AnimalTypes>();
 
+        private int DefaultHookCount = 1;
         public MainForm()
         {
             InitializeComponent();
@@ -409,9 +410,9 @@ namespace XmWeightForm
         {
             //串口信息
             WaitCallback weightCal = new WaitCallback(DealQueueData);
-            WaitCallback dealEarData = new WaitCallback(DealEarQueueData);
+            // WaitCallback dealEarData = new WaitCallback(DealEarQueueData);
             ThreadPool.QueueUserWorkItem(weightCal, "");
-            ThreadPool.QueueUserWorkItem(dealEarData, "");
+            //ThreadPool.QueueUserWorkItem(dealEarData, "");
         }
         /// <summary>
         /// 确认称重入库
@@ -627,7 +628,7 @@ namespace XmWeightForm
                         }
 
                         //更新羊只数量
-                        UpdateSheepCountText("4");
+                        UpdateSheepCountText(DefaultHookCount.ToString());
                         //删除本地勾号
                         if (hooks.Any())
                         {
@@ -714,7 +715,7 @@ namespace XmWeightForm
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat(
-                        "select top {0} animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId",
+                        "select top {0} animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1",
                         count);
                     using (var db = DapperDao.GetInstance())
                     {
@@ -1019,6 +1020,9 @@ namespace XmWeightForm
                     inputUserList = gridreader.Read<InputUserModel>().ToList();
                     _hookWeight = gridreader.Read<decimal>().FirstOrDefault();
                 }
+
+                //获取默认钩数
+                GetDefaultHookCount();
             }
             catch (Exception ex)
             {
@@ -1637,18 +1641,48 @@ namespace XmWeightForm
                 DialogResult dr = MessageBox.Show(msg, "确认删除", MessageBoxButtons.OKCancel);
                 if (dr == DialogResult.OK)//如果点击“确定”按钮
                 {
-                    var affectCount = 0;
-                    var sql = "delete from tempWeight where Id=@id";
-                    SQLiteParameter[] lastparams = new SQLiteParameter[]{
+                    try
+                    {
+                        var affectCount = 0;
+                        var sql = "delete from tempWeight where Id=@id";
+                        SQLiteParameter[] lastparams = new SQLiteParameter[]{
                                                  new SQLiteParameter("@id",DbType.String)
                                          };
-                    lastparams[0].Value = rowId;
-                    affectCount = SQLiteHelper.ExecuteNonQuery(sql, lastparams);
-                    if (affectCount > 0)
-                    {
-                        datagridWeight.Rows.Remove(rows[0]);
-                        MessageBox.Show("撤销完成，请重新称重");
+                        lastparams[0].Value = rowId;
+                        affectCount = SQLiteHelper.ExecuteNonQuery(sql, lastparams);
+                        if (affectCount > 0)
+                        {
+                            string tempcount = rows[0].Cells[4].Value.ToString();
+                            string tempgrossweight = rows[0].Cells[5].Value.ToString();
+                            string temppiweight = rows[0].Cells[6].Value.ToString();
+                            string tempjweight = rows[0].Cells[7].Value.ToString();
+                            string tempmoney = rows[0].Cells[8].Value.ToString();
+
+                            _WeightGridGrossWeight -= decimal.Parse(tempgrossweight);
+                            _WeightGridTareWeight -= decimal.Parse(temppiweight);
+                            _WeightGridNetWeight -= decimal.Parse(tempjweight);
+                            _WeightGridTotalPrice -= decimal.Parse(tempmoney);
+                            _WeightGridCount--;
+                            datagridWeight.Rows.Remove(rows[0]);
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendFormat("次数：{0},总毛重：{1},总皮重：{2},总净重：{3},总价格：{4}",
+                                _WeightGridCount, _WeightGridGrossWeight, _WeightGridTareWeight, _WeightGridNetWeight,
+                                _WeightGridTotalPrice);
+
+                            lblWeightGridCount.Text = sb.ToString();
+                            MessageBox.Show("撤销完成，请重新称重");
+                        }
+                        else
+                        {
+                            MessageBox.Show("撤销失败，请联系管理员");
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        log4netHelper.Exception(ex);
+                    }
+
+
                 }
                 else//如果点击“取消”按钮
                 {
@@ -1724,6 +1758,41 @@ namespace XmWeightForm
                     InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt.Id);
 
                 }
+            }
+        }
+
+        private void btnsetHookCount_Click(object sender, EventArgs e)
+        {
+            var hookForm = new HookCountForm();
+            hookForm.ShowDialog();
+
+            if (hookForm.DialogResult == DialogResult.OK)
+            {
+                DefaultHookCount = hookForm.DefaultHookCount;
+                txtSheepNum.Text = DefaultHookCount.ToString();
+            }
+        }
+
+        private void GetDefaultHookCount()
+        {
+            try
+            {
+                var ds = SQLiteHelper.ExecuteDataSet("select hookCount from localParams LIMIT 1", null);
+                if (ds.Tables.Count == 1)
+                {
+                    var paramtable = ds.Tables[0];
+                    if (paramtable.Rows.Count == 1)
+                    {
+                        string hookcountStr = paramtable.Rows[0]["hookCount"].ToString();
+                        int.TryParse(hookcountStr, out DefaultHookCount);
+
+                        txtSheepNum.Text = DefaultHookCount.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log4netHelper.Exception(ex);
             }
         }
     }

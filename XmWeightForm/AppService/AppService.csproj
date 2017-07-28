@@ -55,6 +55,7 @@
     <Compile Include="Model\PostDeAcid.cs" />
     <Compile Include="Model\PreDeAcid.cs" />
     <Compile Include="Model\ProductModel.cs" />
+    <Compile Include="Model\tempWeight.cs" />
     <Compile Include="Model\Weighings.cs" />
     <Compile Include="Model\WeighingsRaw.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

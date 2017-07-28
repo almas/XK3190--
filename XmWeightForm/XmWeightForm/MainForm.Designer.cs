@@ -66,17 +66,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblRight = new CCWin.SkinControl.SkinLabel();
             this.datagridWeight = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.lblWeight = new DevComponents.DotNetBar.LabelX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.lblWeightGridCount = new DevComponents.DotNetBar.LabelX();
-            this.bar1 = new DevComponents.DotNetBar.Bar();
-            this.btnSystem = new DevComponents.DotNetBar.ButtonItem();
-            this.btnProductPriceItem = new DevComponents.DotNetBar.ButtonItem();
-            this.btnGrossWeight = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReportItem = new DevComponents.DotNetBar.ButtonItem();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.lblWeightStable = new DevComponents.DotNetBar.LabelX();
-            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.SerialNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +77,18 @@
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblWeight = new DevComponents.DotNetBar.LabelX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.lblWeightGridCount = new DevComponents.DotNetBar.LabelX();
+            this.bar1 = new DevComponents.DotNetBar.Bar();
+            this.btnSystem = new DevComponents.DotNetBar.ButtonItem();
+            this.btnProductPriceItem = new DevComponents.DotNetBar.ButtonItem();
+            this.btnGrossWeight = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReportItem = new DevComponents.DotNetBar.ButtonItem();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lblWeightStable = new DevComponents.DotNetBar.LabelX();
+            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.btnsetHookCount = new DevComponents.DotNetBar.ButtonItem();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
@@ -526,133 +527,6 @@
             this.datagridWeight.Size = new System.Drawing.Size(994, 226);
             this.datagridWeight.TabIndex = 30;
             // 
-            // lblWeight
-            // 
-            this.lblWeight.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblWeight.BackColor = System.Drawing.Color.Black;
-            // 
-            // 
-            // 
-            this.lblWeight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblWeight.Font = new System.Drawing.Font("宋体", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblWeight.FontBold = true;
-            this.lblWeight.ForeColor = System.Drawing.Color.Crimson;
-            this.lblWeight.Location = new System.Drawing.Point(318, 28);
-            this.lblWeight.Name = "lblWeight";
-            this.lblWeight.Size = new System.Drawing.Size(320, 74);
-            this.lblWeight.TabIndex = 31;
-            this.lblWeight.Text = "0.0";
-            this.lblWeight.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(6, 28);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(75, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 32;
-            this.buttonX1.Text = "测试";
-            this.buttonX1.Visible = false;
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click_1);
-            // 
-            // lblWeightGridCount
-            // 
-            this.lblWeightGridCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.lblWeightGridCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblWeightGridCount.FontBold = true;
-            this.lblWeightGridCount.ForeColor = System.Drawing.Color.Red;
-            this.lblWeightGridCount.Location = new System.Drawing.Point(3, 456);
-            this.lblWeightGridCount.Name = "lblWeightGridCount";
-            this.lblWeightGridCount.Size = new System.Drawing.Size(643, 23);
-            this.lblWeightGridCount.TabIndex = 34;
-            this.lblWeightGridCount.Text = "入库提示";
-            // 
-            // bar1
-            // 
-            this.bar1.AntiAlias = true;
-            this.bar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bar1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.bar1.IsMaximized = false;
-            this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnSystem,
-            this.btnReportItem});
-            this.bar1.Location = new System.Drawing.Point(0, 0);
-            this.bar1.Name = "bar1";
-            this.bar1.Size = new System.Drawing.Size(1002, 27);
-            this.bar1.Stretch = true;
-            this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.bar1.TabIndex = 35;
-            this.bar1.TabStop = false;
-            this.bar1.Text = "bar1";
-            // 
-            // btnSystem
-            // 
-            this.btnSystem.Name = "btnSystem";
-            this.btnSystem.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnProductPriceItem,
-            this.btnGrossWeight});
-            this.btnSystem.Text = "系统管理";
-            // 
-            // btnProductPriceItem
-            // 
-            this.btnProductPriceItem.Name = "btnProductPriceItem";
-            this.btnProductPriceItem.Text = "货物价格";
-            this.btnProductPriceItem.Click += new System.EventHandler(this.btnProductPriceItem_Click);
-            // 
-            // btnGrossWeight
-            // 
-            this.btnGrossWeight.Name = "btnGrossWeight";
-            this.btnGrossWeight.Text = "毛重";
-            this.btnGrossWeight.Click += new System.EventHandler(this.btnGrossWeight_Click);
-            // 
-            // btnReportItem
-            // 
-            this.btnReportItem.Name = "btnReportItem";
-            this.btnReportItem.Text = "报表统计";
-            this.btnReportItem.Click += new System.EventHandler(this.btnReportItem_Click);
-            // 
-            // labelX2
-            // 
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(29, 57);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(89, 23);
-            this.labelX2.TabIndex = 37;
-            this.labelX2.Text = "稳定信号：";
-            // 
-            // lblWeightStable
-            // 
-            this.lblWeightStable.BackColor = System.Drawing.Color.Crimson;
-            // 
-            // 
-            // 
-            this.lblWeightStable.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblWeightStable.Location = new System.Drawing.Point(117, 57);
-            this.lblWeightStable.Name = "lblWeightStable";
-            this.lblWeightStable.Size = new System.Drawing.Size(34, 23);
-            this.lblWeightStable.TabIndex = 38;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCancel.Location = new System.Drawing.Point(662, 453);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 26);
-            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnCancel.TabIndex = 39;
-            this.btnCancel.Text = "撤销";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // SerialNum
             // 
             this.SerialNum.DataPropertyName = "SerialNum";
@@ -723,6 +597,140 @@
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.Visible = false;
+            // 
+            // lblWeight
+            // 
+            this.lblWeight.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblWeight.BackColor = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            this.lblWeight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeight.Font = new System.Drawing.Font("宋体", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWeight.FontBold = true;
+            this.lblWeight.ForeColor = System.Drawing.Color.Crimson;
+            this.lblWeight.Location = new System.Drawing.Point(318, 28);
+            this.lblWeight.Name = "lblWeight";
+            this.lblWeight.Size = new System.Drawing.Size(320, 74);
+            this.lblWeight.TabIndex = 31;
+            this.lblWeight.Text = "0.0";
+            this.lblWeight.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(6, 28);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 32;
+            this.buttonX1.Text = "测试";
+            this.buttonX1.Visible = false;
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click_1);
+            // 
+            // lblWeightGridCount
+            // 
+            this.lblWeightGridCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.lblWeightGridCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeightGridCount.FontBold = true;
+            this.lblWeightGridCount.ForeColor = System.Drawing.Color.Red;
+            this.lblWeightGridCount.Location = new System.Drawing.Point(3, 456);
+            this.lblWeightGridCount.Name = "lblWeightGridCount";
+            this.lblWeightGridCount.Size = new System.Drawing.Size(643, 23);
+            this.lblWeightGridCount.TabIndex = 34;
+            this.lblWeightGridCount.Text = "入库提示";
+            // 
+            // bar1
+            // 
+            this.bar1.AntiAlias = true;
+            this.bar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bar1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.bar1.IsMaximized = false;
+            this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnSystem,
+            this.btnReportItem});
+            this.bar1.Location = new System.Drawing.Point(0, 0);
+            this.bar1.Name = "bar1";
+            this.bar1.Size = new System.Drawing.Size(1002, 27);
+            this.bar1.Stretch = true;
+            this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.bar1.TabIndex = 35;
+            this.bar1.TabStop = false;
+            this.bar1.Text = "bar1";
+            // 
+            // btnSystem
+            // 
+            this.btnSystem.Name = "btnSystem";
+            this.btnSystem.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnProductPriceItem,
+            this.btnGrossWeight,
+            this.btnsetHookCount});
+            this.btnSystem.Text = "系统管理";
+            // 
+            // btnProductPriceItem
+            // 
+            this.btnProductPriceItem.Name = "btnProductPriceItem";
+            this.btnProductPriceItem.Text = "货物价格";
+            this.btnProductPriceItem.Click += new System.EventHandler(this.btnProductPriceItem_Click);
+            // 
+            // btnGrossWeight
+            // 
+            this.btnGrossWeight.Name = "btnGrossWeight";
+            this.btnGrossWeight.Text = "毛重";
+            this.btnGrossWeight.Click += new System.EventHandler(this.btnGrossWeight_Click);
+            // 
+            // btnReportItem
+            // 
+            this.btnReportItem.Name = "btnReportItem";
+            this.btnReportItem.Text = "报表统计";
+            this.btnReportItem.Click += new System.EventHandler(this.btnReportItem_Click);
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(29, 57);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(89, 23);
+            this.labelX2.TabIndex = 37;
+            this.labelX2.Text = "稳定信号：";
+            // 
+            // lblWeightStable
+            // 
+            this.lblWeightStable.BackColor = System.Drawing.Color.Crimson;
+            // 
+            // 
+            // 
+            this.lblWeightStable.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblWeightStable.Location = new System.Drawing.Point(117, 57);
+            this.lblWeightStable.Name = "lblWeightStable";
+            this.lblWeightStable.Size = new System.Drawing.Size(34, 23);
+            this.lblWeightStable.TabIndex = 38;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnCancel.Location = new System.Drawing.Point(662, 453);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 26);
+            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnCancel.TabIndex = 39;
+            this.btnCancel.Text = "撤销";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnsetHookCount
+            // 
+            this.btnsetHookCount.Name = "btnsetHookCount";
+            this.btnsetHookCount.Text = "默认数量";
+            this.btnsetHookCount.Click += new System.EventHandler(this.btnsetHookCount_Click);
             // 
             // MainForm
             // 
@@ -819,6 +827,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private DevComponents.DotNetBar.ButtonItem btnsetHookCount;
     }
 }
 

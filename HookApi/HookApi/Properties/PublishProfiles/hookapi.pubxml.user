@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/HookApi.dll">
-      <publishTime>06/18/2017 21:27:21</publishTime>
+      <publishTime>07/25/2017 13:42:32</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/31/2017 15:12:12</publishTime>
@@ -109,7 +109,7 @@
       <publishTime>06/01/2017 16:20:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/18/2017 21:27:21</publishTime>
+      <publishTime>07/25/2017 13:42:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
