@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppService", "AppService\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper NET20", "Dapper NET20\Dapper NET20.csproj", "{AC05C2DC-8F4A-4CDE-A73C-80F8B6410A1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportClient", "ReportClient\ReportClient.csproj", "{3A67281C-7B05-42BB-A618-DD560BCD7398}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,12 @@ Global
 		{AC05C2DC-8F4A-4CDE-A73C-80F8B6410A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC05C2DC-8F4A-4CDE-A73C-80F8B6410A1D}.Release|x86.ActiveCfg = Release|x86
 		{AC05C2DC-8F4A-4CDE-A73C-80F8B6410A1D}.Release|x86.Build.0 = Release|x86
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A67281C-7B05-42BB-A618-DD560BCD7398}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
