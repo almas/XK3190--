@@ -22,6 +22,7 @@ using DeviceSDK;
 using XmWeightForm.log;
 using XmWeightForm.SystemManage;
 using System.Data.SQLite;
+using System.IO;
 
 namespace XmWeightForm
 {
@@ -33,7 +34,7 @@ namespace XmWeightForm
         private string currentTagId = string.Empty;
 
         //去头耳号
-        private PTDevice _earDevice;
+        //private PTDevice _earDevice;
         private Queue<string> _earNumQueue = new Queue<string>();
 
         //是否选择为溯源羊
@@ -112,19 +113,20 @@ namespace XmWeightForm
             }
 
         }
-
+        private bool Listening = false;//是否没有执行完invoke相关操作
         private void weightSerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             try
             {
                 if (IsClosePort)
                 {
-                    weightSerialPort.DiscardInBuffer();
+                   // weightSerialPort.DiscardInBuffer();
                     return;
                 }
 
-                if (weightSerialPort.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
+                if (weightSerialPort.IsOpen) //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
                 {
+                    Listening = true;
                     string strtemp = "";
                     byte firstByte = Convert.ToByte(weightSerialPort.ReadByte());
                     if (firstByte == 0x02)
@@ -136,7 +138,7 @@ namespace XmWeightForm
                         for (int i = 0; i < bytesRead - 1; i++)
                         {
                             byteData = Convert.ToByte(weightSerialPort.ReadByte());
-                            if (byteData == 0x03)//结束
+                            if (byteData == 0x03) //结束
                             {
                                 break;
                             }
@@ -156,6 +158,11 @@ namespace XmWeightForm
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
+            }
+            finally
+            {
+                Listening = false;
+
             }
         }
 
@@ -321,23 +328,23 @@ namespace XmWeightForm
             }
 
             //耳号
-            try
-            {
-                _earDevice = new PTDevice(earCom, string.Empty);
-                if (_earDevice.Open())
-                {
-                    _earDevice.TTFMonitor.Start(this);
-                    _earDevice.TTFMonitor.RecordNotify += ShowEarTagId;
-                }
-                else
-                {
-                    AppNetInfo("耳号感应器已连接失败");
-                }
-            }
-            catch (Exception ex)
-            {
-                AppNetInfo(ex.Message);
-            }
+            //try
+            //{
+            //    _earDevice = new PTDevice(earCom, string.Empty);
+            //    if (_earDevice.Open())
+            //    {
+            //        _earDevice.TTFMonitor.Start(this);
+            //        _earDevice.TTFMonitor.RecordNotify += ShowEarTagId;
+            //    }
+            //    else
+            //    {
+            //        AppNetInfo("耳号感应器已连接失败");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppNetInfo(ex.Message);
+            //}
             //蜂鸣器
             //BeepPort.PortName = beepCom;
             //BeepPort.BaudRate = 9600;
@@ -369,6 +376,10 @@ namespace XmWeightForm
                 //称重
                 if (weightSerialPort.IsOpen)
                 {
+                    while (Listening)
+                    {
+                       Application.DoEvents();
+                    }
                     //打开时点击，则关闭串口
                     weightSerialPort.Close();
                 }
@@ -380,13 +391,13 @@ namespace XmWeightForm
                     _device = null;
 
                 } //钩标
-                if (_earDevice != null)
-                {
-                    _earDevice.Close();
-                    _earDevice.Dispose();
-                    _earDevice = null;
+                //if (_earDevice != null)
+                //{
+                //    _earDevice.Close();
+                //    _earDevice.Dispose();
+                //    _earDevice = null;
 
-                }
+                //}
 
                 ////蜂鸣器
                 //if (BeepPort.IsOpen)
@@ -630,27 +641,32 @@ namespace XmWeightForm
                         //更新羊只数量
                         UpdateSheepCountText(DefaultHookCount.ToString());
                         //删除本地勾号
+                        string delhooksql = string.Empty;
                         if (hooks.Any())
                         {
-                            string sql = "delete from hook where hookId in(";
+                            delhooksql = "delete from hook where hookId in(";
                             for (int i = 0; i < count; i++)
                             {
                                 if (i + 1 == count)
                                 {
-                                    sql += "'" + hooks[i] + "'";
+                                    delhooksql += "'" + hooks[i] + "'";
                                 }
                                 else
                                 {
-                                    sql += "'" + hooks[i] + "',";
+                                    delhooksql += "'" + hooks[i] + "',";
                                 }
 
                             }
-                            sql += ")";
-                            SQLiteHelper.ExecuteNonQuery(sql, null);
+                            delhooksql += ");";
+                            //SQLiteHelper.ExecuteNonQuery(sql, null);
                         }
 
                         //删除上一条记录
-                        string delSql = "delete from tempWeight where Id='" + lastWeightId + "'";
+                        string delSql = "delete from tempWeight where Id='" + lastWeightId + "';";
+                        if (!string.IsNullOrEmpty(delhooksql))
+                        {
+                            delSql += delhooksql;
+                        }
                         SQLiteHelper.ExecuteNonQuery(delSql, null);
                     }
                     else
