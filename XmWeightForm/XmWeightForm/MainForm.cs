@@ -291,7 +291,7 @@ namespace XmWeightForm
             var weightCom = ConfigurationManager.AppSettings["weightCom"];
             var hookCom = ConfigurationManager.AppSettings["hookCom"];
             // var beepCom = ConfigurationManager.AppSettings["beepCom"];
-            var earCom = ConfigurationManager.AppSettings["earCom"];
+            //var earCom = ConfigurationManager.AppSettings["earCom"];
             try
             {
                 //称重
@@ -538,7 +538,7 @@ namespace XmWeightForm
                     }
 
                     decimal dweight = decimal.Parse(lastWeigt.weight);
-                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt.Id);
+                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt);
 
                 }
 
@@ -552,14 +552,14 @@ namespace XmWeightForm
             UpdateWeightStableSingle(false);
         }
 
-        private void InsertWeightData(List<string> hooks, decimal weights, int count, string lastWeightId)
+        private void InsertWeightData(List<string> hooks, decimal weights, int count, tempWeight lastWeight)
         {
             try
             {
                 if (hooks.Any())
                 {
-                    var animaltypeName = animalSel.Text;
-                    var price = txtPrice.Text;
+                    var animaltypeName = lastWeight.productName;
+                    var price = lastWeight.productPrice;
                     decimal dprice = decimal.Parse(price);
 
                     var hookDt = new DataTable("Hooks");
@@ -639,7 +639,7 @@ namespace XmWeightForm
                         }
 
                         //更新羊只数量
-                        UpdateSheepCountText(DefaultHookCount.ToString());
+                        //UpdateSheepCountText(DefaultHookCount.ToString());
                         //删除本地勾号
                         string delhooksql = string.Empty;
                         if (hooks.Any())
@@ -661,6 +661,7 @@ namespace XmWeightForm
                             //SQLiteHelper.ExecuteNonQuery(sql, null);
                         }
 
+                        string lastWeightId = lastWeight.Id;
                         //删除上一条记录
                         string delSql = "delete from tempWeight where Id='" + lastWeightId + "';";
                         if (!string.IsNullOrEmpty(delhooksql))
@@ -1771,7 +1772,7 @@ namespace XmWeightForm
                     }
 
                     decimal dweight = decimal.Parse(lastWeigt.weight);
-                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt.Id);
+                    InsertWeightData(hooks, dweight, lastSheepCount, lastWeigt);
 
                 }
             }
