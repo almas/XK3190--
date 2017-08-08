@@ -22,19 +22,22 @@ namespace XmWeightForm.SystemManage
 
         private string facId = string.Empty;
         public decimal HookWeight = 0.0m;
+        public int HookCount = 1;
         private void GrossWeightForm_Load(object sender, EventArgs e)
         {
             try
             {
                 using (var db = DapperDao.GetInstance())
                 {
-                    var qeury = db.Query<ParamsModel>("select top 1 factoryId, hooksWeight from Params", null).FirstOrDefault();
+                    var qeury = db.Query<ParamsModel>("select top 1 factoryId, hooksWeight,hookCount from Params", null).FirstOrDefault();
 
                     if (qeury != null)
                     {
                         facId = qeury.factoryId;
                         txtWeight.Text = qeury.hooksWeight.ToString();
                         HookWeight = qeury.hooksWeight;
+                        HookCount = qeury.hookCount;
+                        txtSheepNum.Text = HookCount.ToString();
                     }
                 }
             }
@@ -47,6 +50,7 @@ namespace XmWeightForm.SystemManage
         private void btnSave_Click(object sender, EventArgs e)
         {
             var weight = txtWeight.Text.Trim();
+            var hookcount = txtSheepNum.Text.Trim();
             if (string.IsNullOrEmpty(facId))
             {
                 MessageBox.Show("系统错误，请联系管理员");
@@ -62,13 +66,14 @@ namespace XmWeightForm.SystemManage
             try
             {
                 int refResult = 0;
+                int.TryParse(hookcount,out HookCount);
                 //总毛重
                 decimal dweight = decimal.Parse(weight);
                 //单只毛重
-                decimal hookWeight = Math.Round(dweight / 4, 2);
+                decimal hookWeight = Math.Round(dweight / HookCount, 2);
                 using (var db = DapperDao.GetInstance())
                 {
-                    refResult = db.Execute("update Params set hookWeight=@hookWeight,hooksWeight=@dweight where factoryId=@facid", new { dweight = dweight, hookWeight = hookWeight, facid = facId });
+                    refResult = db.Execute("update Params set hookWeight=@hookWeight,hookCount=@hcount,hooksWeight=@dweight where factoryId=@facid", new { dweight = dweight, hookWeight = hookWeight,hcount=HookCount, facid = facId });
                 }
 
 

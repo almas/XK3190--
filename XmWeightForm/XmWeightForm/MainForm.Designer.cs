@@ -84,11 +84,11 @@
             this.btnSystem = new DevComponents.DotNetBar.ButtonItem();
             this.btnProductPriceItem = new DevComponents.DotNetBar.ButtonItem();
             this.btnGrossWeight = new DevComponents.DotNetBar.ButtonItem();
+            this.btnsetHookCount = new DevComponents.DotNetBar.ButtonItem();
             this.btnReportItem = new DevComponents.DotNetBar.ButtonItem();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.lblWeightStable = new DevComponents.DotNetBar.LabelX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.btnsetHookCount = new DevComponents.DotNetBar.ButtonItem();
             this.mainGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
@@ -462,7 +462,7 @@
             this.txtSheepNum.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSheepNum.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left;
             this.txtSheepNum.Location = new System.Drawing.Point(103, 54);
-            this.txtSheepNum.MaxValue = 4;
+            this.txtSheepNum.MaxValue = 10;
             this.txtSheepNum.MinValue = 1;
             this.txtSheepNum.Name = "txtSheepNum";
             this.txtSheepNum.ShowUpDown = true;
@@ -684,6 +684,13 @@
             this.btnGrossWeight.Text = "毛重";
             this.btnGrossWeight.Click += new System.EventHandler(this.btnGrossWeight_Click);
             // 
+            // btnsetHookCount
+            // 
+            this.btnsetHookCount.Name = "btnsetHookCount";
+            this.btnsetHookCount.Text = "默认数量";
+            this.btnsetHookCount.Visible = false;
+            this.btnsetHookCount.Click += new System.EventHandler(this.btnsetHookCount_Click);
+            // 
             // btnReportItem
             // 
             this.btnReportItem.Name = "btnReportItem";
@@ -725,12 +732,6 @@
             this.btnCancel.TabIndex = 39;
             this.btnCancel.Text = "撤销";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnsetHookCount
-            // 
-            this.btnsetHookCount.Name = "btnsetHookCount";
-            this.btnsetHookCount.Text = "默认数量";
-            this.btnsetHookCount.Click += new System.EventHandler(this.btnsetHookCount_Click);
             // 
             // MainForm
             // 

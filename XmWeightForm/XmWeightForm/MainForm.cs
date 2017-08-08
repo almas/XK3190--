@@ -732,7 +732,7 @@ namespace XmWeightForm
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat(
-                        "select top {0} animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1",
+                        "select top {0} animalId from Headsoff where flag=0 and  yearNum=@yearNum and sort=@sort and animalId <>@currentAnimalId and animalId not like '%-1'",
                         count);
                     using (var db = DapperDao.GetInstance())
                     {
@@ -1020,6 +1020,7 @@ namespace XmWeightForm
         public decimal _hookWeight = 0;
         public List<InputUserModel> inputUserList = new List<InputUserModel>();
         public List<string> SheepOriginalList = new List<string>();
+        private ParamsModel paramsModel=new ParamsModel();
         private void InitData()
         {
             var data = new BatchInput();
@@ -1030,24 +1031,26 @@ namespace XmWeightForm
                     string multisql = @"select top 1 * from Batches where flag=0;
                                       select * from AnimalTypes;
                                       select distinct PIN,hostName from Batches;
-                                      select top 1 hooksWeight from Params;";
+                                      select top 1 hooksWeight,hookCount from Params;";
                     var gridreader = db.QueryMultiple(multisql, null, CommandType.Text);
                     data = gridreader.Read<BatchInput>().FirstOrDefault();
                     animalPriceList = gridreader.Read<AnimalTypes>().ToList();
                     inputUserList = gridreader.Read<InputUserModel>().ToList();
-                    _hookWeight = gridreader.Read<decimal>().FirstOrDefault();
+                     paramsModel= gridreader.Read<ParamsModel>().FirstOrDefault();
                 }
 
                 //获取默认钩数
-                GetDefaultHookCount();
+                //GetDefaultHookCount();
             }
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
             }
-
+            _hookWeight = paramsModel.hooksWeight;
+            DefaultHookCount = paramsModel.hookCount;
             //系统毛重
             txtmaoWeight.Text = _hookWeight.ToString();
+            txtSheepNum.Text = DefaultHookCount.ToString();
             //更新货物价格
             UpdatePriceList();
             //送宰人自动选择
@@ -1459,7 +1462,10 @@ namespace XmWeightForm
             if (weightForm.DialogResult == DialogResult.OK)
             {
                 _hookWeight = weightForm.HookWeight;
+                DefaultHookCount = weightForm.HookCount;
+
                 txtmaoWeight.Text = _hookWeight.ToString();
+                txtSheepNum.Text = DefaultHookCount.ToString();
             }
         }
 
@@ -1649,6 +1655,12 @@ namespace XmWeightForm
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            var selindex = datagridWeight.CurrentCell.RowIndex;
+            if (selindex >0)
+            {
+                MessageBox.Show("当前数据行不允许撤销,只能撤销第一行数据");
+                return;
+            }
             var rows = datagridWeight.SelectedRows;
             if (rows.Count == 1)
             {

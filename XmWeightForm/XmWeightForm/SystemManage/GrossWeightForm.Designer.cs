@@ -33,6 +33,9 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSheepNum = new DevComponents.Editors.IntegerInput();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -96,11 +99,41 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "过磅数量:";
+            // 
+            // txtSheepNum
+            // 
+            // 
+            // 
+            // 
+            this.txtSheepNum.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.txtSheepNum.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSheepNum.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.txtSheepNum.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtSheepNum.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left;
+            this.txtSheepNum.Location = new System.Drawing.Point(80, 58);
+            this.txtSheepNum.MaxValue = 100;
+            this.txtSheepNum.MinValue = 1;
+            this.txtSheepNum.Name = "txtSheepNum";
+            this.txtSheepNum.ShowUpDown = true;
+            this.txtSheepNum.Size = new System.Drawing.Size(106, 24);
+            this.txtSheepNum.TabIndex = 19;
+            this.txtSheepNum.Value = 4;
+            // 
             // GrossWeightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 160);
+            this.Controls.Add(this.txtSheepNum);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
@@ -110,7 +143,9 @@
             this.Name = "GrossWeightForm";
             this.Text = "毛重设置";
             this.Load += new System.EventHandler(this.GrossWeightForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSheepNum)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,5 +156,7 @@
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.ButtonX btnCancel;
+        private System.Windows.Forms.Label label1;
+        private DevComponents.Editors.IntegerInput txtSheepNum;
     }
 }

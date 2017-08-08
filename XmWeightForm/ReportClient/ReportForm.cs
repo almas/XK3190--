@@ -258,7 +258,7 @@ namespace ReportClient
                 using (var db = DapperDao.GetInstance())
                 {
                     string batchsql = @"select ROW_NUMBER() OVER(ORDER BY w.batchId desc) as Sort,(b.hostName+'-'+b.PIN) Name,w.productName ProductName,
-                             w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.batchId=@batchId";
+                             w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.batchId=@batchId order by w.weighingTime";
 
                     //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
                     var ds = db.ExecuteDataSet(batchsql, new { batchId = batchId }, null, null, null);

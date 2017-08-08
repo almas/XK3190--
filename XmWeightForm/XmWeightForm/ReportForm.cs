@@ -80,7 +80,7 @@ namespace XmWeightForm
             if (string.IsNullOrEmpty(subTime))
             {
                 subTime = DateTime.Now.ToString("yyyyMMdd");
-                
+
                 var dtnow = DateTime.Now.ToString("yyyyMMdd");
                 int dtint = int.Parse(dtnow);
                 whereSql += " and b.yearNum=" + dtint;
@@ -97,7 +97,7 @@ namespace XmWeightForm
             //    MessageBox.Show("未查询到数据");
             //}
         }
-        
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             if (QueryDataTable == null)
@@ -180,7 +180,7 @@ namespace XmWeightForm
                 lblCount.Text = "总计：" + totalCount + "只";
                 gridBatch.DataSource = batchlist;
 
-               
+
             }
             catch (Exception ex)
             {
@@ -223,7 +223,7 @@ namespace XmWeightForm
         }
         private DataTable GetReportData(string wheresql)
         {
-            
+
             try
             {
                 using (var db = DapperDao.GetInstance())
@@ -257,8 +257,8 @@ namespace XmWeightForm
                 using (var db = DapperDao.GetInstance())
                 {
                     string batchsql = @"select ROW_NUMBER() OVER(ORDER BY w.batchId desc) as Sort,(b.hostName+'-'+b.PIN) Name,w.productName ProductName,
-                             w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.batchId=@batchId";
-                  
+                             w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.batchId=@batchId order by w.weighingTime";
+
                     //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
                     var ds = db.ExecuteDataSet(batchsql, new { batchId = batchId }, null, null, null);
                     if (ds.Tables.Count == 1)
@@ -332,14 +332,14 @@ namespace XmWeightForm
                             MessageBox.Show("未查询到数据");
                         }
                     }
-                 
+
                 }
             }
             catch (Exception ex)
             {
                 log4netHelper.Exception(ex);
             }
- 
+
         }
 
     }
