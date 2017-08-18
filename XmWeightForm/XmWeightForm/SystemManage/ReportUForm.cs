@@ -64,9 +64,9 @@ namespace XmWeightForm.SystemManage
                     int tempetimeInt = int.Parse(tempetime);
                     whereSql += " and b.yearNum <=" + tempetimeInt;
 
-                    if (string.IsNullOrEmpty(startTime))
+                    if (!string.IsNullOrEmpty(startTime))
                     {
-                        subTime = "至" + tempetime;
+                        subTime +="至" + tempetime;
                     }
                     else
                     {

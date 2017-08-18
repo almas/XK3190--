@@ -27,6 +27,7 @@ namespace ReportClient
 
         public DataTable QueryDataTable = null;
         private string subTime = string.Empty;
+        private string ReportTitle = string.Empty;
         private void btnQuery_Click(object sender, EventArgs e)
         {
             subTime = string.Empty;
@@ -66,9 +67,9 @@ namespace ReportClient
                     int tempetimeInt = int.Parse(tempetime);
                     whereSql += " and b.yearNum <=" + tempetimeInt;
 
-                    if (string.IsNullOrEmpty(startTime))
+                    if (!string.IsNullOrEmpty(startTime))
                     {
-                        subTime = "至" + tempetime;
+                        subTime += "至" + tempetime;
                     }
                     else
                     {
@@ -286,7 +287,7 @@ namespace ReportClient
             {
                 var dt = QueryDataTable;
                 var title = Report.ControlByName("SubTitleBox");
-                title.AsStaticBox.Text ="统计时间:" +subTime;
+                title.AsStaticBox.Text = "统计时间:" + ReportTitle;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     Report.DetailGrid.Recordset.Append();
@@ -320,9 +321,17 @@ namespace ReportClient
                 if (e.ColumnIndex == 5)
                 {
                     var cell = this.gridBatch.Rows[e.RowIndex].Cells[0];
+                    var timecell = this.gridBatch.Rows[e.RowIndex].Cells[4];
+                    if (timecell.Value != null)
+                    {
+                        string timestr = timecell.Value.ToString();
+                        ReportTitle = (DateTime.Parse(timestr)).ToString("yyyy-MM-dd");
+                    }
+                   
                     if (cell.Value != null)
                     {
                         string batchId = cell.Value.ToString();
+                       
                         QueryDataTable=GetReportData2(batchId);
                         if (QueryDataTable != null && QueryDataTable.Rows.Count > 0)
                         {

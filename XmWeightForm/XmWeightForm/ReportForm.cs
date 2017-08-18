@@ -25,7 +25,8 @@ namespace XmWeightForm
         }
 
         public DataTable QueryDataTable = null;
-        private string subTime = string.Empty;
+        private string subTime = string.Empty; 
+        private string ReportTitle = string.Empty;
         private void btnQuery_Click(object sender, EventArgs e)
         {
             subTime = string.Empty;
@@ -65,9 +66,9 @@ namespace XmWeightForm
                     int tempetimeInt = int.Parse(tempetime);
                     whereSql += " and b.yearNum <=" + tempetimeInt;
 
-                    if (string.IsNullOrEmpty(startTime))
+                    if (!string.IsNullOrEmpty(startTime))
                     {
-                        subTime = "至" + tempetime;
+                        subTime += "至" + tempetime;
                     }
                     else
                     {
@@ -228,10 +229,10 @@ namespace XmWeightForm
             {
                 using (var db = DapperDao.GetInstance())
                 {
-                    string batchsql = @"select ROW_NUMBER() OVER(ORDER BY w.batchId desc) as Sort,(b.hostName+'-'+b.PIN) Name,b.animalTypeName ProductName,
+                    string batchsql = @"select 1 as Sort,(b.hostName+'-'+b.PIN) Name,b.animalTypeName ProductName,
                              w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.flag=@flag and 1=1";
                     batchsql += wheresql;
-                    batchsql += " order by weighingTime";
+                    batchsql += " order by w.weighingTime";
                     //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
                     var ds = db.ExecuteDataSet(batchsql, new { flag = true }, null, null, null);
                     if (ds.Tables.Count == 1)
@@ -256,7 +257,7 @@ namespace XmWeightForm
             {
                 using (var db = DapperDao.GetInstance())
                 {
-                    string batchsql = @"select ROW_NUMBER() OVER(ORDER BY w.batchId desc) as Sort,(b.hostName+'-'+b.PIN) Name,w.productName ProductName,
+                    string batchsql = @"select ROW_NUMBER() OVER(ORDER BY w.weighingTime) as Sort,(b.hostName+'-'+b.PIN) Name,w.productName ProductName,
                              w.grossWeights Weights,w.hookWeights,(w.grossWeights-w.hookWeights)as JWeight,w.hooksCount ProductNum,w.ProductPrice,(w.grossWeights-w.hookWeights)*w.ProductPrice TotalPrice,w.weighingTime from Batches b join  WeighingsRaw w on b.batchId=w.batchId where b.batchId=@batchId order by w.weighingTime";
 
                     //batchlist = db.Query<BatchInput>(batchsql, new { flag = true }).ToList();
@@ -285,7 +286,7 @@ namespace XmWeightForm
             {
                 var dt = QueryDataTable;
                 var title = Report.ControlByName("SubTitleBox");
-                title.AsStaticBox.Text ="统计时间:" +subTime;
+                title.AsStaticBox.Text = "统计时间:" + ReportTitle;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     Report.DetailGrid.Recordset.Append();
@@ -319,6 +320,12 @@ namespace XmWeightForm
                 if (e.ColumnIndex == 5)
                 {
                     var cell = this.gridBatch.Rows[e.RowIndex].Cells[0];
+                    var timecell = this.gridBatch.Rows[e.RowIndex].Cells[4];
+                    if (timecell.Value != null)
+                    {
+                        string timestr = timecell.Value.ToString();
+                        ReportTitle = (DateTime.Parse(timestr)).ToString("yyyy-MM-dd");
+                    }
                     if (cell.Value != null)
                     {
                         string batchId = cell.Value.ToString();

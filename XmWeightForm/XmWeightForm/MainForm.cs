@@ -43,7 +43,7 @@ namespace XmWeightForm
         private List<string> CurrentAnimalIds = new List<string>();
 
         // 蜂鸣器警示灯
-        private System.IO.Ports.SerialPort BeepPort = new System.IO.Ports.SerialPort();
+        //private System.IO.Ports.SerialPort BeepPort = new System.IO.Ports.SerialPort();
 
         //货物价格
         private List<AnimalTypes> animalPriceList = new List<AnimalTypes>();
@@ -639,7 +639,7 @@ namespace XmWeightForm
                         }
 
                         //更新羊只数量
-                        //UpdateSheepCountText(DefaultHookCount.ToString());
+                        UpdateSheepCountText(DefaultHookCount.ToString());
                         //删除本地勾号
                         string delhooksql = string.Empty;
                         if (hooks.Any())
